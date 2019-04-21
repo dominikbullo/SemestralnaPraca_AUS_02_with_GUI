@@ -16,7 +16,7 @@ int main()
 	Application::Run(%form);
 
 	// TODO načítaj dáta -> void Nacitanie::loadData(): Not finished yet!
-	// FIXME prečo sa formulár vymazáva dva krát ?  ->memore leak or read acces violation
+	// FIXME prečo sa formulár vymazáva dva krát ?  ->memory leak or read acces violation
 
 	return 0;
 }

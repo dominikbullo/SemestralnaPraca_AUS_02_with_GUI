@@ -20,7 +20,7 @@ Nacitanie::~Nacitanie()
 
 void Nacitanie::loadData()
 {
-	string dataFiles[2] = { "test.csv", "test.csv" };
+	string dataFiles[2] = { "1_kolo.csv", "2_kolo.csv" };
 	for (string subor : dataFiles) {
 		this->loadData(subor);
 	}
@@ -29,19 +29,35 @@ void Nacitanie::loadData()
 void Nacitanie::loadData(string nazovSuboru)
 {
 	ifstream file(nazovSuboru);
-	string temp, nazovKraja, nazovObce;
+	string temp, nazovKraja, nazovObce, nazovOkresu;
+
+	getline(file, temp, '\n'); // vynechaj hlavièku
 
 	while (file.good()) {
-		getline(file, temp, '\n'); // vynechaj hlavièku
-		getline(file, nazovObce, ';'); // kod kraja
-		getline(file, nazovObce, ';'); // kod kraja
+		getline(file, temp, ';');		// Kod kraja
+		getline(file, nazovKraja, ';');	// Nazov kraja
+		getline(file, temp, ';');		// Kód územného obvodu
+		getline(file, temp, ';');		// Názov územného obvodu
+		getline(file, temp, ';');		// Kód okresu
+		getline(file, nazovOkresu, ';');// Názov okresu
+		getline(file, temp, ';');		// Kód obce
+		getline(file, nazovObce, ';');	// Názov obce
+		getline(file, temp, ';');		// Poèet okrskov
+		getline(file, temp, ';');		// Poèet zapísanıch volièov
+		getline(file, temp, ';');		// Poèet vydanıch obálok
+		getline(file, temp, ';');		// Úèas volièov v %
+		getline(file, temp, ';');		// Poèet odovzdanıch obálok
+		getline(file, temp, ';');		// Podiel odovzdanıch obálok v %
+		getline(file, temp, ';');		// Poèet platnıch hlasov všetkıch kandidátov
+		getline(file, temp, ';');		// Podiel platnıch hlasov všetkıch kandidátov v %
+
 		for (structures::TableItem<int, Kraj*> * item : *kraje)
 		{
-			//okresTemp = new Okres(meno);
+			// TODO neviem èo zo ivotom
 		}
 	}
 	cout << "Error v nacitavani dat" << endl;
-	//throw logic_error("void Nacitanie::loadData(): Not finished yet!");
+	throw logic_error("void Nacitanie::loadData(): Not finished yet!");
 }
 
 
