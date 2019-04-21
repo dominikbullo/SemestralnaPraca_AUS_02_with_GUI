@@ -259,3 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/PRE_2019_KOLO1_xlsx.zip
+/PRE_2019_KOLO2_xlsx.zip
