@@ -130,7 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Controller.h" />
+    <ClInclude Include="App.h" />
     <ClInclude Include="Kraj.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
@@ -193,7 +193,7 @@
     <ClInclude Include="VolebneKolo.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="App.cpp" />
     <ClCompile Include="Kraj.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Nacitanie.cpp" />

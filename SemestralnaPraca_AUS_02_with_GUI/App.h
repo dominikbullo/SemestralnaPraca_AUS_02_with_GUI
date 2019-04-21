@@ -1,15 +1,14 @@
-#pragma once
+Ôªø#pragma once
 #include "structures\table\unsorted_sequence_table.h"
 #include "structures\table\sorted_sequence_table.h"
 #include "Kraj.h"
 
-/// <summary> Star· sa o vöetky filtrovania, vyhæad·vania, sortovania a pod.</summary>
-class Controller
+/// <summary> Star√° sa o v≈°etky filtrovania, vyhƒæad√°vania, sortovania a pod.</summary>
+class App
 {
 private:
 	structures::SortedSequenceTable<int, Kraj* > * data;
 public:
-	Controller(structures::SortedSequenceTable<int, Kraj* > * kraje);
-	~Controller();
+	App(structures::SortedSequenceTable<int, Kraj* > * kraje);
+	~App();
 };
-

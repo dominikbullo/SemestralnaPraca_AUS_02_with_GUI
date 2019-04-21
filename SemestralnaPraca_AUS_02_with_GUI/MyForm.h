@@ -1,5 +1,5 @@
-#pragma once
-#include "Controller.h"
+﻿#pragma once
+#include "App.h"
 #include "Nacitanie.h"
 
 namespace SemestralnaPracaAUS02withGUI {
@@ -21,7 +21,7 @@ namespace SemestralnaPracaAUS02withGUI {
 		{
 			InitializeComponent();
 			loader = new Nacitanie();
-			controller = new Controller(loader->getData());
+			app = new App(loader->getData());
 		}
 
 	protected:
@@ -38,16 +38,16 @@ namespace SemestralnaPracaAUS02withGUI {
 				delete loader;
 				loader = nullptr;
 			}
-			if (controller) {
-				delete controller;
-				controller = nullptr;
+			if (app) {
+				delete app;
+				app = nullptr;
 			}
 		}
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Label^  label1;
 	private: Nacitanie* loader;
-	private: Controller* controller;
+	private: App* app;
 
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::TextBox^  textBox1;
@@ -134,7 +134,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Name = L"MyForm";
-			this->Text = L"Semestralna praca 2 - V�sledky volieb";
+			this->Text = L"Semestralna praca 2 - Výsledky volieb";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -151,5 +151,5 @@ namespace SemestralnaPracaAUS02withGUI {
 		MessageBox::Show(textBox1->Text);
 		Console::WriteLine(textBox1->Text);
 	}
-};
+	};
 }
