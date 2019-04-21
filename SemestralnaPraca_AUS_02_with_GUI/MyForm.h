@@ -100,7 +100,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(0, 13);
 			this->label1->TabIndex = 2;
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click_1);
 			// 
 			// MyForm
 			// 
@@ -112,7 +111,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->Controls->Add(this->button1);
 			this->Name = L"MyForm";
 			this->Text = L"Semestralna praca 2 - Vysledky volieb";
-			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -122,14 +120,8 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		MessageBox::Show("Hello World");
 	}
-	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		label1->Text = "Hello World";
-	}
-	private: System::Void label1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
 	};
 }

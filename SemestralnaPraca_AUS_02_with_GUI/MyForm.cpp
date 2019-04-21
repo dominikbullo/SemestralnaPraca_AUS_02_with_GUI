@@ -10,6 +10,7 @@ int main()
 //int main (array＜String^＞^args )
 {
 	initHeapMonitor();
+	std::locale::global(std::locale("")); // kvôli diakritike 
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	SemestralnaPracaAUS02withGUI::MyForm form;
