@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "../list/array_list.h"
 #include "sequence_table.h"
@@ -66,21 +66,56 @@ namespace structures
 	template<typename K, typename T>
 	inline void SortedSequenceTable<K, T>::insert(const K & key, const T & data)
 	{
-		// TODO 09: SortedSequenceTable
-		throw std::exception("SortedSequenceTable<K, T>::insert: Not implemented yet.");
+		bool found(0);
+		int keyIndex = indexOfKey(key, 0, list_->size(), found);
+		if (found)
+		{
+			throw std::logic_error("Key is already in table");
+		}
+		list_->insert(new TableItem<K, T>(key, data), keyIndex);
 	}
 
 	template<typename K, typename T>
 	inline TableItem<K, T>* SortedSequenceTable<K, T>::findTableItem(const K & key) const
 	{
-		// TODO 09: SortedSequenceTable
-		throw std::exception("SortedSequenceTable<K, T>::findTableItem: Not implemented yet.");
+		//bool found(0);
+		//int keyIndex = indexOfKey(key, 0, list_->size(), found);
+		//if (found)
+		//{
+		//	return (*list_)[keyIndex];
+		//}
+		//return 0;
 	}
 
 	template<typename K, typename T>
 	inline int SortedSequenceTable<K, T>::indexOfKey(const K & key, int indexStart, int indexEnd, bool & found) const
 	{
-		// TODO 09: SortedSequenceTable
-		throw std::exception("SortedSequenceTable<K, T>::indexOfKey: Not implemented yet.");
+		int left = indexStart;
+		int right = indexEnd;
+		int middle(0);
+		while (left < right)
+		{
+			middle = left + ((right - left) / 2);
+			K keyInMiddle = (*list_)[middle]->getKey();
+			if (keyInMiddle == key)
+			{
+				found = true;
+				return middle;
+				break;
+			}
+			if (left == right)
+			{
+				break;
+			}
+			if (keyInMiddle < key)
+			{
+				left = middle + 1;
+			}
+			else
+			{
+				right = middle;
+			}
+		}
+		return left;
 	}
 }

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "../structure.h"
 #include "../structure_iterator.h"
@@ -17,6 +17,12 @@ namespace structures
 		/// <param name = "data"> Data, ktore uchovava. </param>
 		TableItem(K key, T data);
 
+		//// TODO kopirovaci konštruktor
+		///// <summary> Kopirovaci konstruktor. </summary>
+		///// <param name = "key"> Kluc prvku. </param>
+		///// <param name = "data"> Data, ktore uchovava. </param>
+		//TableItem(const TableItem<T>& other);
+
 		/// <summary> Getter atributu kluc. </summary>
 		/// <returns> Kluc. </returns>
 		K getKey();
@@ -28,7 +34,7 @@ namespace structures
 	/// <summary> Tabulka. </summary>
 	/// <typeparam name = "K"> Kluc prvkov v tabulke. </typepram>
 	/// <typeparam name = "T"> Typ dat ukladanych v tabulke. </typepram>
-	template <typename K, typename T> 
+	template <typename K, typename T>
 	class Table : public Structure, public Iterable<TableItem<K, T>*>
 	{
 	public:
@@ -75,7 +81,7 @@ namespace structures
 		/// <returns> Odstranene data. </returns>
 		/// <exception cref="std::logic_error"> Vyhodena, ak tabulka neobsahuje data s takymto klucom. </exception>  
 		virtual T remove(const K& key) = 0;
-		
+
 		/// <summary> Bezpecne ziska data s danym klucom. </summary>
 		/// <param name = "key"> Kluc dat. </param>
 		/// <param name = "data"> Najdene data (vystupny parameter). </param>
@@ -86,7 +92,7 @@ namespace structures
 		/// <param name = "key"> Kluc dat. </param>
 		/// <returns> true, tabulka obsahuje dany kluc, false inak. </returns>
 		virtual bool containsKey(const K& key) = 0;
-		
+
 		/// <summary> Vymaze tabulku. </summary>
 		virtual void clear() = 0;
 
@@ -105,11 +111,16 @@ namespace structures
 	};
 
 	template<typename K, typename T>
-	inline TableItem<K, T>::TableItem(K key, T data):
+	inline TableItem<K, T>::TableItem(K key, T data) :
 		DataItem<T>(data),
 		key_(key)
 	{
 	}
+
+	//template<typename K, typename T>
+	//inline TableItem<K, T>::TableItem(const TableItem<T>& other)
+	//{
+	//}
 
 	template<typename K, typename T>
 	inline K TableItem<K, T>::getKey()
@@ -118,7 +129,7 @@ namespace structures
 	}
 
 	template<typename K, typename T>
-	inline Table<K, T>::Table():
+	inline Table<K, T>::Table() :
 		Structure(),
 		Iterable<TableItem<K, T>*>()
 	{
@@ -135,4 +146,3 @@ namespace structures
 	}
 
 }
-

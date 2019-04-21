@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "table.h"
 #include "linked_table.h"
@@ -154,7 +154,7 @@ namespace structures
 	};
 
 	template<typename K, typename T>
-	inline HashTable<K, T>::HashTable():
+	inline HashTable<K, T>::HashTable() :
 		Table<K, T>(),
 		data_(new Array<Table<K, T>*>(DATA_ARRAY_SIZE)),
 		size_(0)
@@ -162,7 +162,7 @@ namespace structures
 	}
 
 	template<typename K, typename T>
-	inline HashTable<K, T>::HashTable(const HashTable<K, T>& other):
+	inline HashTable<K, T>::HashTable(const HashTable<K, T>& other) :
 		HashTable()
 	{
 		*this = other;
@@ -171,7 +171,9 @@ namespace structures
 	template<typename K, typename T>
 	inline HashTable<K, T>::~HashTable()
 	{
-		// TODO 09: HashTable
+		clear();
+		delete data_;
+		data_ = 0;
 	}
 
 	template<typename K, typename T>
@@ -183,8 +185,7 @@ namespace structures
 	template<typename K, typename T>
 	inline size_t HashTable<K, T>::size() const
 	{
-		// TODO 09: HashTable
-		throw std::exception("HashTable<K, T>::size: Not implemented yet.");
+		return this->size_;
 	}
 
 	template<typename K, typename T>
@@ -200,8 +201,11 @@ namespace structures
 	template<typename K, typename T>
 	inline HashTable<K, T>& HashTable<K, T>::operator=(const HashTable<K, T>& other)
 	{
-		// TODO 09: HashTable
-		throw std::exception("HashTable<K, T>::operator=: Not implemented yet.");
+		if (this != &other)
+		{
+			*this = dynamic_cast<const HashTable<K, T>&>(other);
+		}
+		return *this;
 	}
 
 	template<typename K, typename T>
@@ -273,7 +277,7 @@ namespace structures
 	}
 
 	template<typename K, typename T>
-	inline HashTable<K, T>::HashTableIterator::HashTableIterator(const HashTable<K, T>* hashTable, int position):
+	inline HashTable<K, T>::HashTableIterator::HashTableIterator(const HashTable<K, T>* hashTable, int position) :
 		Iterator<TableItem<K, T>*>(),
 		hashTable_(hashTable),
 		position_(position),
