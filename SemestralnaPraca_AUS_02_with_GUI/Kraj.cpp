@@ -4,6 +4,7 @@
 
 Kraj::Kraj(std::string nazovKraja)
 {
+
 }
 
 Kraj::~Kraj()

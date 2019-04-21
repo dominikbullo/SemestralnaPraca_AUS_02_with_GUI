@@ -12,6 +12,13 @@ Nacitanie::Nacitanie()
 
 Nacitanie::~Nacitanie()
 {
+	//if (!kraje->isempty())
+	//{
+	//	for (structures::tableitem<int, kraj*> * item : *kraje) {
+	//		delete item->accessdata();
+	//	}
+	//}
+	delete kraje;
 }
 
 void Nacitanie::loadData()
@@ -37,7 +44,7 @@ void Nacitanie::loadData(string nazovSuboru)
 		}
 	}
 	cout << "Error v nacitavani dat" << endl;
-	throw logic_error("void Nacitanie::loadData(): Not finished yet!");
+	//throw logic_error("void Nacitanie::loadData(): Not finished yet!");
 }
 
 

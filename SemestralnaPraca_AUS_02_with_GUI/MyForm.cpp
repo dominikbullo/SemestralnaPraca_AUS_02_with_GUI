@@ -1,5 +1,4 @@
 ﻿#include "MyForm.h"
-#include "UI.h"
 #include "structures/heap_monitor.h"
 
 
@@ -17,8 +16,7 @@ int main()
 	Application::Run(%form);
 
 	// TODO načítaj dáta -> void Nacitanie::loadData(): Not finished yet!
-	Nacitanie * loader = new Nacitanie();
-	Controller * controller = new Controller(loader->getData());
+	// FIXME prečo sa formulár vymazáva dva krát ?  ->memore leak or read acces violation
 
 	return 0;
 }

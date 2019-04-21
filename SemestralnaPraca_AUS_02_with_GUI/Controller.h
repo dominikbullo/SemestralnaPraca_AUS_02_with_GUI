@@ -9,7 +9,7 @@ class Controller
 private:
 	structures::SortedSequenceTable<int, Kraj* > * data;
 public:
-	Controller(structures::SortedSequenceTable<int, Kraj* > * roky);
+	Controller(structures::SortedSequenceTable<int, Kraj* > * kraje);
 	~Controller();
 };
 

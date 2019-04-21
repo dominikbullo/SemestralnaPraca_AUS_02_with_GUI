@@ -78,44 +78,36 @@ namespace structures
 	template<typename K, typename T>
 	inline TableItem<K, T>* SortedSequenceTable<K, T>::findTableItem(const K & key) const
 	{
-		//bool found(0);
-		//int keyIndex = indexOfKey(key, 0, list_->size(), found);
-		//if (found)
-		//{
-		//	return (*list_)[keyIndex];
-		//}
-		//return 0;
+		bool found = false;
+		int index = indexOfKey(key, 0, list_->size(), found);
+		if (found) {
+			return (*list_)[index];
+		}
+		else {
+			return nullptr;
+		}
 	}
 
 	template<typename K, typename T>
 	inline int SortedSequenceTable<K, T>::indexOfKey(const K & key, int indexStart, int indexEnd, bool & found) const
 	{
-		int left = indexStart;
-		int right = indexEnd;
-		int middle(0);
-		while (left < right)
-		{
-			middle = left + ((right - left) / 2);
-			K keyInMiddle = (*list_)[middle]->getKey();
-			if (keyInMiddle == key)
-			{
+		if (indexStart == indexEnd) {
+			found = false;
+			return indexStart;
+		}
+		else {
+			int midIndex = indexStart + ((indexEnd - indexStart) / 2);
+			K midKey = (*list_)[midIndex]->getKey();
+			if (midKey == key) {
 				found = true;
-				return middle;
-				break;
+				return midIndex;
 			}
-			if (left == right)
-			{
-				break;
+			else if (midKey < key) {
+				return indexOfKey(key, midIndex + 1, indexEnd, found);
 			}
-			if (keyInMiddle < key)
-			{
-				left = middle + 1;
-			}
-			else
-			{
-				right = middle;
+			else {
+				return indexOfKey(key, indexStart, midIndex, found);
 			}
 		}
-		return left;
 	}
 }
