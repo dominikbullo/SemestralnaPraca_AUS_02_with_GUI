@@ -240,4 +240,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="1_kolo.csv" />
+    <None Include="2_kolo.csv" />
+  </ItemGroup>
 </Project>

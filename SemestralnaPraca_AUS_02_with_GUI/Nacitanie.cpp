@@ -12,12 +12,9 @@ Nacitanie::Nacitanie()
 
 Nacitanie::~Nacitanie()
 {
-	//if (!kraje->isempty())
-	//{
-	//	for (structures::tableitem<int, kraj*> * item : *kraje) {
-	//		delete item->accessdata();
-	//	}
-	//}
+	for (structures::TableItem<int, Kraj*> * item : *kraje) {
+		delete item->accessData();
+	}
 	delete kraje;
 }
 
