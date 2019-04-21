@@ -56,8 +56,8 @@ void Nacitanie::loadData(string nazovSuboru)
 			// TODO neviem èo zo životom
 		}
 	}
-	cout << "Error v nacitavani dat" << endl;
-	throw logic_error("void Nacitanie::loadData(): Not finished yet!");
+	cout << "Error v nacitavani dat zo suboru " << nazovSuboru << endl;
+	//throw logic_error("void Nacitanie::loadData(): Not finished yet!");
 }
 
 
