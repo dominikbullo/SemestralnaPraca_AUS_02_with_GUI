@@ -29,9 +29,10 @@ void Nacitanie::loadData()
 void Nacitanie::loadData(string nazovSuboru)
 {
 	ifstream file(nazovSuboru);
+	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
 	string temp, nazovKraja, nazovObce, nazovOkresu;
 
-	getline(file, temp, '\n'); // vynechaj hlavièku
+	getline(file, temp); // vynechaj hlavièku
 
 	while (file.good()) {
 		getline(file, temp, ';');		// Kod kraja

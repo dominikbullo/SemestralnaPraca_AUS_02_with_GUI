@@ -49,6 +49,9 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: Nacitanie* loader;
 	private: Controller* controller;
 
+	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::TextBox^  textBox1;
+
 	protected:
 
 	protected:
@@ -71,6 +74,8 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -101,16 +106,35 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->label1->Size = System::Drawing::Size(0, 13);
 			this->label1->TabIndex = 2;
 			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(636, 140);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(75, 23);
+			this->button3->TabIndex = 5;
+			this->button3->Text = L"button3";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(466, 140);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(100, 20);
+			this->textBox1->TabIndex = 6;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(810, 529);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Name = L"MyForm";
-			this->Text = L"Semestralna praca 2 - Vysledky volieb";
+			this->Text = L"Semestralna praca 2 - Výsledky volieb";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -123,5 +147,9 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		label1->Text = "Hello World";
 	}
-	};
+	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+		MessageBox::Show(textBox1->Text);
+		Console::WriteLine(textBox1->Text);
+	}
+};
 }

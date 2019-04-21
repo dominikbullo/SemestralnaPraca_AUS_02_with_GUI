@@ -37,27 +37,12 @@ VolebneKolo::~VolebneKolo()
 	delete obceUnsorted_;
 }
 
-Obec * VolebneKolo::pridajObec(string meno)
+template <typename T>
+T * VolebneKolo::pridaj(string meno)
 {
-	Obec * temp = new Obec(meno);
+	T * temp = new T(meno);
 	obceSorted_->insert(meno, temp);
 	obceUnsorted_->insert(meno, temp);
-	return temp;
-}
-
-Okres * VolebneKolo::pridajOkres(string meno)
-{
-	Okres * temp = new Okres(meno);
-	okresySorted_->insert(meno, temp);
-	okresyUnsorted_->insert(meno, temp);
-	return temp;
-}
-
-Kraj * VolebneKolo::pridajKraj(string meno)
-{
-	Kraj * temp = new Kraj(meno);
-	krajeSorted_->insert(meno, temp);
-	krajeUnsorted_->insert(meno, temp);
 	return temp;
 }
 
