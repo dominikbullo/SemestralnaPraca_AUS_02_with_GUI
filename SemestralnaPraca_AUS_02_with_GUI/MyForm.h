@@ -145,7 +145,7 @@ namespace SemestralnaPracaAUS02withGUI {
 		MessageBox::Show("Hello World");
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		label1->Text = "Hello World";
+		label1->Text = gcnew String(this->app->test().c_str());
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 		MessageBox::Show(textBox1->Text);

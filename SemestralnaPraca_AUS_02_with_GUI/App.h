@@ -11,4 +11,5 @@ private:
 public:
 	App(structures::SortedSequenceTable<int, Kraj* > * kraje);
 	~App();
+	std::string test();
 };
