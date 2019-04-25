@@ -131,13 +131,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
-    <ClInclude Include="Kraj.h" />
+    <ClInclude Include="Area.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Nacitanie.h" />
-    <ClInclude Include="Obec.h" />
-    <ClInclude Include="Okres.h" />
     <ClInclude Include="structures\array\array.h" />
     <ClInclude Include="structures\ds_routines.h" />
     <ClInclude Include="structures\ds_structure_types.h" />
@@ -194,11 +192,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="Kraj.cpp" />
+    <ClCompile Include="Area.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Nacitanie.cpp" />
-    <ClCompile Include="Obec.cpp" />
-    <ClCompile Include="Okres.cpp" />
     <ClCompile Include="structures\ds_routines.cpp" />
     <ClCompile Include="structures\graph\algorithms\dijkstra.cpp" />
     <ClCompile Include="structures\graph\bi_star_graph.cpp" />

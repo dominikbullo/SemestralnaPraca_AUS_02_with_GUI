@@ -171,15 +171,6 @@
     <ClInclude Include="structures\vector\vector.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="Obec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Okres.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Kraj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Nacitanie.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -190,6 +181,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Area.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -224,16 +218,7 @@
     <ClCompile Include="structures\vector\vector.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Okres.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Kraj.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Nacitanie.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Obec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyForm.cpp">
@@ -243,6 +228,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Area.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
