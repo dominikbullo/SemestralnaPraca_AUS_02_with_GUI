@@ -21,5 +21,5 @@ class CriterionIsIN : public Criterion<Obec, bool>
 public:
 	bool evaluate(const Obec& t) override { return t.isIn(*area); }
 private:
-	Area * area; // treba setter
+	Area * area; // TODO treba setter
 };
