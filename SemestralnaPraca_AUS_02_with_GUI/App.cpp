@@ -22,3 +22,6 @@ std::string App::test()
 	delete kraj;
 	return returnValue;
 }
+void App::testFilter()
+{
+}

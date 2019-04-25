@@ -215,6 +215,7 @@ namespace SemestralnaPracaAUS02withGUI {
 		//label1->Text = gcnew String(this->app->test().c_str());
 		//label2->Text = gcnew String(this->app->test().c_str());
 		MessageBox::Show("Vypis data");
+		app->testFilter();
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 		MessageBox::Show(textBox1->Text);

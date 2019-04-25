@@ -13,7 +13,7 @@ public:
 class CriterionName : public Criterion<std::string, Area>
 {
 public:
-	//CriterionName() {};
+	CriterionName() {};
 	std::string evaluate(const Area& a) const override { return a.getName(); }
 };
 
