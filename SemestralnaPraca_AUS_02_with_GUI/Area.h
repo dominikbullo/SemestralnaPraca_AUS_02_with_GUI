@@ -10,9 +10,9 @@ public:
 	std::string getName() const { return this->name_; }
 protected:
 	int y;
-	std::string name_;
 private:
 	int z;
+	std::string name_;
 };
 
 class Kraj : public Area

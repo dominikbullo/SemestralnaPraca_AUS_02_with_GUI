@@ -7,19 +7,21 @@ class Criterion
 public:
 	Criterion();
 	~Criterion();
-	virtual T evaluate(const O&) = 0;
+	virtual T evaluate(const O& o) const = 0;
 };
 
 class CriterionName : public Criterion<std::string, Area>
 {
 public:
-	std::string evaluate(const Area& a)override { return a.getName(); }
+	//CriterionName() {};
+	std::string evaluate(const Area& a) const override { return a.getName(); }
 };
 
 class CriterionIsIN : public Criterion<bool, Obec>
 {
 public:
-	bool evaluate(const Obec& t) override { return t.isIn(*area); }
+	bool evaluate(const Obec& t) const override { return t.isIn(*area); }
 private:
-	Area * area; // TODO treba setter
+	// TODO treba setter
+	Area * area;
 };

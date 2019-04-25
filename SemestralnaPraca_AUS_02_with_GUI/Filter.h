@@ -16,13 +16,10 @@ template <typename T, typename O>
 class Filter_fi : public Filter<T, O>
 {
 public:
-	bool evaluate(const O& o, const Criterion<T, O>& c) override {
-		return true;
-		//c.evaluate(o) = alpha; }
-	}
+	bool evaluate(const O& o, const Criterion<T, O>& c) override { c.evaluate(o) == alpha; }
 private:
 	T alpha;
 	// TODO treba setter
 };
 
-class FilterHasName : public Filter_fi<Area, std::string> {};
+class FilterHasName : public Filter_fi<std::string, Area> {};
