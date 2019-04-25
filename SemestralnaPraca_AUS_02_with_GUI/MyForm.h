@@ -50,13 +50,16 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: App* app;
 
 	private: System::Windows::Forms::Button^  button3;
-	private: System::Windows::Forms::TextBox^  textBox1;
+
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::ComboBox^  comboBox2;
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::ComboBox^  comboBox3;
+	private: System::Windows::Forms::TextBox^  textBox1;
+
+
 
 
 	protected:
@@ -81,13 +84,13 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -120,13 +123,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(330, 138);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 6;
-			// 
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
@@ -135,7 +131,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(121, 21);
 			this->comboBox1->TabIndex = 7;
-			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox1_SelectedIndexChanged);
 			// 
 			// label2
 			// 
@@ -154,7 +149,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->label3->Size = System::Drawing::Size(35, 13);
 			this->label3->TabIndex = 10;
 			this->label3->Text = L"Okres";
-			this->label3->Click += gcnew System::EventHandler(this, &MyForm::label3_Click);
 			// 
 			// comboBox2
 			// 
@@ -164,7 +158,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(121, 21);
 			this->comboBox2->TabIndex = 9;
-			this->comboBox2->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox2_SelectedIndexChanged);
 			// 
 			// label4
 			// 
@@ -174,7 +167,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->label4->Size = System::Drawing::Size(33, 13);
 			this->label4->TabIndex = 12;
 			this->label4->Text = L"Obec";
-			this->label4->Click += gcnew System::EventHandler(this, &MyForm::label4_Click);
 			// 
 			// comboBox3
 			// 
@@ -184,20 +176,27 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->comboBox3->Name = L"comboBox3";
 			this->comboBox3->Size = System::Drawing::Size(121, 21);
 			this->comboBox3->TabIndex = 11;
-			this->comboBox3->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox3_SelectedIndexChanged);
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(36, 174);
+			this->textBox1->Multiline = true;
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(405, 258);
+			this->textBox1->TabIndex = 13;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(606, 504);
+			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->comboBox3);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->comboBox2);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->comboBox1);
-			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -210,25 +209,16 @@ namespace SemestralnaPracaAUS02withGUI {
 #pragma endregion
 
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-
-		MessageBox::Show("Hello World");
+		textBox1->Text = gcnew String(this->app->test().c_str());
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		//label1->Text = gcnew String(this->app->test().c_str());
+		//label2->Text = gcnew String(this->app->test().c_str());
+		MessageBox::Show("Vypis data");
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 		MessageBox::Show(textBox1->Text);
 		Console::WriteLine(textBox1->Text);
-	}
-	private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void comboBox3_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	}
 	};
 }

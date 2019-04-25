@@ -7,24 +7,38 @@ class Area
 public:
 	Area(std::string nazov);
 	~Area();
-	int x;
+	std::string getName() { return this->name_; }
 protected:
 	int y;
 private:
 	int z;
-	std::string name;
+	std::string name_;
 };
 
 class Kraj : public Area
 {
-
+public:
+	// NOTE: keï vytváram kraj, používam metódu predka, s názvom
+	Kraj(std::string nazov) : Area(nazov)
+	{
+	}
 };
 
 class Okres : public Area
 {
+public:
+	// NOTE: keï vytváram kraj, používam metódu predka, s názvom
+	Okres(std::string nazov) : Area(nazov)
+	{
+	}
 };
 
 class Obec : public Area
 {
+public:
+	// NOTE: keï vytváram kraj, používam metódu predka, s názvom
+	Obec(std::string nazov) : Area(nazov)
+	{
+	}
 };
 

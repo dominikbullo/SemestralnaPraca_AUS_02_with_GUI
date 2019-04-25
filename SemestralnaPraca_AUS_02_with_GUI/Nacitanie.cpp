@@ -5,21 +5,24 @@ using namespace std;
 
 Nacitanie::Nacitanie()
 {
-	kraje = new structures::SortedSequenceTable<int, Kraj*>();
+	volebneKola = new structures::SortedSequenceTable<int, VolebneKolo*>();
+	volebneKola->insert(1, new VolebneKolo(1));
+	volebneKola->insert(2, new VolebneKolo(2));
 	this->loadData();
 }
 
 
 Nacitanie::~Nacitanie()
 {
-	for (structures::TableItem<int, Kraj*> * item : *kraje) {
+	for (structures::TableItem<int, VolebneKolo*> * item : *volebneKola) {
 		delete item->accessData();
 	}
-	delete kraje;
+	delete volebneKola;
 }
 
 void Nacitanie::loadData()
 {
+
 	string dataFiles[2] = { "1_kolo.csv", "2_kolo.csv" };
 	for (string subor : dataFiles) {
 		this->loadData(subor);
@@ -52,7 +55,7 @@ void Nacitanie::loadData(string nazovSuboru)
 		getline(file, temp, ';');		// Poèet platných hlasov všetkých kandidátov
 		getline(file, temp, ';');		// Podiel platných hlasov všetkých kandidátov v %
 
-		for (structures::TableItem<int, Kraj*> * item : *kraje)
+		for (structures::TableItem<int, VolebneKolo*> * item : *volebneKola)
 		{
 			// TODO neviem èo zo životom
 		}
@@ -62,8 +65,8 @@ void Nacitanie::loadData(string nazovSuboru)
 }
 
 
-structures::SortedSequenceTable<int, Kraj*>* Nacitanie::getData()
+structures::SortedSequenceTable<int, VolebneKolo*>* Nacitanie::getData()
 {
-	return this->kraje;
+	return this->volebneKola;
 }
 

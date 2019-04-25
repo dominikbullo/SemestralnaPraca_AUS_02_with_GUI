@@ -3,8 +3,8 @@
 using namespace std;
 
 
-App::App(structures::SortedSequenceTable<int, Kraj* > * kraje) :
-	data(kraje)
+App::App(structures::SortedSequenceTable<int, VolebneKolo* > * volebneKola) :
+	data(volebneKola)
 {
 }
 
@@ -14,9 +14,11 @@ App::~App()
 
 std::string App::test()
 {
-	//structures::SortedSequenceTable<int, std::string > * test = new structures::SortedSequenceTable<int, std::string>();
-	//test->insert(1, "test");
-	//test->insert(2, "test");	
-	//delete test;
-	return "Hello from app";
+	Area* area = new Area("testArea");
+	Kraj * kraj = new Kraj("test");
+	std::string returnValue = "";
+	returnValue += area->getName() + "\r\n" + kraj->getName();
+	delete area;
+	delete kraj;
+	return returnValue;
 }
