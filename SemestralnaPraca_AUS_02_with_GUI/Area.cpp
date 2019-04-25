@@ -12,6 +12,7 @@ Area::~Area()
 {
 }
 
+
 bool Obec::isIn(Area& area) const
 {
 	return false;

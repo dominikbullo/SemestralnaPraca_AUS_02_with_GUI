@@ -7,16 +7,16 @@ class Criterion
 public:
 	Criterion();
 	~Criterion();
-	virtual O evaluate(const T&);
+	virtual T evaluate(const O&) = 0;
 };
 
-class CriterionName : public Criterion<Area, std::string>
+class CriterionName : public Criterion<std::string, Area>
 {
 public:
 	std::string evaluate(const Area& a)override { return a.getName(); }
 };
 
-class CriterionIsIN : public Criterion<Obec, bool>
+class CriterionIsIN : public Criterion<bool, Obec>
 {
 public:
 	bool evaluate(const Obec& t) override { return t.isIn(*area); }
