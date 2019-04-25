@@ -7,7 +7,7 @@ class Area
 public:
 	Area(std::string nazov);
 	~Area();
-	std::string getName() { return this->name_; }
+	std::string getName() const { return this->name_; }
 protected:
 	int y;
 private:
@@ -40,5 +40,6 @@ public:
 	Obec(std::string nazov) : Area(nazov)
 	{
 	}
+	bool isIn(Area& area) const;
 };
 

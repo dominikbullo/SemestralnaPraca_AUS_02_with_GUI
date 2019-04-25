@@ -132,6 +132,8 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Area.h" />
+    <ClInclude Include="Criterion.h" />
+    <ClInclude Include="Filter.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -193,6 +195,8 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Area.cpp" />
+    <ClCompile Include="Criterion.cpp" />
+    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Nacitanie.cpp" />
     <ClCompile Include="structures\ds_routines.cpp" />
