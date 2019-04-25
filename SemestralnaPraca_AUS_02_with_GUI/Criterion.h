@@ -7,13 +7,13 @@ class Criterion
 public:
 	Criterion();
 	~Criterion();
-	virtual O evaluate(const T& t);
+	virtual O evaluate(const T&);
 };
 
 class CriterionName : public Criterion<Area, std::string>
 {
 public:
-	std::string evaluate(const Area& a) override { return a.getName(); }
+	std::string evaluate(const Area& a)override { return a.getName(); }
 };
 
 class CriterionIsIN : public Criterion<Obec, bool>
