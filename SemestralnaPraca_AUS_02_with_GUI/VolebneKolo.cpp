@@ -15,6 +15,15 @@ VolebneKolo::VolebneKolo(int cisloKola) :
 
 VolebneKolo::~VolebneKolo()
 {
+	// FIXME asi cyklus na odstranenie dát
+
+	obceSorted->clear();
+	okresySorted->clear();
+	krajeSorted->clear();
+
+	delete obceSorted;
+	delete okresySorted;
+	delete krajeSorted;
 };
 
 Obec* VolebneKolo::pridajObec(string meno)

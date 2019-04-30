@@ -38,6 +38,9 @@ public:
 	Okres(std::string nazov) : Area(nazov)
 	{
 	}
+	void setNazovKraja(std::string nazovKraja) { this->nazovKraja = nazovKraja; }
+private:
+	std::string nazovKraja;
 };
 
 class Obec : public Area
@@ -47,5 +50,10 @@ public:
 	{
 	}
 	bool isIn(Area& area) const;
+	void setNazovKraja(std::string nazovKraja) { this->nazovKraja = nazovKraja; }
+	void setNazovOkresu(std::string nazovOkresu) { this->nazovOkresu = nazovOkresu; }
+private:
+	std::string nazovKraja;
+	std::string nazovOkresu;
 };
 

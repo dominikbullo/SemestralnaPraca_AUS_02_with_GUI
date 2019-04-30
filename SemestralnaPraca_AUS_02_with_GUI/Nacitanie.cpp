@@ -13,6 +13,8 @@ Nacitanie::Nacitanie()
 
 Nacitanie::~Nacitanie()
 {
+	delete prveKolo;
+	delete druheKolo;
 }
 
 void Nacitanie::loadData()
@@ -75,7 +77,7 @@ void Nacitanie::loadDataOkresy(string nazovSuboru, VolebneKolo& volebneKolo)
 {
 	ifstream file(nazovSuboru);
 	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
-	string tmp;
+	string tmp, nazovKraja;
 
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
@@ -86,13 +88,15 @@ void Nacitanie::loadDataOkresy(string nazovSuboru, VolebneKolo& volebneKolo)
 	while (file.good())
 	{
 		getline(file, tmp, ';');		// Kod kraja
-		getline(file, tmp, ';');	// Nazov kraja
+		getline(file, nazovKraja, ';');	// Nazov kraja
 		getline(file, tmp, ';');		// Kod  územného obvodu
 		getline(file, tmp, ';');	// Nazov  územného obvodu
 		getline(file, tmp, ';');		// Kod okresu
 		getline(file, tmp, ';');	// Nazov okresu
 
 		Okres* tempArea = volebneKolo.pridajOkres(tmp);
+		// TODO set nazov kraja
+		tempArea->setNazovKraja(nazovKraja);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
@@ -112,7 +116,7 @@ void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
 {
 	ifstream file(nazovSuboru);
 	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
-	string tmp;
+	string tmp, nazovKraja, nazovOkresu;
 
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
@@ -122,18 +126,21 @@ void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
 
 	while (file.good()) {
 		getline(file, tmp, ';');		// Kod kraja
-		getline(file, tmp, ';');	// Nazov kraja
-
+		getline(file, nazovKraja, ';');	// Nazov kraja
 		getline(file, tmp, ';');		// Kód územného obvodu
 		getline(file, tmp, ';');		// Názov územného obvodu
 
 		getline(file, tmp, ';');		// Kód okresu
-		getline(file, tmp, ';');// Názov okresu
+		getline(file, nazovOkresu, ';');// Názov okresu
+
 
 		getline(file, tmp, ';');		// Kód obce
 		getline(file, tmp, ';');	// Názov obce
 
 		Obec* tempArea = volebneKolo.pridajObec(tmp);
+		// TODO set nazov okresu a kraja
+		tempArea->setNazovKraja(nazovKraja);
+		tempArea->setNazovOkresu(nazovOkresu);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
