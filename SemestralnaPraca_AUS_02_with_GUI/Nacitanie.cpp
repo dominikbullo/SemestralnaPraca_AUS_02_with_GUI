@@ -31,14 +31,14 @@ void Nacitanie::loadData(string nazovSuboru, VolebneKolo& volebneKolo)
 {
 	this->loadDataKraje(nazovSuboru + "_kraje.csv", volebneKolo);
 	this->loadDataOkresy(nazovSuboru + "_okresy.csv", volebneKolo);
-	//this->loadDataObce(nazovSuboru + "_obce.csv", volebneKolo);
+	this->loadDataObce(nazovSuboru + "_obce.csv", volebneKolo);
 }
 
 void Nacitanie::loadDataKraje(string nazovSuboru, VolebneKolo& volebneKolo)
 {
 	ifstream file(nazovSuboru);
 	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
-	string tmp, nazovKraja;
+	string tmp;
 
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
@@ -50,19 +50,19 @@ void Nacitanie::loadDataKraje(string nazovSuboru, VolebneKolo& volebneKolo)
 	{
 		getline(file, tmp, ';');		// Kod kraja
 		getline(file, tmp, ';');	// Nazov kraja
-		Kraj* tempKraj = volebneKolo.pridajKraj(tmp);
+		Kraj* tempArea = volebneKolo.pridajKraj(tmp);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
 		getline(file, tmp, ';');	// Poèet vydaných obálok
-		tempKraj->setPocetVydanychObalok(std::stoi(tmp));
+		tempArea->setPocetVydanychObalok(std::stoi(tmp));
 		getline(file, tmp, ';');	// Úèas volièov v %
-		tempKraj->setUcastVolicov(std::stof(tmp));
+		tempArea->setUcastVolicov(std::stof(tmp));
 		getline(file, tmp, ';');	// Poèet odovzdaných obálok
-		tempKraj->setPocetOdovzdanychObalok(std::stoi(tmp));
+		tempArea->setPocetOdovzdanychObalok(std::stoi(tmp));
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
 		getline(file, tmp, ';');	// Poèet platných hlasov všetkých kandidátov
-		tempKraj->setPocetPlatnychHlasov(std::stoi(tmp));
+		tempArea->setPocetPlatnychHlasov(std::stoi(tmp));
 		getline(file, tmp);	//  Podiel platných hlasov všetkých kandidátov v %
 	}
 
@@ -71,7 +71,7 @@ void Nacitanie::loadDataOkresy(string nazovSuboru, VolebneKolo& volebneKolo)
 {
 	ifstream file(nazovSuboru);
 	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
-	string tmp, nazovOkresu;
+	string tmp;
 
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
@@ -88,25 +88,62 @@ void Nacitanie::loadDataOkresy(string nazovSuboru, VolebneKolo& volebneKolo)
 		getline(file, tmp, ';');		// Kod okresu
 		getline(file, tmp, ';');	// Nazov okresu
 
-		Okres* tempOkres = volebneKolo.pridajOkres(tmp);
+		Okres* tempArea = volebneKolo.pridajOkres(tmp);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
 		getline(file, tmp, ';');	// Poèet vydaných obálok
-		tempOkres->setPocetVydanychObalok(std::stoi(tmp));
+		tempArea->setPocetVydanychObalok(std::stoi(tmp));
 		getline(file, tmp, ';');	// Úèas volièov v %
-		tempOkres->setUcastVolicov(std::stof(tmp));
+		tempArea->setUcastVolicov(std::stof(tmp));
 		getline(file, tmp, ';');	// Poèet odovzdaných obálok
-		tempOkres->setPocetOdovzdanychObalok(std::stoi(tmp));
+		tempArea->setPocetOdovzdanychObalok(std::stoi(tmp));
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
 		getline(file, tmp, ';');	// Poèet platných hlasov všetkých kandidátov
-		tempOkres->setPocetPlatnychHlasov(std::stoi(tmp));
+		tempArea->setPocetPlatnychHlasov(std::stoi(tmp));
 		getline(file, tmp);	//  Podiel platných hlasov všetkých kandidátov v %
 	}
 }
 void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
 {
+	ifstream file(nazovSuboru);
+	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
+	string tmp;
 
+	getline(file, tmp); // vynechaj hlavièku
+	getline(file, tmp); // vynechaj hlavièku
+	getline(file, tmp); // vynechaj hlavièku
+	getline(file, tmp); // vynechaj hlavièku
+	getline(file, tmp); // vynechaj hlavièku
+
+	while (file.good()) {
+		getline(file, tmp, ';');		// Kod kraja
+		getline(file, tmp, ';');	// Nazov kraja
+
+		getline(file, tmp, ';');		// Kód územného obvodu
+		getline(file, tmp, ';');		// Názov územného obvodu
+
+		getline(file, tmp, ';');		// Kód okresu
+		getline(file, tmp, ';');// Názov okresu
+
+		getline(file, tmp, ';');		// Kód obce
+		getline(file, tmp, ';');	// Názov obce
+
+		Obec* tempArea = volebneKolo.pridajObec(tmp);
+
+		getline(file, tmp, ';');	// Poèet okrskov
+		getline(file, tmp, ';');	// Poèet zapísaných volièov
+		getline(file, tmp, ';');	// Poèet vydaných obálok
+		tempArea->setPocetVydanychObalok(std::stoi(tmp));
+		getline(file, tmp, ';');	// Úèas volièov v %
+		tempArea->setUcastVolicov(std::stof(tmp));
+		getline(file, tmp, ';');	// Poèet odovzdaných obálok
+		tempArea->setPocetOdovzdanychObalok(std::stoi(tmp));
+		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
+		getline(file, tmp, ';');	// Poèet platných hlasov všetkých kandidátov
+		tempArea->setPocetPlatnychHlasov(std::stoi(tmp));
+		getline(file, tmp);	//  Podiel platných hlasov všetkých kandidátov v %
+	}
 }
 
 //void Nacitanie::loadData(string nazovSuboru, VolebneKolo& volebneKolo)
