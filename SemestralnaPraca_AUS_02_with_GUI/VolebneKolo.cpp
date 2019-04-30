@@ -20,13 +20,13 @@ VolebneKolo::~VolebneKolo()
 Obec* VolebneKolo::pridajObec(string meno)
 {
 	// FIXME there will be memory leaks 100%
-	Kraj * tmp = new Kraj(meno);
-	if (obceSorted->containsKey(meno))
+	Obec * tmp = new Obec(meno);
+	if (!obceSorted->containsKey(meno))
 	{
-		throw std::exception("Duplicates in Obec found!");
-	}
-	else {
-		krajeSorted->insert(meno, tmp);
+		//throw std::exception("Duplicates in Obec found!");
+	//}
+	//else {
+		obceSorted->insert(meno, tmp);
 	}
 	return tmp;
 }

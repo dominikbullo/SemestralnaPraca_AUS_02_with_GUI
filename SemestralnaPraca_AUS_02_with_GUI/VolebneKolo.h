@@ -11,23 +11,22 @@ class VolebneKolo
 public:
 	VolebneKolo(int cisloKola);
 	~VolebneKolo();
+	Obec * pridajObec(string meno);
+	Okres * pridajOkres(string meno);
+	Kraj * pridajKraj(string meno);
 	int getCisloKola() { return this->cisloKola_; }
 	void setCisloKola(int cisloKola) { this->cisloKola_ = cisloKola; }
-
-	void pridajObec(string meno);
-	void pridajOkres(string meno);
-	void pridajKraj(string meno);
 
 private:
 	int cisloKola_;
 
 	structures::SortedSequenceTable<string, Obec*> *obceSorted;
-	structures::UnsortedSequenceTable<string, Obec*> *obceUnsorted;
+	//structures::UnsortedSequenceTable<string, Obec*> *obceUnsorted;
 
 	structures::SortedSequenceTable<string, Okres*> *okresySorted;
-	structures::UnsortedSequenceTable<string, Okres*> *okresyUnsorted;
+	//structures::UnsortedSequenceTable<string, Okres*> *okresyUnsorted;
 
 	structures::SortedSequenceTable<string, Kraj*> *krajeSorted;
-	structures::UnsortedSequenceTable<string, Kraj*> *krajeUnsorted;
+	//structures::UnsortedSequenceTable<string, Kraj*> *krajeUnsorted;
 };
 
