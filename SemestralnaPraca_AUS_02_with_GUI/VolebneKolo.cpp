@@ -17,32 +17,37 @@ VolebneKolo::~VolebneKolo()
 {
 };
 
-void VolebneKolo::pridajObec(string meno)
+Obec* VolebneKolo::pridajObec(string meno)
 {
-	Obec * pom = new Obec(meno);
-	if (!obceSorted->containsKey(meno))
+	// FIXME there will be memory leaks 100%
+	Kraj * tmp = new Kraj(meno);
+	if (obceSorted->containsKey(meno))
 	{
-		obceSorted->insert(meno, pom);
+		throw std::exception("Duplicates in Obec found!");
 	}
-	else
+	else {
+		krajeSorted->insert(meno, tmp);
+	}
+	return tmp;
+}
+Okres* VolebneKolo::pridajOkres(string meno)
+{
+	if (okresySorted->containsKey(meno))
 	{
-		// TODO what if contain key 
-		//obceSorted->insert(meno + unikatnost, pom);
+		throw std::exception("Duplicates in Okres found!");
 	}
-
-}
-void VolebneKolo::pridajOkres(string meno)
-{
-	Okres * pom = new Okres(meno);
-	if (!okresySorted->containsKey(meno)) {
-		okresySorted->insert(meno, pom);
-	}
+	Okres * tmp = new Okres(meno);
+	okresySorted->insert(meno, tmp);
+	return tmp;
 }
 
-void VolebneKolo::pridajKraj(string meno)
+Kraj* VolebneKolo::pridajKraj(string meno)
 {
-	Kraj * pom = new Kraj(meno);
-	if (!krajeSorted->containsKey(meno)) {
-		krajeSorted->insert(meno, pom);
+	if (krajeSorted->containsKey(meno))
+	{
+		throw std::exception("Duplicates in Kraj found!");
 	}
+	Kraj * tmp = new Kraj(meno);
+	krajeSorted->insert(meno, tmp);
+	return tmp;
 }

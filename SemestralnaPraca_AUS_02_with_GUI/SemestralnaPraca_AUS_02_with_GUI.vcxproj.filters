@@ -247,12 +247,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="1_kolo.csv" />
-    <None Include="2_kolo.csv" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PRE_2019_KOLO2_tab02_kraje.csv" />
+    <None Include="PRE_2019_KOLO2_tab02_obce.csv" />
+    <None Include="PRE_2019_KOLO2_tab02_okresy.csv" />
+    <None Include="PRE_2019_KOLO1_tab02_kraje.csv" />
+    <None Include="PRE_2019_KOLO1_tab02_obce.csv" />
+    <None Include="PRE_2019_KOLO1_tab02_okresy.csv" />
   </ItemGroup>
 </Project>

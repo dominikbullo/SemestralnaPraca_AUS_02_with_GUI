@@ -21,6 +21,9 @@ public:
 	Nacitanie();
 	~Nacitanie();
 	void loadData();
+	void loadDataKraje(string nazovSuboru, VolebneKolo & volebneKolo);
+	void loadDataOkresy(string nazovSuboru, VolebneKolo & volebneKolo);
+	void loadDataObce(string nazovSuboru, VolebneKolo & volebneKolo);
 	void loadData(string nazovSuboru, VolebneKolo & volebneKolo);
 	//void loadData(string nazovSuboru, VolebneKolo * volebneKolo);
 	//void loadData(std::string nazovSuboru);

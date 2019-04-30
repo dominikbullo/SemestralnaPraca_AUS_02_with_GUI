@@ -1,4 +1,8 @@
-Kód kraja;Názov kraja;Kód územného obvodu;Názov územného obvodu;Kód okresu;Názov okresu;Kód obce;Názov obce;Poèet okrskov ;Poèet zapísanıch volièov;Poèet vydanıch obálok;"Úèas volièov v %";Poèet odovzdanıch obálok;Podiel odovzdanıch obálok v %;Poèet platnıch hlasov všetkıch kandidátov; Podiel platnıch hlasov všetkıch kandidátov v %
+Súhrnné vısledky hlasovania za obce;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+Kód kraja;Názov kraja;Kód územného obvodu;Názov územného obvodu;Kód okresu;Názov okresu;Kód obce;Názov obce;Poèet okrskov ;Poèet zapísanıch volièov;Poèet vydanıch obálok;"Úèas volièov 
+v %";Poèet odovzdanıch obálok;Podiel odovzdanıch obálok v %;Poèet platnıch hlasov všetkıch kandidátov; Podiel platnıch hlasov všetkıch kandidátov v %
+;;;;;;;;;;;;;;;
 1;Bratislavskı kraj;101;Bratislava;101;Bratislava I;528595;Bratislava - Staré Mesto;34; 39 187; 24 952;63,67; 24 931;99,91; 24 836;99,61
 1;Bratislavskı kraj;101;Bratislava;102;Bratislava II;529311;Bratislava - Podunajské Biskupice;20; 20 042; 10 378;51,78; 10 375;99,97; 10 271;98,99
 1;Bratislavskı kraj;101;Bratislava;102;Bratislava II;529320;Bratislava - Ruinov;70; 66 641; 40 628;60,96; 40 605;99,94; 40 452;99,62
