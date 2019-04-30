@@ -13,10 +13,6 @@ Nacitanie::Nacitanie()
 
 Nacitanie::~Nacitanie()
 {
-	for (structures::TableItem<int, VolebneKolo*> * item : *volebneKola) {
-		delete item->accessData();
-	}
-	delete volebneKola;
 }
 
 void Nacitanie::loadData()
@@ -25,6 +21,14 @@ void Nacitanie::loadData()
 	//do volebneho kola 1 z test 1 a do volebneho kola 2 z test 2
 	this->loadData("PRE_2019_KOLO1_tab02", *prveKolo);
 	this->loadData("PRE_2019_KOLO2_tab02", *druheKolo);
+}
+
+structures::Array<VolebneKolo*>* Nacitanie::getData()
+{
+	structures::Array<VolebneKolo*> *arrayKol = new structures::Array<VolebneKolo*>(2);
+	arrayKol->operator[](0) = prveKolo;
+	arrayKol->operator[](1) = druheKolo;
+	return arrayKol;
 }
 
 void Nacitanie::loadData(string nazovSuboru, VolebneKolo& volebneKolo)
@@ -145,48 +149,3 @@ void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
 		getline(file, tmp);	//  Podiel platných hlasov všetkých kandidátov v %
 	}
 }
-
-//void Nacitanie::loadData(string nazovSuboru, VolebneKolo& volebneKolo)
-//{
-//	ifstream file(nazovSuboru);
-//	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
-//	string temp, nazovKraja, nazovObce, nazovOkresu;
-//
-//	getline(file, temp); // vynechaj hlavièku
-//
-//	while (file.good()) {
-//		getline(file, temp, ';');		// Kod kraja
-//		getline(file, nazovKraja, ';');	// Nazov kraja
-//		volebneKolo.pridajKraj(nazovKraja);
-//
-//		getline(file, temp, ';');		// Kód územného obvodu
-//		getline(file, temp, ';');		// Názov územného obvodu
-//
-//		getline(file, temp, ';');		// Kód okresu
-//		getline(file, nazovOkresu, ';');// Názov okresu
-//		volebneKolo.pridajOkres(nazovOkresu);
-//
-//		getline(file, temp, ';');		// Kód obce
-//		getline(file, nazovObce, ';');	// Názov obce
-//		volebneKolo.pridajObec(nazovObce);
-//
-//		//getline(file, temp, ';');		// Poèet okrskov
-//		//getline(file, temp, ';');		// Poèet zapísaných volièov
-//		//getline(file, temp, ';');		// Poèet vydaných obálok
-//		//getline(file, temp, ';');		// Úèas volièov v %
-//		//getline(file, temp, ';');		// Poèet odovzdaných obálok
-//		//getline(file, temp, ';');		// Podiel odovzdaných obálok v %
-//		//getline(file, temp, ';');		// Poèet platných hlasov všetkých kandidátov
-//		//getline(file, temp, ';');		// Podiel platných hlasov všetkých kandidátov v %
-//		getline(file, temp);
-//	}
-//	//cout << "Chyba v naèítavaní dát zo súboru " << nazovSuboru << endl;
-//	//throw logic_error("void Nacitanie::loadData(): Not finished yet!");
-//}
-
-
-structures::SortedSequenceTable<int, VolebneKolo*>* Nacitanie::getData()
-{
-	return this->volebneKola;
-}
-

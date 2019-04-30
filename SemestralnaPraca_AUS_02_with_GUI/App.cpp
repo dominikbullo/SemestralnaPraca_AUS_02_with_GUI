@@ -2,10 +2,10 @@
 
 using namespace std;
 
-
-App::App(structures::SortedSequenceTable<int, VolebneKolo* > * volebneKola) :
-	data(volebneKola)
+App::App(structures::Array<VolebneKolo*> *data)
 {
+	prveKolo = data->operator[](0);
+	druheKolo = data->operator[](1);
 }
 
 App::~App()
@@ -14,13 +14,7 @@ App::~App()
 
 std::string App::test()
 {
-	Area* area = new Area("testArea");
-	Kraj * kraj = new Kraj("test");
-	std::string returnValue = "";
-	returnValue += area->getName() + "\r\n" + kraj->getName();
-	delete area;
-	delete kraj;
-	return returnValue;
+	return std::to_string(prveKolo->getCisloKola()) + "teest";
 }
 void App::testFilter()
 {

@@ -20,8 +20,6 @@ namespace SemestralnaPracaAUS02withGUI {
 		MyForm(void)
 		{
 			InitializeComponent();
-			loader = new Nacitanie();
-			app = new App(loader->getData());
 		}
 
 	protected:
@@ -202,6 +200,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->Controls->Add(this->button1);
 			this->Name = L"MyForm";
 			this->Text = L"Semestralna praca 2 - Výsledky volieb";
+			this->Shown += gcnew System::EventHandler(this, &MyForm::MyForm_Shown);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -220,6 +219,15 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 		MessageBox::Show(textBox1->Text);
 		Console::WriteLine(textBox1->Text);
+	}
+	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	}
+
+	private: System::Void MyForm_Shown(System::Object^  sender, System::EventArgs^  e) {
+		MessageBox::Show("Loading data, please wait");
+		loader = new Nacitanie();
+		app = new App(loader->getData());
+		MessageBox::Show("Data loaded successfully");
 	}
 	};
 }

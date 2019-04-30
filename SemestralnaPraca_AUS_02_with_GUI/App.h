@@ -5,14 +5,16 @@
 #include "VolebneKolo.h"
 #include "Criterion.h"
 #include "Filter.h"
+#include "Nacitanie.h"
 
 /// <summary> Stará sa o všetky filtrovania, vyhľadávania, sortovania a pod.</summary>
 class App
 {
 private:
-	structures::SortedSequenceTable<int, VolebneKolo* > * data;
+	VolebneKolo* prveKolo;
+	VolebneKolo* druheKolo;
 public:
-	App(structures::SortedSequenceTable<int, VolebneKolo* > * volebneKola);
+	App(structures::Array<VolebneKolo*>* data);
 	~App();
 	std::string test();
 	void testFilter();

@@ -14,19 +14,19 @@
 class Nacitanie
 {
 private:
-	structures::SortedSequenceTable<int, VolebneKolo* >*volebneKola;
 	VolebneKolo* prveKolo;
 	VolebneKolo* druheKolo;
 public:
 	Nacitanie();
 	~Nacitanie();
 	void loadData();
+
+	structures::Array<VolebneKolo*>* getData();
+
+	void loadData(string nazovSuboru, VolebneKolo & volebneKolo);
+
 	void loadDataKraje(string nazovSuboru, VolebneKolo & volebneKolo);
 	void loadDataOkresy(string nazovSuboru, VolebneKolo & volebneKolo);
 	void loadDataObce(string nazovSuboru, VolebneKolo & volebneKolo);
-	void loadData(string nazovSuboru, VolebneKolo & volebneKolo);
-	//void loadData(string nazovSuboru, VolebneKolo * volebneKolo);
-	//void loadData(std::string nazovSuboru);
-	structures::SortedSequenceTable<int, VolebneKolo* >* getData();
 };
 
