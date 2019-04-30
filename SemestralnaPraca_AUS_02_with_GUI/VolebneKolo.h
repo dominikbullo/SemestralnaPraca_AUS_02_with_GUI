@@ -1,14 +1,13 @@
 #pragma once
-
-#include "Area.h"
 #include "structures\table\unsorted_sequence_table.h"
 #include "structures\table\sorted_sequence_table.h"
+
+#include "Area.h"
 
 using namespace std;
 
 class VolebneKolo
 {
-
 public:
 	VolebneKolo(int cisloKola);
 	~VolebneKolo();
@@ -18,7 +17,7 @@ public:
 	void pridajObec(string meno);
 	void pridajOkres(string meno);
 	void pridajKraj(string meno);
-	Obec * vyhladajObec(string meno);
+
 private:
 	int cisloKola_;
 

@@ -78,19 +78,19 @@ namespace structures
 	template<typename K, typename T>
 	inline TableItem<K, T>* SortedSequenceTable<K, T>::findTableItem(const K & key) const
 	{
-		bool found = false;
-		int index = indexOfKey(key, 0, list_->size(), found);
-		if (found) {
-			return (*list_)[index];
+		bool found(0);
+		int keyIndex = indexOfKey(key, 0, list_->size(), found);
+		if (found)
+		{
+			return (*list_)[keyIndex];
 		}
-		else {
-			return nullptr;
-		}
+		return nullptr;
 	}
 
 	template<typename K, typename T>
 	inline int SortedSequenceTable<K, T>::indexOfKey(const K & key, int indexStart, int indexEnd, bool & found) const
 	{
+
 		if (indexStart == indexEnd) {
 			found = false;
 			return indexStart;

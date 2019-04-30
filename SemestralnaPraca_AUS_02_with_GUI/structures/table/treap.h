@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "binary_search_tree.h"
 #include <random>
@@ -108,7 +108,7 @@ namespace structures
 	};
 
 	template<typename K, typename T>
-	inline TreapItem<K, T>::TreapItem(K key, T data, int priority):
+	inline TreapItem<K, T>::TreapItem(K key, T data, int priority) :
 		TableItem<K, T>(key, data),
 		priority_(priority)
 	{
@@ -143,7 +143,8 @@ namespace structures
 	template<typename K, typename T>
 	inline Treap<K, T>::~Treap()
 	{
-		// TODO 10: Treap
+		delete generator_;
+		generator_ = 0;
 	}
 
 	template<typename K, typename T>
@@ -161,15 +162,41 @@ namespace structures
 	template<typename K, typename T>
 	inline Treap<K, T>& Treap<K, T>::operator=(const Treap<K, T>& other)
 	{
-		// TODO 10: Treap
-		throw std::exception("Treap<K, T>::operator=: Not implemented yet.");
+		if (this != &other)
+		{
+			BinarySearchTree<K, T>::operator=(other);
+			*generator_ = *other.generator_;
+		}
+		return *this;
 	}
 
 	template<typename K, typename T>
 	inline void Treap<K, T>::insert(const K & key, const T & data)
 	{
-		// TODO 10: Treap
-		throw std::exception("Treap<K, T>::insert: Not implemented yet.");
+		using namespace std;
+		BinarySearchTree<K, T>::BSTTreeNode* newNode = new BinarySearchTree<K, T>::BSTTreeNode(new TreapItem<K, T>(key, data, (*generator_)()));
+		bool inserted = tryToInsertNode(newNode);
+		if (inserted)
+		{
+			size_++;
+			while (newNode->getParent() && !isHeapOK(newNode))
+			{
+				if (newNode->isLeftSon())
+				{
+					rotateRightOverParent(newNode);
+				}
+				else
+				{
+					rotateLeftOverParent(newNode);
+				}
+			}
+		}
+		else
+		{
+			delete newNode->accessData();
+			delete newNode;
+			throw std::logic_error("Key is already in table!!!");
+		}
 	}
 
 	template<typename K, typename T>
@@ -182,15 +209,18 @@ namespace structures
 	template<typename K, typename T>
 	inline bool Treap<K, T>::isHeapOK(BinarySearchTree<K, T>::BSTTreeNode* node)
 	{
-		// TODO 10: Treap
-		throw std::exception("Treap<K, T>::isHeapOK: Not implemented yet.");
+		if (!node)
+		{
+			return true;
+		}
+		int priorityOfNode = extractPriority(node);
+		return extractPriority(node->getLeftSon()) >= priorityOfNode && extractPriority(node->getRightSon()) >= priorityOfNode && extractPriority(node->getParent()) <= priorityOfNode;
 	}
 
 	template<typename K, typename T>
 	inline int Treap<K, T>::extractPriority(BinarySearchTree<K, T>::BSTTreeNode * node)
 	{
-		// TODO 10: Treap
-		throw std::exception("Treap<K, T>::extractPriority: Not implemented yet.");
+		return node == 0 ? INT_MAX : dynamic_cast<TreapItem<K, T> *>(node->accessData())->getPriority();
 	}
 
 	template<typename K, typename T>

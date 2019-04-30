@@ -58,7 +58,7 @@ namespace structures
 	};
 
 	template<typename K, typename T>
-	inline Sort<K, T>::Sort():
+	inline Sort<K, T>::Sort() :
 		sortNotifier_(nullptr)
 	{
 	}

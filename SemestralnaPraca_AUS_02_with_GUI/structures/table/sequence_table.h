@@ -146,22 +146,20 @@ namespace structures
 	inline T & SequenceTable<K, T>::operator[](const K key)
 	{
 		TableItem<K, T>* item = findTableItem(key);
-		if (item)
-		{
-			return item->accessData();
+		if (item == nullptr) {
+			throw std::out_of_range("Key is not in table.");
 		}
-		throw std::out_of_range("SequenceTable<K, T>::operator: Key is not in sequence table");
+		return item->accessData();
 	}
 
 	template<typename K, typename T>
 	inline const T SequenceTable<K, T>::operator[](const K key) const
 	{
 		TableItem<K, T>* item = findTableItem(key);
-		if (item)
-		{
-			return item->accessData();
+		if (item == nullptr) {
+			throw std::out_of_range("Key is not in table.");
 		}
-		throw std::out_of_range("SequenceTable<K, T>::operator: Key is not in sequence table");
+		return item->accessData();
 	}
 
 	template<typename K, typename T>
@@ -177,15 +175,14 @@ namespace structures
 	template<typename K, typename T>
 	inline T SequenceTable<K, T>::remove(const K & key)
 	{
-		TableItem<K, T>*  tableItem = findTableItem(key);
-		if (tableItem != nullptr)
-		{
-			list_->tryRemove(tableItem);
-			T result = tableItem->accessData();
-			delete tableItem;
-			return result;
+		TableItem<K, T>* item = findTableItem(key);
+		if (item == nullptr) {
+			throw std::logic_error("Key is already in table.");
 		}
-		throw std::logic_error("SequenceTable<K, T>::remove: KEy not found!");
+		list_->tryRemove(item);
+		T data = item->accessData();
+		delete item;
+		return data;
 	}
 
 	template<typename K, typename T>

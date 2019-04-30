@@ -8,8 +8,6 @@ public:
 	Area(std::string nazov);
 	~Area();
 	std::string getName() const { return this->name_; }
-protected:
-	int y;
 private:
 	int z;
 	const std::string name_;

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "sort.h"
 #include "../unsorted_sequence_table.h"

@@ -2,10 +2,9 @@
 
 using namespace std;
 
-Area::Area(std::string nazov)
+Area::Area(std::string nazov) : name_(nazov)
 {
 	cout << "This is a Area named " << nazov << endl;
-	this->name_ = nazov;
 }
 
 Area::~Area()

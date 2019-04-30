@@ -203,5 +203,4 @@ namespace structures
 		T data = T();
 		return new MultiWayTreeNode<T>(data);
 	}
-
 }

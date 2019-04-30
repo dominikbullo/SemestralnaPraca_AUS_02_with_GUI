@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "sort.h"
 #include "../unsorted_sequence_table.h"
@@ -31,6 +31,7 @@ namespace structures
 		for (int i = 0; i < size * 2; i++)
 		{
 			table.swap(uniform(generator), uniform(generator));
+			// KAŽDÁ výmena sa prejavý na formulári!
 			notify();
 		}
 	}
