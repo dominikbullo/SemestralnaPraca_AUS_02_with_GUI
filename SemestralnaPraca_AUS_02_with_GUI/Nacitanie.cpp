@@ -5,9 +5,13 @@ using namespace std;
 
 Nacitanie::Nacitanie()
 {
-	volebneKola = new structures::SortedSequenceTable<int, VolebneKolo*>();
-	volebneKola->insert(1, new VolebneKolo(1));
-	volebneKola->insert(2, new VolebneKolo(2));
+	//volebneKola = new structures::SortedSequenceTable<int, VolebneKolo*>();
+	//structures::Array<VolebneKolo*>* kola = new structures::Array<VolebneKolo*>(2);
+	prveKolo = new VolebneKolo(1);
+	druheKolo = new VolebneKolo(2);
+	//volebneKola->insert(prveKolo->getCisloKola(), prveKolo);
+	//volebneKola->insert(druheKolo->getCisloKola(), druheKolo);
+
 	this->loadData();
 }
 
@@ -23,14 +27,17 @@ Nacitanie::~Nacitanie()
 void Nacitanie::loadData()
 {
 
-	string dataFiles[2] = { "1_kolo.csv", "2_kolo.csv" };
-	for (string subor : dataFiles) {
-		this->loadData(subor);
-	}
+	//string dataFiles[2] = { "1_kolo.csv", "2_kolo.csv" };
+	//do volebneho kola 1 z test 1 a do volebneho kola 2 z test 2
+	this->loadData("1_kolo.csv", *prveKolo);
+	this->loadData("2_kolo.csv", *druheKolo);
 }
 
-void Nacitanie::loadData(string nazovSuboru)
+void Nacitanie::loadData(string nazovSuboru, VolebneKolo& volebneKolo)
 {
+	//this->prveKolo->setCisloKola(10);
+	//volebneKolo.setCisloKola(20);
+
 	ifstream file(nazovSuboru);
 	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
 	string temp, nazovKraja, nazovObce, nazovOkresu;
@@ -40,12 +47,19 @@ void Nacitanie::loadData(string nazovSuboru)
 	while (file.good()) {
 		getline(file, temp, ';');		// Kod kraja
 		getline(file, nazovKraja, ';');	// Nazov kraja
+		volebneKolo.pridajKraj(nazovKraja);
+
 		getline(file, temp, ';');		// Kód územného obvodu
 		getline(file, temp, ';');		// Názov územného obvodu
+
 		getline(file, temp, ';');		// Kód okresu
 		getline(file, nazovOkresu, ';');// Názov okresu
+		volebneKolo.pridajOkres(nazovOkresu);
+
 		getline(file, temp, ';');		// Kód obce
 		getline(file, nazovObce, ';');	// Názov obce
+		volebneKolo.pridajObec(nazovObce);
+
 		getline(file, temp, ';');		// Poèet okrskov
 		getline(file, temp, ';');		// Poèet zapísaných volièov
 		getline(file, temp, ';');		// Poèet vydaných obálok
@@ -54,11 +68,6 @@ void Nacitanie::loadData(string nazovSuboru)
 		getline(file, temp, ';');		// Podiel odovzdaných obálok v %
 		getline(file, temp, ';');		// Poèet platných hlasov všetkých kandidátov
 		getline(file, temp, ';');		// Podiel platných hlasov všetkých kandidátov v %
-
-		for (structures::TableItem<int, VolebneKolo*> * item : *volebneKola)
-		{
-			// TODO neviem èo zo životom
-		}
 	}
 	cout << "Chyba v naèítavaní dát zo súboru " << nazovSuboru << endl;
 	//throw logic_error("void Nacitanie::loadData(): Not finished yet!");

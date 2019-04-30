@@ -12,13 +12,12 @@ protected:
 	int y;
 private:
 	int z;
-	std::string name_;
+	const std::string name_;
 };
 
 class Kraj : public Area
 {
 public:
-	// NOTE: keï vytváram kraj, používam metódu predka, s názvom
 	Kraj(std::string nazov) : Area(nazov)
 	{
 	}
@@ -27,7 +26,6 @@ public:
 class Okres : public Area
 {
 public:
-	// NOTE: keï vytváram kraj, používam metódu predka, s názvom
 	Okres(std::string nazov) : Area(nazov)
 	{
 	}
@@ -36,7 +34,6 @@ public:
 class Obec : public Area
 {
 public:
-	// NOTE: keï vytváram kraj, používam metódu predka, s názvom
 	Obec(std::string nazov) : Area(nazov)
 	{
 	}

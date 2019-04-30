@@ -15,11 +15,15 @@ class Nacitanie
 {
 private:
 	structures::SortedSequenceTable<int, VolebneKolo* >*volebneKola;
+	VolebneKolo* prveKolo;
+	VolebneKolo* druheKolo;
 public:
 	Nacitanie();
 	~Nacitanie();
 	void loadData();
-	void loadData(std::string nazovSuboru);
+	void loadData(string nazovSuboru, VolebneKolo & volebneKolo);
+	//void loadData(string nazovSuboru, VolebneKolo * volebneKolo);
+	//void loadData(std::string nazovSuboru);
 	structures::SortedSequenceTable<int, VolebneKolo* >* getData();
 };
 
