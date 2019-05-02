@@ -3,6 +3,7 @@
 VolebneKolo::VolebneKolo(int cisloKola) :
 	cisloKola_(cisloKola)
 {
+	obce = new structures::SortedSequenceTable<Key*, Obec*>();
 	obceSortedNazov = new structures::SortedSequenceTable<string, Obec*>();
 	obceSortedVolici = new structures::SortedSequenceTable<int, Obec*>();
 	obceSortedUcast = new structures::SortedSequenceTable<float, Obec*>();
@@ -18,6 +19,12 @@ VolebneKolo::VolebneKolo(int cisloKola) :
 VolebneKolo::~VolebneKolo()
 {
 	// FIXME asi cyklus na odstranenie dát
+	for (auto * item : *obce) {
+		delete item->accessData();
+	}
+	delete obce;
+
+
 	for (auto * item : *obceSortedNazov) {
 		delete item->accessData();
 	}
@@ -36,28 +43,26 @@ VolebneKolo::~VolebneKolo()
 
 void VolebneKolo::pridajObec(Obec* area)
 {
-	if (!obceSortedNazov->containsKey(area->getName()))
-	{
-		area->makeUniqueNazov();
-		obceSortedNazov->insert(area->getName(), area);
-	}
-	if (!obceSortedVolici->containsKey(area->getPocetVolicov()))
-	{
-		area->makeUniqueVolici();
-	}
-	if (!obceSortedUcast->containsKey(area->getUcastVolicov()))
-	{
-		area->makeUniqueUcast();
-	}
-	//obceSortedNazov->insert(area->getName(), area);
-
+	//if (!obceSortedNazov->containsKey(area->getName()))
+	//{
+	//	area->makeUniqueNazov();
+	//	// FIXME
+	//	//obceSortedNazov->insert(area->getName(), area);
+	//}
+	//if (!obceSortedVolici->containsKey(area->getPocetVolicov()))
+	//{
+	//	area->makeUniqueVolici();
+	//}
+	//if (!obceSortedUcast->containsKey(area->getUcastVolicov()))
+	//{
+	//	area->makeUniqueUcast();
+	//}
+	// TODO this uncoment
+	// obceSortedNazov->insert(area->getName(), area);
+	obce->insert(new Key(area), area);
 }
 void  VolebneKolo::pridajOkres(Okres* area)
 {
-	if (okresySorted->containsKey(area->getName()))
-	{
-		throw std::exception("Duplicates in Okres found!");
-	}
 	okresySorted->insert(area->getName(), area);
 }
 
@@ -68,4 +73,9 @@ void  VolebneKolo::pridajKraj(Kraj* area)
 		throw std::exception("Duplicates in Kraj found!");
 	}
 	krajeSorted->insert(area->getName(), area);
+}
+
+void VolebneKolo::test()
+{
+	//Obec * tmp = (*obce)[kluc];
 }

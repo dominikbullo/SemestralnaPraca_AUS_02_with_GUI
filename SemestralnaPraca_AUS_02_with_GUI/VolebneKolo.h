@@ -3,6 +3,7 @@
 #include "structures\table\sorted_sequence_table.h"
 
 #include "Area.h"
+#include "Key.h"
 
 using namespace std;
 
@@ -18,10 +19,12 @@ public:
 
 	int getCisloKola() { return this->cisloKola_; }
 	void setCisloKola(int cisloKola) { this->cisloKola_ = cisloKola; }
+	void test();
 
 private:
 	int cisloKola_;
 
+	structures::SortedSequenceTable<Key*, Obec*> *obce;
 	structures::SortedSequenceTable<string, Obec*> *obceSortedNazov;
 	structures::SortedSequenceTable<int, Obec*> *obceSortedVolici;
 	structures::SortedSequenceTable<float, Obec*> *obceSortedUcast;

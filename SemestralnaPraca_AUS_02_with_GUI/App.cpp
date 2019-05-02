@@ -17,6 +17,7 @@ App::~App()
 
 std::string App::test()
 {
+	prveKolo->test();
 	return std::to_string(prveKolo->getCisloKola()) + "teest";
 }
 void App::testFilter()
