@@ -20,8 +20,8 @@ void Nacitanie::loadData()
 	//string dataFiles[2] = { "1_kolo.csv", "2_kolo.csv" };
 	//do volebneho kola 1 z test 1 a do volebneho kola 2 z test 2
 	// FIXME! len prvé kolo naèítavam
-	this->loadData("PRE_2019_KOLO1_tab02", *prveKolo);
-	this->loadData("PRE_2019_KOLO2_tab02", *druheKolo);
+	//this->loadData("PRE_2019_KOLO1_tab02", *prveKolo);
+	//this->loadData("PRE_2019_KOLO2_tab02", *druheKolo);
 }
 
 structures::Array<VolebneKolo*>* Nacitanie::getData()
