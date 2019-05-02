@@ -37,13 +37,10 @@ void VolebneKolo::pridajObec(Obec* area)
 	// FIXME there will be memory leaks 100%
 	if (!obceSorted->containsKey(area->getName()))
 	{
-		//throw std::exception("Duplicates in Obec found!");
-		area->getName()
+		area->makeUniqueNazov();
+	}
+	obceSorted->insert(area->getName(), area);
 
-	}
-	else {
-		obceSorted->insert(area->getName(), area);
-	}
 }
 void  VolebneKolo::pridajOkres(Okres* area)
 {

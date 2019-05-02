@@ -15,13 +15,15 @@ public:
 	void setPocetPlatnychHlasov(int pocet) { this->pocetPlatnychHlasov = pocet; }
 	void setUcastVolicov(float pocet) { this->ucast = pocet; }
 private:
-	const std::string nazov;
+	std::string nazov;
 
 	int pocetVydanychObalok;
 	int pocetOdovzdanychObalok;
 	int pocetPlatnychHlasov;
 
 	float ucast;
+protected:
+	void setName(std::string name) { this->nazov = name; };
 };
 
 class Kraj : public Area
@@ -51,6 +53,8 @@ public:
 	{
 	}
 	bool isIn(Area& area) const;
+	void makeUniqueNazov();
+
 private:
 	const std::string nazovKraja;
 	const std::string nazovOkresu;
