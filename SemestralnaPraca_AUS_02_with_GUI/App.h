@@ -17,7 +17,7 @@ private:
 public:
 	App(structures::Array<VolebneKolo*>* data);
 	~App();
-	VolebneKolo* getVolebneKolo(int kolo) { return data->operator[](kolo); }
+	VolebneKolo* getVolebneKolo(int kolo) { return data->operator[](kolo - 1); }
 
 	std::string test();
 	void testFilter();
