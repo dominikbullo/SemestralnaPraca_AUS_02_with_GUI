@@ -29,13 +29,15 @@ namespace SemestralnaPracaAUS02withGUI {
 			loader = new Nacitanie();
 			app = new App(loader->getData());
 
-			fillComboBoxes();
+			updateTable();
+
+			//fillComboBoxes();
 
 			//app = new App(new Nacitanie()->getData());
 
 		}
 
-		void fillComboBoxes()
+		/*void fillComboBoxes()
 		{
 			VolebneKolo* data = app->getVolebneKolo(1);
 			for (auto * item : *data->getKraje())
@@ -51,7 +53,7 @@ namespace SemestralnaPracaAUS02withGUI {
 				item->accessData()->toString();
 				this->comboBox3->Items->Add(gcnew String(item->accessData()->getName().c_str()));
 			}
-		}
+		}*/
 
 	protected:
 		/// <summary>
@@ -78,35 +80,18 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: Nacitanie* loader;
 	private: App* app;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
-	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::CheckedListBox^  checkedListBox1;
-	private: System::Windows::Forms::Button^  button5;
-	private: System::Windows::Forms::Button^  button6;
-	private: System::Windows::Forms::Button^  button7;
-	private: System::Windows::Forms::ComboBox^  comboBox1;
-	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::ComboBox^  comboBox2;
-	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::ComboBox^  comboBox3;
-	private: System::Windows::Forms::Label^  label4;
+
+
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::CheckBox^  checkBox1;
 	private: System::Windows::Forms::GroupBox^  groupBox1;
 
@@ -120,6 +105,25 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Windows::Forms::NumericUpDown^  numericUpDown1;
 	private: System::Windows::Forms::NumericUpDown^  numericUpDown4;
 	private: System::Windows::Forms::NumericUpDown^  numericUpDown3;
+	private: System::Windows::Forms::GroupBox^  groupBox2;
+	private: System::Windows::Forms::RadioButton^  zobrazObce;
+
+	private: System::Windows::Forms::RadioButton^  zobrazOkresy;
+
+	private: System::Windows::Forms::RadioButton^  zobrazKraje;
+
+	private: System::Windows::Forms::GroupBox^  groupBox3;
+	private: System::Windows::Forms::RadioButton^  radioButton4;
+	private: System::Windows::Forms::RadioButton^  radioButton5;
+	private: System::Windows::Forms::RadioButton^  radioButton6;
+	private: System::Windows::Forms::GroupBox^  groupBox4;
+	private: System::Windows::Forms::RadioButton^  prveKolo;
+	private: System::Windows::Forms::RadioButton^  obidveKola;
+
+
+	private: System::Windows::Forms::RadioButton^  druheKolo;
+	private: System::Windows::Forms::Button^  button1;
+
 
 
 
@@ -145,17 +149,6 @@ namespace SemestralnaPracaAUS02withGUI {
 		{
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->checkedListBox1 = (gcnew System::Windows::Forms::CheckedListBox());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
-			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->numericUpDown4 = (gcnew System::Windows::Forms::NumericUpDown());
@@ -165,23 +158,38 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->zobrazObce = (gcnew System::Windows::Forms::RadioButton());
+			this->zobrazOkresy = (gcnew System::Windows::Forms::RadioButton());
+			this->zobrazKraje = (gcnew System::Windows::Forms::RadioButton());
+			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton6 = (gcnew System::Windows::Forms::RadioButton());
+			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
+			this->obidveKola = (gcnew System::Windows::Forms::RadioButton());
+			this->druheKolo = (gcnew System::Windows::Forms::RadioButton());
+			this->prveKolo = (gcnew System::Windows::Forms::RadioButton());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown3))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
+			this->groupBox2->SuspendLayout();
+			this->groupBox3->SuspendLayout();
+			this->groupBox4->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(890, 10);
+			this->button2->Location = System::Drawing::Point(881, 344);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"test";
 			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// dataGridView1
 			// 
@@ -192,126 +200,9 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Location = System::Drawing::Point(12, 12);
 			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->Size = System::Drawing::Size(540, 593);
 			this->dataGridView1->TabIndex = 21;
-			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick);
-			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(890, 54);
-			this->textBox1->Multiline = true;
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(259, 93);
-			this->textBox1->TabIndex = 13;
-			// 
-			// checkedListBox1
-			// 
-			this->checkedListBox1->FormattingEnabled = true;
-			this->checkedListBox1->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
-				L"Voliči 1. kolo", L"Voliči 2. kolo", L"Účasť 1. kolo",
-					L"Účasť 2. kolo", L"Vydané obálky 1.kolo", L"Vydané obálky 2.kolo", L"Prijaté obálky 1.kolo", L"Prijaté obálky 2.kolo"
-			});
-			this->checkedListBox1->Location = System::Drawing::Point(581, 54);
-			this->checkedListBox1->Name = L"checkedListBox1";
-			this->checkedListBox1->Size = System::Drawing::Size(270, 124);
-			this->checkedListBox1->TabIndex = 23;
-			this->checkedListBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::checkedListBox1_SelectedIndexChanged_1);
-			// 
-			// button5
-			// 
-			this->button5->Location = System::Drawing::Point(581, 10);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(75, 23);
-			this->button5->TabIndex = 24;
-			this->button5->Text = L"1. KOLO";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &MyForm::button5_Click);
-			// 
-			// button6
-			// 
-			this->button6->Location = System::Drawing::Point(677, 10);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(75, 23);
-			this->button6->TabIndex = 25;
-			this->button6->Text = L"2. KOLO";
-			this->button6->UseVisualStyleBackColor = true;
-			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
-			// 
-			// button7
-			// 
-			this->button7->Location = System::Drawing::Point(776, 10);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(75, 23);
-			this->button7->TabIndex = 26;
-			this->button7->Text = L"SPOLU";
-			this->button7->UseVisualStyleBackColor = true;
-			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click);
-			// 
-			// comboBox1
-			// 
-			this->comboBox1->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Suggest;
-			this->comboBox1->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(1042, 211);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(121, 21);
-			this->comboBox1->Sorted = true;
-			this->comboBox1->TabIndex = 7;
-			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox1_SelectedIndexChanged);
-			this->comboBox1->SelectedValueChanged += gcnew System::EventHandler(this, &MyForm::comboBox1_SelectedValueChanged);
-			this->comboBox1->ContextMenuStripChanged += gcnew System::EventHandler(this, &MyForm::comboBox1_ContextMenuStripChanged);
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(1039, 183);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(25, 13);
-			this->label2->TabIndex = 8;
-			this->label2->Text = L"Kraj";
-			// 
-			// comboBox2
-			// 
-			this->comboBox2->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Append;
-			this->comboBox2->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Location = System::Drawing::Point(1042, 285);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(121, 21);
-			this->comboBox2->Sorted = true;
-			this->comboBox2->TabIndex = 9;
-			this->comboBox2->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox2_SelectedIndexChanged);
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(1039, 257);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(35, 13);
-			this->label3->TabIndex = 10;
-			this->label3->Text = L"Okres";
-			this->label3->Click += gcnew System::EventHandler(this, &MyForm::label3_Click);
-			// 
-			// comboBox3
-			// 
-			this->comboBox3->AccessibleName = L"";
-			this->comboBox3->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Append;
-			this->comboBox3->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
-			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Location = System::Drawing::Point(1042, 364);
-			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(121, 21);
-			this->comboBox3->Sorted = true;
-			this->comboBox3->TabIndex = 11;
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(1039, 336);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(33, 13);
-			this->label4->TabIndex = 12;
-			this->label4->Text = L"Obec";
 			// 
 			// checkBox1
 			// 
@@ -322,7 +213,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->checkBox1->TabIndex = 27;
 			this->checkBox1->Text = L"Hľadaný názov";
 			this->checkBox1->UseVisualStyleBackColor = true;
-			this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox1_CheckedChanged);
 			// 
 			// groupBox1
 			// 
@@ -334,12 +224,12 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->groupBox1->Controls->Add(this->checkBox2);
 			this->groupBox1->Controls->Add(this->textBox2);
 			this->groupBox1->Controls->Add(this->checkBox1);
-			this->groupBox1->Location = System::Drawing::Point(581, 194);
+			this->groupBox1->Location = System::Drawing::Point(581, 160);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(270, 247);
+			this->groupBox1->Size = System::Drawing::Size(388, 247);
 			this->groupBox1->TabIndex = 28;
 			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"groupBox1";
+			this->groupBox1->Text = L"Filtre";
 			// 
 			// numericUpDown4
 			// 
@@ -347,7 +237,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->numericUpDown4->Name = L"numericUpDown4";
 			this->numericUpDown4->Size = System::Drawing::Size(112, 20);
 			this->numericUpDown4->TabIndex = 39;
-			this->numericUpDown4->ValueChanged += gcnew System::EventHandler(this, &MyForm::numericUpDown4_ValueChanged);
 			// 
 			// numericUpDown3
 			// 
@@ -363,7 +252,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->numericUpDown2->Size = System::Drawing::Size(112, 20);
 			this->numericUpDown2->TabIndex = 37;
 			this->numericUpDown2->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
-			this->numericUpDown2->EnabledChanged += gcnew System::EventHandler(this, &MyForm::numericUpDown2_EnabledChanged);
 			// 
 			// numericUpDown1
 			// 
@@ -399,28 +287,162 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->textBox2->Size = System::Drawing::Size(245, 20);
 			this->textBox2->TabIndex = 28;
 			// 
+			// groupBox2
+			// 
+			this->groupBox2->Controls->Add(this->zobrazObce);
+			this->groupBox2->Controls->Add(this->zobrazOkresy);
+			this->groupBox2->Controls->Add(this->zobrazKraje);
+			this->groupBox2->Location = System::Drawing::Point(866, 23);
+			this->groupBox2->Name = L"groupBox2";
+			this->groupBox2->Size = System::Drawing::Size(103, 118);
+			this->groupBox2->TabIndex = 40;
+			this->groupBox2->TabStop = false;
+			this->groupBox2->Text = L"Zobraz";
+			// 
+			// zobrazObce
+			// 
+			this->zobrazObce->AutoSize = true;
+			this->zobrazObce->Checked = true;
+			this->zobrazObce->Location = System::Drawing::Point(6, 84);
+			this->zobrazObce->Name = L"zobrazObce";
+			this->zobrazObce->Size = System::Drawing::Size(51, 17);
+			this->zobrazObce->TabIndex = 2;
+			this->zobrazObce->TabStop = true;
+			this->zobrazObce->Text = L"Obce";
+			this->zobrazObce->UseVisualStyleBackColor = true;
+			// 
+			// zobrazOkresy
+			// 
+			this->zobrazOkresy->AutoSize = true;
+			this->zobrazOkresy->Location = System::Drawing::Point(6, 52);
+			this->zobrazOkresy->Name = L"zobrazOkresy";
+			this->zobrazOkresy->Size = System::Drawing::Size(58, 17);
+			this->zobrazOkresy->TabIndex = 1;
+			this->zobrazOkresy->Text = L"Okresy";
+			this->zobrazOkresy->UseVisualStyleBackColor = true;
+			// 
+			// zobrazKraje
+			// 
+			this->zobrazKraje->AutoSize = true;
+			this->zobrazKraje->Location = System::Drawing::Point(6, 19);
+			this->zobrazKraje->Name = L"zobrazKraje";
+			this->zobrazKraje->Size = System::Drawing::Size(49, 17);
+			this->zobrazKraje->TabIndex = 0;
+			this->zobrazKraje->Text = L"Kraje";
+			this->zobrazKraje->UseVisualStyleBackColor = true;
+			// 
+			// groupBox3
+			// 
+			this->groupBox3->Controls->Add(this->radioButton4);
+			this->groupBox3->Controls->Add(this->radioButton5);
+			this->groupBox3->Controls->Add(this->radioButton6);
+			this->groupBox3->Location = System::Drawing::Point(720, 23);
+			this->groupBox3->Name = L"groupBox3";
+			this->groupBox3->Size = System::Drawing::Size(103, 118);
+			this->groupBox3->TabIndex = 41;
+			this->groupBox3->TabStop = false;
+			this->groupBox3->Text = L"Zoraď";
+			// 
+			// radioButton4
+			// 
+			this->radioButton4->AutoSize = true;
+			this->radioButton4->Location = System::Drawing::Point(6, 84);
+			this->radioButton4->Name = L"radioButton4";
+			this->radioButton4->Size = System::Drawing::Size(54, 17);
+			this->radioButton4->TabIndex = 2;
+			this->radioButton4->Text = L"Účasť";
+			this->radioButton4->UseVisualStyleBackColor = true;
+			// 
+			// radioButton5
+			// 
+			this->radioButton5->AutoSize = true;
+			this->radioButton5->Location = System::Drawing::Point(6, 52);
+			this->radioButton5->Name = L"radioButton5";
+			this->radioButton5->Size = System::Drawing::Size(50, 17);
+			this->radioButton5->TabIndex = 1;
+			this->radioButton5->Text = L"Voliči";
+			this->radioButton5->UseVisualStyleBackColor = true;
+			// 
+			// radioButton6
+			// 
+			this->radioButton6->AutoSize = true;
+			this->radioButton6->Checked = true;
+			this->radioButton6->Location = System::Drawing::Point(6, 19);
+			this->radioButton6->Name = L"radioButton6";
+			this->radioButton6->Size = System::Drawing::Size(56, 17);
+			this->radioButton6->TabIndex = 0;
+			this->radioButton6->TabStop = true;
+			this->radioButton6->Text = L"Nazov";
+			this->radioButton6->UseVisualStyleBackColor = true;
+			// 
+			// groupBox4
+			// 
+			this->groupBox4->Controls->Add(this->obidveKola);
+			this->groupBox4->Controls->Add(this->druheKolo);
+			this->groupBox4->Controls->Add(this->prveKolo);
+			this->groupBox4->Location = System::Drawing::Point(581, 23);
+			this->groupBox4->Name = L"groupBox4";
+			this->groupBox4->Size = System::Drawing::Size(105, 118);
+			this->groupBox4->TabIndex = 40;
+			this->groupBox4->TabStop = false;
+			this->groupBox4->Text = L"groupBox4";
+			// 
+			// obidveKola
+			// 
+			this->obidveKola->Appearance = System::Windows::Forms::Appearance::Button;
+			this->obidveKola->Location = System::Drawing::Point(6, 84);
+			this->obidveKola->Name = L"obidveKola";
+			this->obidveKola->Size = System::Drawing::Size(77, 23);
+			this->obidveKola->TabIndex = 29;
+			this->obidveKola->Text = L"SPOLU";
+			this->obidveKola->UseVisualStyleBackColor = true;
+			// 
+			// druheKolo
+			// 
+			this->druheKolo->Appearance = System::Windows::Forms::Appearance::Button;
+			this->druheKolo->Location = System::Drawing::Point(6, 52);
+			this->druheKolo->Name = L"druheKolo";
+			this->druheKolo->Size = System::Drawing::Size(77, 23);
+			this->druheKolo->TabIndex = 28;
+			this->druheKolo->Text = L"2. KOLO";
+			this->druheKolo->UseVisualStyleBackColor = true;
+			// 
+			// prveKolo
+			// 
+			this->prveKolo->Appearance = System::Windows::Forms::Appearance::Button;
+			this->prveKolo->Checked = true;
+			this->prveKolo->Location = System::Drawing::Point(6, 19);
+			this->prveKolo->Name = L"prveKolo";
+			this->prveKolo->Size = System::Drawing::Size(77, 23);
+			this->prveKolo->TabIndex = 27;
+			this->prveKolo->TabStop = true;
+			this->prveKolo->Text = L"1. KOLO";
+			this->prveKolo->UseVisualStyleBackColor = true;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(1011, 23);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 118);
+			this->button1->TabIndex = 42;
+			this->button1->Text = L"ZOBRAZ";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1191, 617);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->groupBox4);
+			this->Controls->Add(this->groupBox3);
+			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
-			this->Controls->Add(this->button7);
-			this->Controls->Add(this->button6);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->checkedListBox1);
 			this->Controls->Add(this->dataGridView1);
-			this->Controls->Add(this->textBox1);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->comboBox3);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->comboBox2);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->button2);
 			this->Name = L"MyForm";
 			this->Text = L"Semestralna praca 2 - Výsledky volieb";
-			this->Shown += gcnew System::EventHandler(this, &MyForm::MyForm_Shown);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
@@ -428,8 +450,12 @@ namespace SemestralnaPracaAUS02withGUI {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown3))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
+			this->groupBox2->ResumeLayout(false);
+			this->groupBox2->PerformLayout();
+			this->groupBox3->ResumeLayout(false);
+			this->groupBox3->PerformLayout();
+			this->groupBox4->ResumeLayout(false);
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -438,90 +464,95 @@ namespace SemestralnaPracaAUS02withGUI {
 		//selectedArea = 
 		//textBox1->Text = gcnew String(selectedArea);
 	}
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e)
-	{
-	}
 
-	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
-	}
-
-	private: System::Void MyForm_Shown(System::Object^  sender, System::EventArgs^  e) {
-		//MessageBox::Show("Data loaded successfully");
-	}
-	private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void comboBox4_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
 	private: System::Void comboBox1_ContextMenuStripChanged(System::Object^  sender, System::EventArgs^  e) {
 		//selectedArea = comboBox1->GetItemText();
-		textBox1->Text = gcnew String(comboBox1->SelectedItem->ToString());
+		//textBox1->Text = gcnew String(comboBox1->SelectedItem->ToString());
 		//textBox1->Text = gcnew String(selectedArea->toString());
 	}
 	private: System::Void comboBox1_SelectedValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		textBox1->Text = gcnew String(comboBox1->SelectedItem->ToString());
-	}
-	private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  e) {
+		//textBox1->Text = gcnew String(comboBox1->SelectedItem->ToString());
 	}
 
+			 /*private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
+				 for (size_t i = 0; i < this->checkedListBox1->Items->Count; i++)
+				 {
+					 i % 2 == 0 ? this->checkedListBox1->SetItemChecked(i, true) : this->checkedListBox1->SetItemChecked(i, false);
+				 }
+				 updateTable();
+			 }
+			 private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 for (size_t i = 0; i < this->checkedListBox1->Items->Count; i++)
+				 {
+					 i % 2 != 0 ? this->checkedListBox1->SetItemChecked(i, true) : this->checkedListBox1->SetItemChecked(i, false);
+				 }
+				 updateTable();
+			 }
+			 private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
+				 for (size_t i = 0; i < this->checkedListBox1->Items->Count; i++)
+				 {
+					 this->checkedListBox1->SetItemChecked(i, true);
+				 }
+				 updateTable();
+			 }*/
+	private: System::Void checkedListBox1_ItemCheck(System::Object^  sender, System::Windows::Forms::ItemCheckEventArgs^  e) {
+		updateTable();
+	}
 	private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+		updateTable();
+	}
+			 void updateTable()
+			 {
+				 updateTableHeaders();
+				 if (this->dataGridView1->Columns->Count <= 0) { return; }
 
-	}
-	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
-	}
-	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
-		for (size_t i = 0; i < this->checkedListBox1->Items->Count; i++)
-		{
-			i % 2 == 0 ? this->checkedListBox1->SetItemChecked(i, true) : this->checkedListBox1->SetItemChecked(i, false);
-		}
-		updateTableHeaders();
-	}
-	private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
-		for (size_t i = 0; i < this->checkedListBox1->Items->Count; i++)
-		{
-			i % 2 != 0 ? this->checkedListBox1->SetItemChecked(i, true) : this->checkedListBox1->SetItemChecked(i, false);
-		}
-		updateTableHeaders();
-	}
-	private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
-		for (size_t i = 0; i < this->checkedListBox1->Items->Count; i++)
-		{
-			this->checkedListBox1->SetItemChecked(i, true);
-		}
-		updateTableHeaders();
-	}
-	private: System::Void checkedListBox1_SelectedValueChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void checkedListBox1_EnabledChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void checkedListBox1_SelectedValueChanged_1(System::Object^  sender, System::EventArgs^  e) {
-	}
+				 this->dataGridView1->Rows->Clear();
+				 VolebneKolo* tmp = app->getVolebneKolo(1);
+				 int i = 0;
+
+				 if (zobrazKraje->Checked)
+				 {
+					 for (auto * item : *tmp->getKraje())
+					 {
+						 this->dataGridView1->Rows->Add();
+						 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
+						 ++i;
+					 }
+				 }
+				 else if (zobrazOkresy->Checked)
+				 {
+					 for (auto * item : *tmp->getOkresy())
+					 {
+						 this->dataGridView1->Rows->Add();
+						 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
+						 ++i;
+					 }
+				 }
+				 else if (zobrazObce->Checked)
+				 {
+					 for (auto * item : *tmp->getObce())
+					 {
+						 this->dataGridView1->Rows->Add();
+						 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
+						 ++i;
+					 }
+				 }
+			 }
+
 			 void updateTableHeaders()
 			 {
 				 this->dataGridView1->Columns->Clear();
-				 for (int i = 0; i < checkedListBox1->CheckedItems->Count; i++)
-				 {
-					 auto selection = checkedListBox1->CheckedItems[i]->ToString();
-					 // TODO parsing string as oznacenie/kluc toho stlpca
-					 this->dataGridView1->Columns->Add(selection, selection);
-				 }
-			 }
-	private: System::Void checkedListBox1_SelectedIndexChanged_1(System::Object^  sender, System::EventArgs^  e) {
-		updateTableHeaders();
-	}
+				 this->dataGridView1->Columns->Add("Area", "Area");
 
-	private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void numericUpDown4_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void numericUpDown2_EnabledChanged(System::Object^  sender, System::EventArgs^  e) {
+				 //for (int i = 0; i < checkedListBox1->CheckedItems->Count; i++)
+				 //{
+					// auto selection = checkedListBox1->CheckedItems[i]->ToString();
+					// // TODO parsing string as oznacenie/kluc toho stlpca
+				 //}
+			 }
+	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+		updateTable();
 	}
 	};
 }
