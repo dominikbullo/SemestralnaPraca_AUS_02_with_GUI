@@ -7,7 +7,7 @@ class Area
 public:
 	Area(std::string nazov);
 	~Area();
-	std::string getName() const { return this->name_; }
+	std::string getName() const { return this->nazov; }
 
 	void setPocetVydanychObalok(int pocet) { this->pocetVydanychObalok = pocet; }
 	void setPocetOdovzdanychObalok(int pocet) { this->pocetOdovzdanychObalok = pocet; }
@@ -15,7 +15,7 @@ public:
 	void setPocetPlatnychHlasov(int pocet) { this->pocetPlatnychHlasov = pocet; }
 	void setUcastVolicov(float pocet) { this->ucast = pocet; }
 private:
-	const std::string name_;
+	const std::string nazov;
 
 	int pocetVydanychObalok;
 	int pocetOdovzdanychObalok;
@@ -35,25 +35,24 @@ public:
 class Okres : public Area
 {
 public:
-	Okres(std::string nazov) : Area(nazov)
+	Okres(std::string nazov, std::string nazovKraja) :
+		nazovKraja(this->nazovKraja), Area(nazov)
 	{
 	}
-	void setNazovKraja(std::string nazovKraja) { this->nazovKraja = nazovKraja; }
 private:
-	std::string nazovKraja;
+	const std::string nazovKraja;
 };
 
 class Obec : public Area
 {
 public:
-	Obec(std::string nazov) : Area(nazov)
+	Obec(std::string nazov, std::string nazovKraja, std::string nazovOkresu) :
+		nazovKraja(nazovKraja), nazovOkresu(nazovOkresu), Area(nazov)
 	{
 	}
 	bool isIn(Area& area) const;
-	void setNazovKraja(std::string nazovKraja) { this->nazovKraja = nazovKraja; }
-	void setNazovOkresu(std::string nazovOkresu) { this->nazovOkresu = nazovOkresu; }
 private:
-	std::string nazovKraja;
-	std::string nazovOkresu;
+	const std::string nazovKraja;
+	const std::string nazovOkresu;
 };
 

@@ -20,6 +20,10 @@ namespace SemestralnaPracaAUS02withGUI {
 		MyForm(void)
 		{
 			InitializeComponent();
+			loader = new Nacitanie();
+			app = new App(loader->getData());
+			//app = new App(new Nacitanie()->getData());
+
 		}
 
 	protected:
@@ -224,9 +228,6 @@ namespace SemestralnaPracaAUS02withGUI {
 	}
 
 	private: System::Void MyForm_Shown(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("Loading data, please wait");
-		loader = new Nacitanie();
-		app = new App(loader->getData());
 		MessageBox::Show("Data loaded successfully");
 	}
 	};

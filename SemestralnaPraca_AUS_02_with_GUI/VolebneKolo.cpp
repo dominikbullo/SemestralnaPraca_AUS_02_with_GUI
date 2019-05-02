@@ -16,47 +16,49 @@ VolebneKolo::VolebneKolo(int cisloKola) :
 VolebneKolo::~VolebneKolo()
 {
 	// FIXME asi cyklus na odstranenie dát
-
-	obceSorted->clear();
-	okresySorted->clear();
-	krajeSorted->clear();
-
+	for (auto * item : *obceSorted) {
+		delete item->accessData();
+	}
 	delete obceSorted;
+
+	for (auto * item : *okresySorted) {
+		delete item->accessData();
+	}
 	delete okresySorted;
+
+	for (auto * item : *krajeSorted) {
+		delete item->accessData();
+	}
 	delete krajeSorted;
 };
 
-Obec* VolebneKolo::pridajObec(string meno)
+void VolebneKolo::pridajObec(Obec* area)
 {
 	// FIXME there will be memory leaks 100%
-	Obec * tmp = new Obec(meno);
-	if (!obceSorted->containsKey(meno))
+	if (!obceSorted->containsKey(area->getName()))
 	{
 		//throw std::exception("Duplicates in Obec found!");
-	//}
-	//else {
-		obceSorted->insert(meno, tmp);
+		area->getName()
+
 	}
-	return tmp;
+	else {
+		obceSorted->insert(area->getName(), area);
+	}
 }
-Okres* VolebneKolo::pridajOkres(string meno)
+void  VolebneKolo::pridajOkres(Okres* area)
 {
-	if (okresySorted->containsKey(meno))
+	if (okresySorted->containsKey(area->getName()))
 	{
 		throw std::exception("Duplicates in Okres found!");
 	}
-	Okres * tmp = new Okres(meno);
-	okresySorted->insert(meno, tmp);
-	return tmp;
+	okresySorted->insert(area->getName(), area);
 }
 
-Kraj* VolebneKolo::pridajKraj(string meno)
+void  VolebneKolo::pridajKraj(Kraj* area)
 {
-	if (krajeSorted->containsKey(meno))
+	if (krajeSorted->containsKey(area->getName()))
 	{
 		throw std::exception("Duplicates in Kraj found!");
 	}
-	Kraj * tmp = new Kraj(meno);
-	krajeSorted->insert(meno, tmp);
-	return tmp;
+	krajeSorted->insert(area->getName(), area);
 }

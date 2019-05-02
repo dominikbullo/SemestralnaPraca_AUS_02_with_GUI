@@ -13,8 +13,6 @@ Nacitanie::Nacitanie()
 
 Nacitanie::~Nacitanie()
 {
-	delete prveKolo;
-	delete druheKolo;
 }
 
 void Nacitanie::loadData()
@@ -56,7 +54,8 @@ void Nacitanie::loadDataKraje(string nazovSuboru, VolebneKolo& volebneKolo)
 	{
 		getline(file, tmp, ';');		// Kod kraja
 		getline(file, tmp, ';');	// Nazov kraja
-		Kraj* tempArea = volebneKolo.pridajKraj(tmp);
+
+		Kraj* tempArea = new Kraj(tmp);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
@@ -70,6 +69,8 @@ void Nacitanie::loadDataKraje(string nazovSuboru, VolebneKolo& volebneKolo)
 		getline(file, tmp, ';');	// Poèet platných hlasov všetkých kandidátov
 		tempArea->setPocetPlatnychHlasov(std::stoi(tmp));
 		getline(file, tmp);	//  Podiel platných hlasov všetkých kandidátov v %
+
+		volebneKolo.pridajKraj(tempArea);
 	}
 
 }
@@ -94,9 +95,7 @@ void Nacitanie::loadDataOkresy(string nazovSuboru, VolebneKolo& volebneKolo)
 		getline(file, tmp, ';');		// Kod okresu
 		getline(file, tmp, ';');	// Nazov okresu
 
-		Okres* tempArea = volebneKolo.pridajOkres(tmp);
-		// TODO set nazov kraja
-		tempArea->setNazovKraja(nazovKraja);
+		Okres* tempArea = new Okres(tmp, nazovKraja);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
@@ -110,6 +109,8 @@ void Nacitanie::loadDataOkresy(string nazovSuboru, VolebneKolo& volebneKolo)
 		getline(file, tmp, ';');	// Poèet platných hlasov všetkých kandidátov
 		tempArea->setPocetPlatnychHlasov(std::stoi(tmp));
 		getline(file, tmp);	//  Podiel platných hlasov všetkých kandidátov v %
+
+		volebneKolo.pridajOkres(tempArea);
 	}
 }
 void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
@@ -137,10 +138,7 @@ void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
 		getline(file, tmp, ';');		// Kód obce
 		getline(file, tmp, ';');	// Názov obce
 
-		Obec* tempArea = volebneKolo.pridajObec(tmp);
-		// TODO set nazov okresu a kraja
-		tempArea->setNazovKraja(nazovKraja);
-		tempArea->setNazovOkresu(nazovOkresu);
+		Obec* tempArea = new Obec(tmp, nazovKraja, nazovOkresu);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
@@ -154,5 +152,7 @@ void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
 		getline(file, tmp, ';');	// Poèet platných hlasov všetkých kandidátov
 		tempArea->setPocetPlatnychHlasov(std::stoi(tmp));
 		getline(file, tmp);	//  Podiel platných hlasov všetkých kandidátov v %
+
+		volebneKolo.pridajObec(tempArea);
 	}
 }

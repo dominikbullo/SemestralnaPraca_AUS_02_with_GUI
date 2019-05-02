@@ -10,6 +10,8 @@ App::App(structures::Array<VolebneKolo*> *data)
 
 App::~App()
 {
+	delete prveKolo;
+	delete druheKolo;
 }
 
 std::string App::test()

@@ -11,9 +11,11 @@ class VolebneKolo
 public:
 	VolebneKolo(int cisloKola);
 	~VolebneKolo();
-	Obec * pridajObec(string meno);
-	Okres * pridajOkres(string meno);
-	Kraj * pridajKraj(string meno);
+
+	void pridajObec(Obec * obec);
+	void pridajOkres(Okres * okres);
+	void pridajKraj(Kraj * kraj);
+
 	int getCisloKola() { return this->cisloKola_; }
 	void setCisloKola(int cisloKola) { this->cisloKola_ = cisloKola; }
 
