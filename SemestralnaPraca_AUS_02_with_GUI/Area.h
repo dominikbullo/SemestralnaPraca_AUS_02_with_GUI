@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream> 
 #include <string> 
-
+using namespace std;
 class Area
 {
 public:
@@ -9,6 +9,8 @@ public:
 	~Area();
 
 	std::string getName() const { return this->nazov; }
+	void toString();
+
 	int getPocetVydanychObalok() const { return this->pocetVydanychObalok; }
 	int getPocetOdovzdanychObalok() const { return this->pocetOdovzdanychObalok; }
 	int getPocetPlatnychHlasov() const { return this->pocetPlatnychHlasov; }
@@ -40,6 +42,7 @@ class Kraj : public Area
 public:
 	Kraj(std::string nazov) : Area(nazov)
 	{
+		cout << "Created Kraj " << nazov << endl;
 	}
 };
 
@@ -49,6 +52,7 @@ public:
 	Okres(std::string nazov, std::string nazovKraja) :
 		nazovKraja(this->nazovKraja), Area(nazov)
 	{
+		cout << "Created Okres " << nazov << endl;
 	}
 private:
 	const std::string nazovKraja;
@@ -60,6 +64,7 @@ public:
 	Obec(std::string nazov, std::string nazovKraja, std::string nazovOkresu) :
 		nazovKraja(nazovKraja), nazovOkresu(nazovOkresu), Area(nazov)
 	{
+		cout << "Created Obec " << nazov << endl;
 	}
 	bool isIn(Area& area) const;
 	void makeUniqueNazov();

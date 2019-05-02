@@ -22,8 +22,28 @@ namespace SemestralnaPracaAUS02withGUI {
 			InitializeComponent();
 			loader = new Nacitanie();
 			app = new App(loader->getData());
+			fillComboBoxes();
+
 			//app = new App(new Nacitanie()->getData());
 
+		}
+
+		void fillComboBoxes()
+		{
+			VolebneKolo* data = app->getVolebneKolo(1);
+			for (auto * item : *data->getKraje())
+			{
+				this->comboBox1->Items->Add(gcnew String(item->accessData()->getName().c_str()));
+			}
+			for (auto * item : *data->getOkresy())
+			{
+				this->comboBox2->Items->Add(gcnew String(item->accessData()->getName().c_str()));
+			}
+			for (auto * item : *data->getObce())
+			{
+				item->accessData()->toString();
+				this->comboBox3->Items->Add(gcnew String(item->accessData()->getName().c_str()));
+			}
 		}
 
 	protected:
@@ -127,11 +147,13 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// comboBox1
 			// 
+			this->comboBox1->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Suggest;
+			this->comboBox1->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"toto", L"je", L"test" });
 			this->comboBox1->Location = System::Drawing::Point(36, 58);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(121, 21);
+			this->comboBox1->Sorted = true;
 			this->comboBox1->TabIndex = 7;
 			// 
 			// label2
@@ -154,11 +176,13 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// comboBox2
 			// 
+			this->comboBox2->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Append;
+			this->comboBox2->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"toto", L"je", L"test" });
 			this->comboBox2->Location = System::Drawing::Point(181, 58);
 			this->comboBox2->Name = L"comboBox2";
 			this->comboBox2->Size = System::Drawing::Size(121, 21);
+			this->comboBox2->Sorted = true;
 			this->comboBox2->TabIndex = 9;
 			// 
 			// label4
@@ -172,11 +196,14 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// comboBox3
 			// 
+			this->comboBox3->AccessibleName = L"";
+			this->comboBox3->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Append;
+			this->comboBox3->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"toto", L"je", L"test" });
 			this->comboBox3->Location = System::Drawing::Point(320, 58);
 			this->comboBox3->Name = L"comboBox3";
 			this->comboBox3->Size = System::Drawing::Size(121, 21);
+			this->comboBox3->Sorted = true;
 			this->comboBox3->TabIndex = 11;
 			// 
 			// textBox1
@@ -228,7 +255,7 @@ namespace SemestralnaPracaAUS02withGUI {
 	}
 
 	private: System::Void MyForm_Shown(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("Data loaded successfully");
+		//MessageBox::Show("Data loaded successfully");
 	}
 	};
 }

@@ -42,7 +42,7 @@ void Nacitanie::loadDataKraje(string nazovSuboru, VolebneKolo& volebneKolo)
 {
 	ifstream file(nazovSuboru);
 	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
-	string tmp;
+	string tmp, nazovKraja;
 
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
@@ -53,9 +53,9 @@ void Nacitanie::loadDataKraje(string nazovSuboru, VolebneKolo& volebneKolo)
 	while (file.good())
 	{
 		getline(file, tmp, ';');		// Kod kraja
-		getline(file, tmp, ';');	// Nazov kraja
+		getline(file, nazovKraja, ';');	// Nazov kraja
 
-		Kraj* tempArea = new Kraj(tmp);
+		Kraj* tempArea = new Kraj(nazovKraja);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
@@ -79,7 +79,7 @@ void Nacitanie::loadDataOkresy(string nazovSuboru, VolebneKolo& volebneKolo)
 {
 	ifstream file(nazovSuboru);
 	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
-	string tmp, nazovKraja;
+	string tmp, nazovObce, nazovOkresu, nazovKraja;
 
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
@@ -94,9 +94,9 @@ void Nacitanie::loadDataOkresy(string nazovSuboru, VolebneKolo& volebneKolo)
 		getline(file, tmp, ';');		// Kod  územného obvodu
 		getline(file, tmp, ';');	// Nazov  územného obvodu
 		getline(file, tmp, ';');		// Kod okresu
-		getline(file, tmp, ';');	// Nazov okresu
+		getline(file, nazovOkresu, ';');	// Nazov okresu
 
-		Okres* tempArea = new Okres(tmp, nazovKraja);
+		Okres* tempArea = new Okres(nazovOkresu, nazovKraja);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
@@ -119,7 +119,7 @@ void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
 {
 	ifstream file(nazovSuboru);
 	if (!file.is_open()) cout << "ERROR file OPEN" << endl;
-	string tmp, nazovKraja, nazovOkresu;
+	string tmp, nazovObce, nazovOkresu, nazovKraja;
 
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
@@ -138,9 +138,9 @@ void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
 
 
 		getline(file, tmp, ';');		// Kód obce
-		getline(file, tmp, ';');	// Názov obce
+		getline(file, nazovObce, ';');	// Názov obce
 
-		Obec* tempArea = new Obec(tmp, nazovKraja, nazovOkresu);
+		Obec* tempArea = new Obec(nazovObce, nazovKraja, nazovOkresu);
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov

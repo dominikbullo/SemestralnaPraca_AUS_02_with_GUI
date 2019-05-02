@@ -4,13 +4,17 @@ using namespace std;
 
 Area::Area(std::string nazov) : nazov(nazov)
 {
-	cout << "This is a Area named " << nazov << endl;
+	//cout << "Created Area named " << nazov << endl;
 }
 
 Area::~Area()
 {
 }
 
+void Area::toString()
+{
+	cout << "This is a Area named " << nazov << endl;
+}
 
 bool Obec::isIn(Area& area) const
 {

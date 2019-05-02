@@ -8,8 +8,9 @@ public:
 	Key(int pocetVolicov);
 	Key(float ucast);
 
+	void makeUniqueNazov();
+
 private:
-	Area* area;
 	const std::string nazov = "";
 	const int pocetVolicov = -1;
 	const float ucast = -1;

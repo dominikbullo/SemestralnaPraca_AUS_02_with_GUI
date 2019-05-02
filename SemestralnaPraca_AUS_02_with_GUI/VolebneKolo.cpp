@@ -5,8 +5,12 @@ VolebneKolo::VolebneKolo(int cisloKola) :
 {
 	obce = new structures::SortedSequenceTable<Key*, Obec*>();
 	obceSortedNazov = new structures::SortedSequenceTable<string, Obec*>();
-	obceSortedVolici = new structures::SortedSequenceTable<int, Obec*>();
-	obceSortedUcast = new structures::SortedSequenceTable<float, Obec*>();
+
+	// TODO správna štruktúra
+	//obceSortedVolici = new structures::SortedSequenceTable<int, Obec*>();
+	// TODO správna štruktúra 
+	//obceSortedUcast = new structures::SortedSequenceTable<float, Obec*>();
+
 	//obceUnsorted = new structures::UnsortedSequenceTable<string, Obec*>();
 
 	okresySorted = new structures::SortedSequenceTable<string, Okres*>();
@@ -25,17 +29,20 @@ VolebneKolo::~VolebneKolo()
 	delete obce;
 
 
-	for (auto * item : *obceSortedNazov) {
+	for (auto * item : *obceSortedNazov)
+	{
 		delete item->accessData();
 	}
 	delete obceSortedNazov;
 
-	for (auto * item : *okresySorted) {
+	for (auto * item : *okresySorted)
+	{
 		delete item->accessData();
 	}
 	delete okresySorted;
 
-	for (auto * item : *krajeSorted) {
+	for (auto * item : *krajeSorted)
+	{
 		delete item->accessData();
 	}
 	delete krajeSorted;
@@ -43,39 +50,30 @@ VolebneKolo::~VolebneKolo()
 
 void VolebneKolo::pridajObec(Obec* area)
 {
-	//if (!obceSortedNazov->containsKey(area->getName()))
-	//{
-	//	area->makeUniqueNazov();
-	//	// FIXME
-	//	//obceSortedNazov->insert(area->getName(), area);
-	//}
-	//if (!obceSortedVolici->containsKey(area->getPocetVolicov()))
-	//{
-	//	area->makeUniqueVolici();
-	//}
-	//if (!obceSortedUcast->containsKey(area->getUcastVolicov()))
-	//{
-	//	area->makeUniqueUcast();
-	//}
-	// TODO this uncoment
-	// obceSortedNazov->insert(area->getName(), area);
-	obce->insert(new Key(area), area);
+	if (obceSortedNazov->containsKey(area->getName())) {
+		area->makeUniqueNazov();
+		cout << "Find duplicates -> renamed to: " << area->getName() << endl;
+	}
+	//if (obceSortedVolici->containsKey(area->getPocetVolicov())) { area->makeUniqueVolici(); }
+	//if (obceSortedUcast->containsKey(area->getUcastVolicov())) { area->makeUniqueUcast(); }
+
+	obceSortedNazov->insert(area->getName(), area);
+	//obceSortedVolici->insert(area->getPocetVolicov(), area);
+	//obceSortedUcast->insert(area->getPocetVolicov(), area);
 }
 void  VolebneKolo::pridajOkres(Okres* area)
 {
+	// Ziadne duplikáty sa nemôžu vyskytova 
 	okresySorted->insert(area->getName(), area);
 }
 
 void  VolebneKolo::pridajKraj(Kraj* area)
 {
-	if (krajeSorted->containsKey(area->getName()))
-	{
-		throw std::exception("Duplicates in Kraj found!");
-	}
+	// Ziadne duplikáty sa nemôžu vyskytova 
 	krajeSorted->insert(area->getName(), area);
 }
 
 void VolebneKolo::test()
 {
-	//Obec * tmp = (*obce)[kluc];
+	Obec * tmp = (*obce)[new Key("Žilinský kraj")];
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "structures\list\array_list.h"
 #include "structures\table\unsorted_sequence_table.h"
 #include "structures\table\sorted_sequence_table.h"
 
@@ -21,6 +22,9 @@ public:
 	void setCisloKola(int cisloKola) { this->cisloKola_ = cisloKola; }
 	void test();
 
+	structures::SortedSequenceTable<string, Okres*>* getOkresy() { return this->okresySorted; }
+	structures::SortedSequenceTable<string, Obec*>* getObce() { return this->obceSortedNazov; }
+	structures::SortedSequenceTable<string, Kraj*>* getKraje() { return this->krajeSorted; }
 private:
 	int cisloKola_;
 
