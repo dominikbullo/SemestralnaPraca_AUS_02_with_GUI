@@ -22,7 +22,9 @@ public:
 private:
 	int cisloKola_;
 
-	structures::SortedSequenceTable<string, Obec*> *obceSorted;
+	structures::SortedSequenceTable<string, Obec*> *obceSortedNazov;
+	structures::SortedSequenceTable<int, Obec*> *obceSortedVolici;
+	structures::SortedSequenceTable<float, Obec*> *obceSortedUcast;
 	//structures::UnsortedSequenceTable<string, Obec*> *obceUnsorted;
 
 	structures::SortedSequenceTable<string, Okres*> *okresySorted;

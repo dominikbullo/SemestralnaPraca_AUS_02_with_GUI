@@ -22,3 +22,15 @@ void Obec::makeUniqueNazov()
 	std::string uniqueNazov = this->getName() + "_" + this->nazovOkresu;
 	this->setName(uniqueNazov);
 }
+
+void Obec::makeUniqueVolici()
+{
+	//std::string uniqueNazov = this->getName() + "_" + this->nazovOkresu;
+	//this->setName(uniqueNazov);
+}
+
+void Obec::makeUniqueUcast()
+{
+	/*std::string uniqueNazov = this->getName() + "_" + this->nazovOkresu;
+	this->setName(uniqueNazov);*/
+}

@@ -13,6 +13,7 @@ class App
 private:
 	VolebneKolo* prveKolo;
 	VolebneKolo* druheKolo;
+	structures::Array<VolebneKolo*>* data;
 public:
 	App(structures::Array<VolebneKolo*>* data);
 	~App();

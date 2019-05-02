@@ -59,6 +59,7 @@ void Nacitanie::loadDataKraje(string nazovSuboru, VolebneKolo& volebneKolo)
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísanıch volièov
+		tempArea->setPocetVolicov(std::stoi(tmp));
 		getline(file, tmp, ';');	// Poèet vydanıch obálok
 		tempArea->setPocetVydanychObalok(std::stoi(tmp));
 		getline(file, tmp, ';');	// Úèas volièov v %
@@ -99,6 +100,7 @@ void Nacitanie::loadDataOkresy(string nazovSuboru, VolebneKolo& volebneKolo)
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísanıch volièov
+		tempArea->setPocetVolicov(std::stoi(tmp));
 		getline(file, tmp, ';');	// Poèet vydanıch obálok
 		tempArea->setPocetVydanychObalok(std::stoi(tmp));
 		getline(file, tmp, ';');	// Úèas volièov v %
@@ -142,6 +144,7 @@ void Nacitanie::loadDataObce(string nazovSuboru, VolebneKolo& volebneKolo)
 
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísanıch volièov
+		tempArea->setPocetVolicov(std::stoi(tmp));
 		getline(file, tmp, ';');	// Poèet vydanıch obálok
 		tempArea->setPocetVydanychObalok(std::stoi(tmp));
 		getline(file, tmp, ';');	// Úèas volièov v %

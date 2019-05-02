@@ -7,21 +7,30 @@ class Area
 public:
 	Area(std::string nazov);
 	~Area();
+
 	std::string getName() const { return this->nazov; }
+	int getPocetVydanychObalok() const { return this->pocetVydanychObalok; }
+	int getPocetOdovzdanychObalok() const { return this->pocetOdovzdanychObalok; }
+	int getPocetPlatnychHlasov() const { return this->pocetPlatnychHlasov; }
+	int getPocetVolicov() const { return this->pocetVolicov; }
+	float getUcastVolicov() const { return this->ucast; }
 
 	void setPocetVydanychObalok(int pocet) { this->pocetVydanychObalok = pocet; }
 	void setPocetOdovzdanychObalok(int pocet) { this->pocetOdovzdanychObalok = pocet; }
-
 	void setPocetPlatnychHlasov(int pocet) { this->pocetPlatnychHlasov = pocet; }
+	void setPocetVolicov(int pocet) { this->pocetVolicov = pocet; }
 	void setUcastVolicov(float pocet) { this->ucast = pocet; }
+
 private:
 	std::string nazov;
 
 	int pocetVydanychObalok;
 	int pocetOdovzdanychObalok;
 	int pocetPlatnychHlasov;
+	int pocetVolicov;
 
 	float ucast;
+
 protected:
 	void setName(std::string name) { this->nazov = name; };
 };
@@ -54,6 +63,8 @@ public:
 	}
 	bool isIn(Area& area) const;
 	void makeUniqueNazov();
+	void makeUniqueVolici();
+	void makeUniqueUcast();
 
 private:
 	const std::string nazovKraja;

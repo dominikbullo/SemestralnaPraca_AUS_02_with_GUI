@@ -3,7 +3,9 @@
 VolebneKolo::VolebneKolo(int cisloKola) :
 	cisloKola_(cisloKola)
 {
-	obceSorted = new structures::SortedSequenceTable<string, Obec*>();
+	obceSortedNazov = new structures::SortedSequenceTable<string, Obec*>();
+	obceSortedVolici = new structures::SortedSequenceTable<int, Obec*>();
+	obceSortedUcast = new structures::SortedSequenceTable<float, Obec*>();
 	//obceUnsorted = new structures::UnsortedSequenceTable<string, Obec*>();
 
 	okresySorted = new structures::SortedSequenceTable<string, Okres*>();
@@ -16,10 +18,10 @@ VolebneKolo::VolebneKolo(int cisloKola) :
 VolebneKolo::~VolebneKolo()
 {
 	// FIXME asi cyklus na odstranenie dát
-	for (auto * item : *obceSorted) {
+	for (auto * item : *obceSortedNazov) {
 		delete item->accessData();
 	}
-	delete obceSorted;
+	delete obceSortedNazov;
 
 	for (auto * item : *okresySorted) {
 		delete item->accessData();
@@ -34,12 +36,20 @@ VolebneKolo::~VolebneKolo()
 
 void VolebneKolo::pridajObec(Obec* area)
 {
-	// FIXME there will be memory leaks 100%
-	if (!obceSorted->containsKey(area->getName()))
+	if (!obceSortedNazov->containsKey(area->getName()))
 	{
 		area->makeUniqueNazov();
+		obceSortedNazov->insert(area->getName(), area);
 	}
-	obceSorted->insert(area->getName(), area);
+	if (!obceSortedVolici->containsKey(area->getPocetVolicov()))
+	{
+		area->makeUniqueVolici();
+	}
+	if (!obceSortedUcast->containsKey(area->getUcastVolicov()))
+	{
+		area->makeUniqueUcast();
+	}
+	//obceSortedNazov->insert(area->getName(), area);
 
 }
 void  VolebneKolo::pridajOkres(Okres* area)
