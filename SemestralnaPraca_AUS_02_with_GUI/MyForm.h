@@ -100,7 +100,7 @@ namespace SemestralnaPracaAUS02withGUI {
 
 
 	private: System::Windows::Forms::CheckBox^  checkBox2;
-	private: System::Windows::Forms::TextBox^  textBox2;
+
 	private: System::Windows::Forms::NumericUpDown^  numericUpDown2;
 	private: System::Windows::Forms::NumericUpDown^  numericUpDown1;
 	private: System::Windows::Forms::NumericUpDown^  numericUpDown4;
@@ -123,6 +123,8 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: System::Windows::Forms::RadioButton^  druheKolo;
 	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::ComboBox^  comboBox1;
+	private: System::Windows::Forms::TextBox^  textBox1;
 
 
 
@@ -151,13 +153,13 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->numericUpDown4 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown3 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown2 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->zobrazObce = (gcnew System::Windows::Forms::RadioButton());
 			this->zobrazOkresy = (gcnew System::Windows::Forms::RadioButton());
@@ -171,6 +173,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->druheKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->prveKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->BeginInit();
@@ -207,6 +210,10 @@ namespace SemestralnaPracaAUS02withGUI {
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
+			this->checkBox1->Checked = true;
+			this->checkBox1->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->checkBox1->Cursor = System::Windows::Forms::Cursors::Default;
+			this->checkBox1->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->checkBox1->Location = System::Drawing::Point(6, 31);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(99, 17);
@@ -216,13 +223,14 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->textBox1);
+			this->groupBox1->Controls->Add(this->comboBox1);
 			this->groupBox1->Controls->Add(this->numericUpDown4);
 			this->groupBox1->Controls->Add(this->numericUpDown3);
 			this->groupBox1->Controls->Add(this->numericUpDown2);
 			this->groupBox1->Controls->Add(this->numericUpDown1);
 			this->groupBox1->Controls->Add(this->checkBox3);
 			this->groupBox1->Controls->Add(this->checkBox2);
-			this->groupBox1->Controls->Add(this->textBox2);
 			this->groupBox1->Controls->Add(this->checkBox1);
 			this->groupBox1->Location = System::Drawing::Point(581, 160);
 			this->groupBox1->Name = L"groupBox1";
@@ -231,12 +239,21 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Filtre";
 			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Location = System::Drawing::Point(6, 54);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(245, 21);
+			this->comboBox1->TabIndex = 40;
+			// 
 			// numericUpDown4
 			// 
 			this->numericUpDown4->Location = System::Drawing::Point(139, 200);
 			this->numericUpDown4->Name = L"numericUpDown4";
 			this->numericUpDown4->Size = System::Drawing::Size(112, 20);
 			this->numericUpDown4->TabIndex = 39;
+			this->numericUpDown4->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 50, 0, 0, 0 });
 			// 
 			// numericUpDown3
 			// 
@@ -248,10 +265,11 @@ namespace SemestralnaPracaAUS02withGUI {
 			// numericUpDown2
 			// 
 			this->numericUpDown2->Location = System::Drawing::Point(139, 125);
+			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 70000, 0, 0, 0 });
 			this->numericUpDown2->Name = L"numericUpDown2";
 			this->numericUpDown2->Size = System::Drawing::Size(112, 20);
 			this->numericUpDown2->TabIndex = 37;
-			this->numericUpDown2->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
+			this->numericUpDown2->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 70000, 0, 0, 0 });
 			// 
 			// numericUpDown1
 			// 
@@ -279,13 +297,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->checkBox2->TabIndex = 29;
 			this->checkBox2->Text = L"Zapísaný voliči";
 			this->checkBox2->UseVisualStyleBackColor = true;
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(6, 60);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(245, 20);
-			this->textBox2->TabIndex = 28;
 			// 
 			// groupBox2
 			// 
@@ -385,7 +396,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->groupBox4->Size = System::Drawing::Size(105, 118);
 			this->groupBox4->TabIndex = 40;
 			this->groupBox4->TabStop = false;
-			this->groupBox4->Text = L"groupBox4";
+			this->groupBox4->Text = L"Volebné kolo";
 			// 
 			// obidveKola
 			// 
@@ -428,6 +439,14 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->button1->Text = L"ZOBRAZ";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(111, 29);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(140, 20);
+			this->textBox1->TabIndex = 41;
+			this->textBox1->Text = L"Žilina";
 			// 
 			// MyForm
 			// 
@@ -545,14 +564,19 @@ namespace SemestralnaPracaAUS02withGUI {
 				 this->dataGridView1->Columns->Clear();
 				 this->dataGridView1->Columns->Add("Area", "Area");
 
-				 //for (int i = 0; i < checkedListBox1->CheckedItems->Count; i++)
-				 //{
-					// auto selection = checkedListBox1->CheckedItems[i]->ToString();
-					// // TODO parsing string as oznacenie/kluc toho stlpca
-				 //}
+				 string test[4] = { "Blue", "Red", "Orange", "Yellow" };
+				 for (int i = 0; i < test->size(); i++)
+				 {
+					 auto selection = test[i];
+					 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
+					 // TODO parsing string as oznacenie/kluc toho stlpca
+				 }
 			 }
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+		throw std::exception("not finished yet!");
+		app->test();
 		updateTable();
 	}
+
 	};
 }

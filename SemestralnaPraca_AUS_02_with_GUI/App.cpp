@@ -17,6 +17,7 @@ App::~App()
 
 std::string App::test()
 {
+	throw std::exception("not finished yet!");
 	prveKolo->test();
 	return std::to_string(prveKolo->getCisloKola()) + "teest";
 }
