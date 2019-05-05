@@ -125,7 +125,8 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::RadioButton^  radioButton1;
+	private: System::Windows::Forms::RadioButton^  filterNazovRadio;
+
 	private: System::Windows::Forms::RadioButton^  radioButton3;
 	private: System::Windows::Forms::RadioButton^  radioButton2;
 
@@ -157,7 +158,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
+			this->filterNazovRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->numericUpDown4 = (gcnew System::Windows::Forms::NumericUpDown());
@@ -205,7 +206,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			this->groupBox1->Controls->Add(this->radioButton3);
 			this->groupBox1->Controls->Add(this->radioButton2);
-			this->groupBox1->Controls->Add(this->radioButton1);
+			this->groupBox1->Controls->Add(this->filterNazovRadio);
 			this->groupBox1->Controls->Add(this->textBox1);
 			this->groupBox1->Controls->Add(this->comboBox1);
 			this->groupBox1->Controls->Add(this->numericUpDown4);
@@ -241,17 +242,17 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->radioButton2->Text = L"Zapísaný voliči";
 			this->radioButton2->UseVisualStyleBackColor = true;
 			// 
-			// radioButton1
+			// filterNazovRadio
 			// 
-			this->radioButton1->AutoSize = true;
-			this->radioButton1->Checked = true;
-			this->radioButton1->Location = System::Drawing::Point(6, 29);
-			this->radioButton1->Name = L"radioButton1";
-			this->radioButton1->Size = System::Drawing::Size(98, 17);
-			this->radioButton1->TabIndex = 42;
-			this->radioButton1->TabStop = true;
-			this->radioButton1->Text = L"Hľadaný názov";
-			this->radioButton1->UseVisualStyleBackColor = true;
+			this->filterNazovRadio->AutoSize = true;
+			this->filterNazovRadio->Checked = true;
+			this->filterNazovRadio->Location = System::Drawing::Point(6, 29);
+			this->filterNazovRadio->Name = L"filterNazovRadio";
+			this->filterNazovRadio->Size = System::Drawing::Size(98, 17);
+			this->filterNazovRadio->TabIndex = 42;
+			this->filterNazovRadio->TabStop = true;
+			this->filterNazovRadio->Text = L"Hľadaný názov";
+			this->filterNazovRadio->UseVisualStyleBackColor = true;
 			// 
 			// textBox1
 			// 
@@ -485,29 +486,6 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Void comboBox1_SelectedValueChanged(System::Object^  sender, System::EventArgs^  e) {
 		//textBox1->Text = gcnew String(comboBox1->SelectedItem->ToString());
 	}
-
-			 /*private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
-				 for (size_t i = 0; i < this->checkedListBox1->Items->Count; i++)
-				 {
-					 i % 2 == 0 ? this->checkedListBox1->SetItemChecked(i, true) : this->checkedListBox1->SetItemChecked(i, false);
-				 }
-				 updateTable();
-			 }
-			 private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
-
-				 for (size_t i = 0; i < this->checkedListBox1->Items->Count; i++)
-				 {
-					 i % 2 != 0 ? this->checkedListBox1->SetItemChecked(i, true) : this->checkedListBox1->SetItemChecked(i, false);
-				 }
-				 updateTable();
-			 }
-			 private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
-				 for (size_t i = 0; i < this->checkedListBox1->Items->Count; i++)
-				 {
-					 this->checkedListBox1->SetItemChecked(i, true);
-				 }
-				 updateTable();
-			 }*/
 	private: System::Void checkedListBox1_ItemCheck(System::Object^  sender, System::Windows::Forms::ItemCheckEventArgs^  e) {
 		updateTable();
 	}
@@ -592,8 +570,30 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 		//app->test();
+		using System::Runtime::InteropServices::Marshal;
+
+		if (filterNazovRadio->Checked) {
+			app->getArea(toStandardString(textBox1->Text->ToString()));
+		}
 		updateTable();
 	}
+	public:  static std::string toStandardString(System::String^ string)
+	{
+		using System::Runtime::InteropServices::Marshal;
 
+		if (string->Length == 0 || string->Length < 0)
+		{
+			MessageBox::Show("No field can be empty");
+
+		}
+
+		System::IntPtr pointer = Marshal::StringToHGlobalAnsi(string);
+		char* charPointer = reinterpret_cast<char*>(pointer.ToPointer());
+		std::string returnString(charPointer, string->Length);
+		Marshal::FreeHGlobal(pointer);
+
+
+		return returnString;
+	}
 	};
 }

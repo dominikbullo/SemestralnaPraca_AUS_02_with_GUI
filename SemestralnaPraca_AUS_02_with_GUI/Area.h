@@ -8,7 +8,7 @@ public:
 	Area(std::string nazov);
 	~Area();
 
-	std::string getName() const { return this->nazov; }
+	std::string getName() { return this->nazov; }
 	void toString();
 
 	int getPocetVydanychObalok() const { return this->pocetVydanychObalok; }

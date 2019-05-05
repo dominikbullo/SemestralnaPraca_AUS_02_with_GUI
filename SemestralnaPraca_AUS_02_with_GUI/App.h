@@ -19,6 +19,5 @@ public:
 	~App();
 	VolebneKolo* getVolebneKolo(int kolo) { return data->operator[](kolo - 1); }
 
-	std::string test();
-	void testFilter();
+	Area* getArea(std::string nazov);
 };

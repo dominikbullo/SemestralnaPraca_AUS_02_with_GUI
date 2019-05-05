@@ -15,12 +15,11 @@ App::~App()
 	delete data;
 }
 
-std::string App::test()
+Area* App::getArea(std::string nazov)
 {
-	throw std::exception("not finished yet!");
-	prveKolo->test();
-	return std::to_string(prveKolo->getCisloKola()) + "teest";
-}
-void App::testFilter()
-{
+	CriterionName * kriteriumMeno = new CriterionName();
+	//FilterHasName * filter = new FilterHasName();
+	//filter->setAlpha(nazov);
+	//filter->evaluate(nazov, *kriterium);
+	return 0;
 }

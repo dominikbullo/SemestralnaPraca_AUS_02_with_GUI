@@ -13,14 +13,14 @@ public:
 class CriterionName : public Criterion<std::string, Area>
 {
 public:
-	CriterionName() {};
+	//CriterionName() {};
 	std::string evaluate(const Area& a) const override { return a.getName(); }
 };
 
 class CriterionIsIN : public Criterion<bool, Obec>
 {
 public:
-	bool evaluate(const Obec& t) const override { return t.isIn(*area); }
+	bool evaluate(const Obec& t)const override { return t.isIn(*area); }
 private:
 	// TODO treba setter
 	Area * area;
