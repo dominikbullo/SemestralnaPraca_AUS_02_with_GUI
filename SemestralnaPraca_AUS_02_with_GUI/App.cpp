@@ -17,6 +17,8 @@ App::~App()
 
 Area* App::getArea(std::string nazov, int volebneKolo)
 {
+	throw std::exception("Not finished yet");
+
 	CriterionName * kriteriumMeno = new CriterionName();
 	FilterHasName * filter = new FilterHasName();
 	Area * tempArea = nullptr;

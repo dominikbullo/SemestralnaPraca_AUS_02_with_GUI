@@ -126,9 +126,11 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::TextBox^  textBox1;
 	private: System::Windows::Forms::RadioButton^  filterNazovRadio;
+	private: System::Windows::Forms::RadioButton^  filterUcastRadio;
 
-	private: System::Windows::Forms::RadioButton^  radioButton3;
-	private: System::Windows::Forms::RadioButton^  radioButton2;
+
+	private: System::Windows::Forms::RadioButton^  filterVoliciRadio;
+
 
 
 
@@ -156,8 +158,8 @@ namespace SemestralnaPracaAUS02withGUI {
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			this->filterUcastRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->filterVoliciRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->filterNazovRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
@@ -204,8 +206,8 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// groupBox1
 			// 
-			this->groupBox1->Controls->Add(this->radioButton3);
-			this->groupBox1->Controls->Add(this->radioButton2);
+			this->groupBox1->Controls->Add(this->filterUcastRadio);
+			this->groupBox1->Controls->Add(this->filterVoliciRadio);
 			this->groupBox1->Controls->Add(this->filterNazovRadio);
 			this->groupBox1->Controls->Add(this->textBox1);
 			this->groupBox1->Controls->Add(this->comboBox1);
@@ -220,27 +222,27 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Filtre";
 			// 
-			// radioButton3
+			// filterUcastRadio
 			// 
-			this->radioButton3->AutoSize = true;
-			this->radioButton3->Location = System::Drawing::Point(6, 168);
-			this->radioButton3->Name = L"radioButton3";
-			this->radioButton3->Size = System::Drawing::Size(111, 17);
-			this->radioButton3->TabIndex = 44;
-			this->radioButton3->TabStop = true;
-			this->radioButton3->Text = L"Volebná účasť (%)";
-			this->radioButton3->UseVisualStyleBackColor = true;
+			this->filterUcastRadio->AutoSize = true;
+			this->filterUcastRadio->Location = System::Drawing::Point(6, 168);
+			this->filterUcastRadio->Name = L"filterUcastRadio";
+			this->filterUcastRadio->Size = System::Drawing::Size(111, 17);
+			this->filterUcastRadio->TabIndex = 44;
+			this->filterUcastRadio->TabStop = true;
+			this->filterUcastRadio->Text = L"Volebná účasť (%)";
+			this->filterUcastRadio->UseVisualStyleBackColor = true;
 			// 
-			// radioButton2
+			// filterVoliciRadio
 			// 
-			this->radioButton2->AutoSize = true;
-			this->radioButton2->Location = System::Drawing::Point(6, 93);
-			this->radioButton2->Name = L"radioButton2";
-			this->radioButton2->Size = System::Drawing::Size(97, 17);
-			this->radioButton2->TabIndex = 43;
-			this->radioButton2->TabStop = true;
-			this->radioButton2->Text = L"Zapísaný voliči";
-			this->radioButton2->UseVisualStyleBackColor = true;
+			this->filterVoliciRadio->AutoSize = true;
+			this->filterVoliciRadio->Location = System::Drawing::Point(6, 93);
+			this->filterVoliciRadio->Name = L"filterVoliciRadio";
+			this->filterVoliciRadio->Size = System::Drawing::Size(97, 17);
+			this->filterVoliciRadio->TabIndex = 43;
+			this->filterVoliciRadio->TabStop = true;
+			this->filterVoliciRadio->Text = L"Zapísaný voliči";
+			this->filterVoliciRadio->UseVisualStyleBackColor = true;
 			// 
 			// filterNazovRadio
 			// 
@@ -569,25 +571,38 @@ namespace SemestralnaPracaAUS02withGUI {
 			 }
 
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-		//app->test();
 		if (filterNazovRadio->Checked)
 		{
-			if (prveKolo)
-			{
-				app->getArea(toStandardString(textBox1->Text->ToString()), 1);
-			}
-			if (druheKolo)
-			{
-				app->getArea(toStandardString(textBox1->Text->ToString()), 2);
-			}
-			if (obidveKola)
-			{
-				app->getArea(toStandardString(textBox1->Text->ToString()), 1);
-				app->getArea(toStandardString(textBox1->Text->ToString()), 2);
-			}
+			filterByName();
+		}
+		else if (filterVoliciRadio->Checked)
+		{
+			throw std::exception("Not implemented yet");
+		}
+		else
+		{
+			throw std::exception("Not implemented yet");
 		}
 		updateTable();
 	}
+			 void filterByName()
+			 {
+				 if (prveKolo)
+				 {
+					 Area* area1 = app->getArea(toStandardString(textBox1->Text->ToString()), 1);
+				 }
+				 if (druheKolo)
+				 {
+					 Area* area2 = app->getArea(toStandardString(textBox1->Text->ToString()), 2);
+				 }
+				 if (obidveKola)
+				 {
+					 Area* area1 = app->getArea(toStandardString(textBox1->Text->ToString()), 1);
+					 Area* area2 = app->getArea(toStandardString(textBox1->Text->ToString()), 2);
+				 }
+				 // TODO draw to grid table 
+				 throw std::exception("Not finished yet");
+			 }
 	public: static std::string toStandardString(System::String^ string)
 	{
 		using System::Runtime::InteropServices::Marshal;
