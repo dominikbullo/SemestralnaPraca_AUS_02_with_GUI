@@ -8,14 +8,14 @@ public:
 	Area(std::string nazov);
 	~Area();
 
-	std::string getName() { return this->nazov; }
+	std::string getName() const { return this->nazov; }
 	void toString();
 
-	int getPocetVydanychObalok() const { return this->pocetVydanychObalok; }
-	int getPocetOdovzdanychObalok() const { return this->pocetOdovzdanychObalok; }
-	int getPocetPlatnychHlasov() const { return this->pocetPlatnychHlasov; }
-	int getPocetVolicov() const { return this->pocetVolicov; }
-	float getUcastVolicov() const { return this->ucast; }
+	int getPocetVydanychObalok() { return this->pocetVydanychObalok; }
+	int getPocetOdovzdanychObalok() { return this->pocetOdovzdanychObalok; }
+	int getPocetPlatnychHlasov() { return this->pocetPlatnychHlasov; }
+	int getPocetVolicov() { return this->pocetVolicov; }
+	float getUcastVolicov() { return this->ucast; }
 
 	void setPocetVydanychObalok(int pocet) { this->pocetVydanychObalok = pocet; }
 	void setPocetOdovzdanychObalok(int pocet) { this->pocetOdovzdanychObalok = pocet; }
@@ -55,7 +55,7 @@ public:
 		cout << "Created Okres " << nazov << endl;
 	}
 private:
-	const std::string nazovKraja;
+	std::string nazovKraja;
 };
 
 class Obec : public Area
@@ -66,13 +66,13 @@ public:
 	{
 		cout << "Created Obec " << nazov << endl;
 	}
-	bool isIn(Area& area) const;
+	bool isIn(Area& area);
 	void makeUniqueNazov();
 	void makeUniqueVolici();
 	void makeUniqueUcast();
 
 private:
-	const std::string nazovKraja;
-	const std::string nazovOkresu;
+	std::string nazovKraja;
+	std::string nazovOkresu;
 };
 

@@ -16,35 +16,35 @@ namespace structures
 
 		/// <summary> Kopirovaci konstruktor. </summary>
 		/// <param name = "other"> Explicitny zasobník, z ktoreho sa prevezmu vlastnosti. </param>
-		ExplicitStack(const ExplicitStack<T>& other);
+		ExplicitStack(ExplicitStack<T>& other);
 
 		/// <summary> Destruktor. </summary>
 		~ExplicitStack();
 
 		/// <summary> Operacia klonovania. Vytvori a vrati duplikat zasobnika. </summary>
 		/// <returns> Ukazovatel na klon struktury. </returns>
-		Structure* clone() const override;
+		Structure* clone()  override;
 
 		/// <summary> Vrati pocet prvkov v zasobniku. </summary>
 		/// <returns> Pocet prvkov v zasobniku. </returns>
-		size_t size() const override;
+		size_t size()  override;
 
 		/// <summary> Operator priradenia. </summary>
 		/// <param name = "other"> Zasobnik, z ktoreho ma prebrat vlastnosti. </param>
 		/// <returns> Adresa, na ktorej sa tento zasobnik nachadza po priradeni. </returns>
-		Stack<T>& operator=(const Stack<T>& other) override;
+		Stack<T>& operator=(Stack<T>& other) override;
 
 		/// <summary> Operator priradenia. </summary>
 		/// <param name = "other"> Zasobnik, z ktoreho ma prebrat vlastnosti. </param>
 		/// <returns> Adresa, na ktorej sa tento zasobnik nachadza po priradeni. </returns>
-		ExplicitStack<T>& operator=(const ExplicitStack<T>& other);
+		ExplicitStack<T>& operator=(ExplicitStack<T>& other);
 
 		/// <summary> Vymaze zasobnik. </summary>
 		void clear() override;
 
 		/// <summary> Prida prvok do zasobnika. </summary>
 		/// <param name = "data"> Pridavany prvok. </param>
-		void push(const T& data) override;
+		void push(T& data) override;
 
 		/// <summary> Odstrani prvok na vrchole zasobnika. </summary>
 		/// <returns> Prvok na vrchole zasobnika. </returns>
@@ -59,7 +59,7 @@ namespace structures
 		/// <summary> Vrati prvok na vrchole zasobnika. </summary>
 		/// <returns> Prvok na vrchole zasobnika. </returns>
 		/// <exception cref="std::out_of_range"> Vyhodena, ak je zasobnik prazdny. </exception>  
-		const T peek() const override;
+		T peek()  override;
 
 	protected:
 		/// <summary> Zoznam, pomocou ktoreho je implementovany zasobnik. </summary>
@@ -74,7 +74,7 @@ namespace structures
 	}
 
 	template<typename T>
-	ExplicitStack<T>::ExplicitStack(const ExplicitStack<T>& other) :
+	ExplicitStack<T>::ExplicitStack(ExplicitStack<T>& other) :
 		ExplicitStack()
 	{
 		*this = other;
@@ -88,17 +88,17 @@ namespace structures
 	}
 
 	template<typename T>
-	inline Stack<T>& ExplicitStack<T>::operator=(const Stack<T>& other)
+	inline Stack<T>& ExplicitStack<T>::operator=(Stack<T>& other)
 	{
 		if (this != &other)
 		{
-			*this = dynamic_cast<const ExplicitStack<T>&>(other);
+			*this = dynamic_cast<ExplicitStack<T>&>(other);
 		}
 		return *this;
 	}
 
 	template<typename T>
-	inline ExplicitStack<T>& ExplicitStack<T>::operator=(const ExplicitStack<T>& other)
+	inline ExplicitStack<T>& ExplicitStack<T>::operator=(ExplicitStack<T>& other)
 	{
 		if (this != &other)
 		{
@@ -108,13 +108,13 @@ namespace structures
 	}
 
 	template<typename T>
-	inline Structure * ExplicitStack<T>::clone() const
+	inline Structure * ExplicitStack<T>::clone()
 	{
 		return new ExplicitStack<T>(*this);
 	}
 
 	template<typename T>
-	size_t ExplicitStack<T>::size() const
+	size_t ExplicitStack<T>::size()
 	{
 		return list_->size();
 	}
@@ -126,7 +126,7 @@ namespace structures
 	}
 
 	template<typename T>
-	inline void ExplicitStack<T>::push(const T& data)
+	inline void ExplicitStack<T>::push(T& data)
 	{
 		list_->insert(data, 0);
 	}
@@ -144,7 +144,7 @@ namespace structures
 	}
 
 	template<typename T>
-	inline const T ExplicitStack<T>::peek() const
+	inline  T ExplicitStack<T>::peek()
 	{
 		return (*list_)[0];
 	}

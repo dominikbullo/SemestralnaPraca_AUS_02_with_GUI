@@ -242,12 +242,6 @@
     <ClCompile Include="Area.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Filter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Criterion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Key.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -264,5 +258,8 @@
     <None Include="PRE_2019_KOLO1_tab02_kraje.csv" />
     <None Include="PRE_2019_KOLO1_tab02_obce.csv" />
     <None Include="PRE_2019_KOLO1_tab02_okresy.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="aus.natvis" />
   </ItemGroup>
 </Project>

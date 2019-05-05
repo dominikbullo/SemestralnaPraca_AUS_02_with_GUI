@@ -1,5 +1,4 @@
 #pragma once
-#include "structures\list\array_list.h"
 #include "structures\table\unsorted_sequence_table.h"
 #include "structures\table\sorted_sequence_table.h"
 

@@ -11,8 +11,8 @@ public:
 	void makeUniqueNazov();
 
 private:
-	const std::string nazov = "";
-	const int pocetVolicov = -1;
-	const float ucast = -1;
+	std::string nazov = "";
+	int pocetVolicov = -1;
+	float ucast = -1;
 };
 

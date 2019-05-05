@@ -1,6 +1,7 @@
 ﻿#pragma once
-#include "structures\table\unsorted_sequence_table.h"
-#include "structures\table\sorted_sequence_table.h"
+#include "structures/table/unsorted_sequence_table.h"
+#include "structures/table/sorted_sequence_table.h"
+#include "structures/array/array.h"
 #include "Area.h"
 #include "VolebneKolo.h"
 #include "Criterion.h"

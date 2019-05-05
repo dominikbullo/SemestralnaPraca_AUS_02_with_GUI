@@ -196,8 +196,6 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Area.cpp" />
-    <ClCompile Include="Criterion.cpp" />
-    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Nacitanie.cpp" />
@@ -233,6 +231,9 @@
     <None Include="PRE_2019_KOLO2_tab02_kraje.csv" />
     <None Include="PRE_2019_KOLO2_tab02_obce.csv" />
     <None Include="PRE_2019_KOLO2_tab02_okresy.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="aus.natvis" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
