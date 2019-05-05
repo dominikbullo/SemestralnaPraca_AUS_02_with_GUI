@@ -18,7 +18,6 @@ private:
 public:
 	App(structures::Array<VolebneKolo*>* data);
 	~App();
+	Area * getArea(std::string nazov, int volebneKolo);
 	VolebneKolo* getVolebneKolo(int kolo) { return data->operator[](kolo - 1); }
-
-	Area* getArea(std::string nazov);
 };

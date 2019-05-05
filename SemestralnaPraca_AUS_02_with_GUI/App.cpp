@@ -15,13 +15,16 @@ App::~App()
 	delete data;
 }
 
-Area* App::getArea(std::string nazov)
+Area* App::getArea(std::string nazov, int volebneKolo)
 {
 	CriterionName * kriteriumMeno = new CriterionName();
 	FilterHasName * filter = new FilterHasName();
-	filter->setAlpha("Žilinský kraj");
+	Area * tempArea = nullptr;
+	//filter->setAlpha("Žilinský kraj");
 
-	// TODO for cez tabulku
-	bool test = filter->evaluate(*prveKolo->getKraje()->operator[]("Žilinský kraj"), *kriteriumMeno);
-	return 0;
+	// TODO for cez tabuľku -> údaje -> kraje atď, ako parametre sem!
+	filter->setAlpha(nazov);
+	bool test = filter->evaluate(*this->getVolebneKolo(volebneKolo)->getKraje()->operator[]("Žilinský kraj"), *kriteriumMeno);
+
+	return tempArea;
 }

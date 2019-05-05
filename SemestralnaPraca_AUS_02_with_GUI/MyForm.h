@@ -570,14 +570,25 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 		//app->test();
-		using System::Runtime::InteropServices::Marshal;
-
-		if (filterNazovRadio->Checked) {
-			app->getArea(toStandardString(textBox1->Text->ToString()));
+		if (filterNazovRadio->Checked)
+		{
+			if (prveKolo)
+			{
+				app->getArea(toStandardString(textBox1->Text->ToString()), 1);
+			}
+			if (druheKolo)
+			{
+				app->getArea(toStandardString(textBox1->Text->ToString()), 2);
+			}
+			if (obidveKola)
+			{
+				app->getArea(toStandardString(textBox1->Text->ToString()), 1);
+				app->getArea(toStandardString(textBox1->Text->ToString()), 2);
+			}
 		}
 		updateTable();
 	}
-	public:  static std::string toStandardString(System::String^ string)
+	public: static std::string toStandardString(System::String^ string)
 	{
 		using System::Runtime::InteropServices::Marshal;
 
@@ -591,8 +602,6 @@ namespace SemestralnaPracaAUS02withGUI {
 		char* charPointer = reinterpret_cast<char*>(pointer.ToPointer());
 		std::string returnString(charPointer, string->Length);
 		Marshal::FreeHGlobal(pointer);
-
-
 		return returnString;
 	}
 	};

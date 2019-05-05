@@ -50,6 +50,7 @@ VolebneKolo::~VolebneKolo()
 
 void VolebneKolo::pridajObec(Obec* area)
 {
+	// NOTE možnos upravy metódy insert 
 	if (obceSortedNazov->containsKey(area->getName())) {
 		area->makeUniqueNazov();
 		cout << "Find duplicates -> renamed to: " << area->getName() << endl;
