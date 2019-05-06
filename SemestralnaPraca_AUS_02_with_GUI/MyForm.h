@@ -229,32 +229,32 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->filterUcastRadio->Name = L"filterUcastRadio";
 			this->filterUcastRadio->Size = System::Drawing::Size(111, 17);
 			this->filterUcastRadio->TabIndex = 44;
-			this->filterUcastRadio->TabStop = true;
 			this->filterUcastRadio->Text = L"Volebná účasť (%)";
 			this->filterUcastRadio->UseVisualStyleBackColor = true;
+			this->filterUcastRadio->Click += gcnew System::EventHandler(this, &MyForm::filterUcastRadio_Click);
 			// 
 			// filterVoliciRadio
 			// 
 			this->filterVoliciRadio->AutoSize = true;
+			this->filterVoliciRadio->Enabled = false;
 			this->filterVoliciRadio->Location = System::Drawing::Point(6, 93);
 			this->filterVoliciRadio->Name = L"filterVoliciRadio";
 			this->filterVoliciRadio->Size = System::Drawing::Size(97, 17);
 			this->filterVoliciRadio->TabIndex = 43;
-			this->filterVoliciRadio->TabStop = true;
 			this->filterVoliciRadio->Text = L"Zapísaný voliči";
 			this->filterVoliciRadio->UseVisualStyleBackColor = true;
+			this->filterVoliciRadio->Click += gcnew System::EventHandler(this, &MyForm::filterVoliciRadio_Click);
 			// 
 			// filterNazovRadio
 			// 
 			this->filterNazovRadio->AutoSize = true;
-			this->filterNazovRadio->Checked = true;
 			this->filterNazovRadio->Location = System::Drawing::Point(6, 29);
 			this->filterNazovRadio->Name = L"filterNazovRadio";
 			this->filterNazovRadio->Size = System::Drawing::Size(98, 17);
 			this->filterNazovRadio->TabIndex = 42;
-			this->filterNazovRadio->TabStop = true;
 			this->filterNazovRadio->Text = L"Hľadaný názov";
 			this->filterNazovRadio->UseVisualStyleBackColor = true;
+			this->filterNazovRadio->Click += gcnew System::EventHandler(this, &MyForm::filterNazovRadio_Click);
 			// 
 			// textBox1
 			// 
@@ -494,18 +494,16 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		updateTable();
 	}
-
-
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 		if (filterNazovRadio->Checked)
 		{
 			filterByName();
 		}
-		else if (filterVoliciRadio->Checked)
+		if (filterVoliciRadio->Checked)
 		{
 			throw std::exception("Not implemented yet");
 		}
-		else
+		if (filterUcastRadio->Checked)
 		{
 			throw std::exception("Not implemented yet");
 		}
@@ -515,95 +513,76 @@ namespace SemestralnaPracaAUS02withGUI {
 			 {
 				 updateTableHeaders();
 
-				 //this->dataGridView1->Rows->Clear();
-				 ////VolebneKolo* tmp = app->getVolebneKolo(1);
-				 //int i = 0;
+				 this->dataGridView1->Rows->Clear();
 
-				 //if (zobrazKraje->Checked)
-				 //{
-					// for (auto * item : *tmp->getKraje())
-					// {
-					//	 this->dataGridView1->Rows->Add();
-					//	 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
-					//	 ++i;
-					// }
-				 //}
-				 //else if (zobrazOkresy->Checked)
-				 //{
-					// for (auto * item : *tmp->getOkresy())
-					// {
-					//	 this->dataGridView1->Rows->Add();
-					//	 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
-					//	 ++i;
-					// }
-				 //}
-				 //else if (zobrazObce->Checked)
-				 //{
-					// for (auto * item : *tmp->getObce())
-					// {
-					//	 this->dataGridView1->Rows->Add();
-					//	 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
-					//	 ++i;
-					// }
-				 //}
+				 if (zobrazKraje->Checked)
+				 {
+					 zobrazTabulkuDoDataGridView(*loader->getKraje());
+				 }
+				 else if (zobrazOkresy->Checked)
+				 {
+					 zobrazTabulkuDoDataGridView(*loader->getOkresy());
+				 }
+				 else
+				 {
+					 zobrazTabulkuDoDataGridView(*loader->getObce());
+				 }
 			 }
-
+			 template <typename T>
+			 void zobrazTabulkuDoDataGridView(T tabulka)
+			 {
+				 int i = 0;
+				 for (auto * item : tabulka)
+				 {
+					 this->dataGridView1->Rows->Add();
+					 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
+					 i++;
+				 }
+			 }
 			 void updateTableHeaders()
 			 {
 				 this->dataGridView1->Columns->Clear();
 				 this->dataGridView1->Columns->Add("Area", "Area");
 
-				 string test[8] = {
-					 "Voliči 1.kolo", "Voliči 2.kolo",
-					 "Účasť 1.kolo","Účasť 2.kolo",
-					 "Vydané obálky 1.kolo","Vydané obálky 2.kolo",
-					 "Prijaté obálky 1.kolo","Prijaté obálky 2.kolo"
+				 // TODO parsing string as oznacenie/kluc toho stlpca
+				 string headerTableItems[12] = {
+					 "Voliči 1.kolo", "Voliči 2.kolo","Voliči spolu",
+					 "Účasť 1.kolo","Účasť 2.kolo","Účasť spolu",
+					 "Vydané obálky 1.kolo","Vydané obálky 2.kolo","Vydané obálky spolu",
+					 "Prijaté obálky 1.kolo","Prijaté obálky 2.kolo","Prijaté obálky spolu"
 				 };
 
-				 //for (int i = 0; i < _countof(test); i++)
-				 //{
-					// if (this->obidveKola->Checked)
-					// {
-					//	 auto selection = test[i];
-					//	 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
-					// }
-					// else
-					// {
-					//	 if (this->prveKolo->Checked && i % 2 == 0)
-					//	 {
-					//		 auto selection = test[i];
-					//		 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
+				 for (int i = 0; i < _countof(headerTableItems); i++)
+				 {
+					 if (this->obidveKola->Checked)
+					 {
+						 this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
+					 }
+					 else
+					 {
+						 if (this->prveKolo->Checked && i % 3 == 0)
+						 {
+							 this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
 
-					//	 }
-					//	 if (this->druheKolo->Checked && i % 2 != 0)
-					//	 {
-					//		 auto selection = test[i];
-					//		 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
-					//	 }
-					// }
+						 }
+						 if (this->druheKolo->Checked && i % 3 == 1)
+						 {
+							 this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
+						 }
+					 }
 
-					// // TODO parsing string as oznacenie/kluc toho stlpca
-				 //}
+				 }
 			 }
 
 			 void filterByName()
 			 {
-				 //if (prveKolo)
-				 //{
-					// Area* area1 = app->getArea(toStandardString(textBox1->Text->ToString()), 1);
-				 //}
-				 //if (druheKolo)
-				 //{
-					// Area* area2 = app->getArea(toStandardString(textBox1->Text->ToString()), 2);
-				 //}
-				 //if (obidveKola)
-				 //{
-					// Area* area1 = app->getArea(toStandardString(textBox1->Text->ToString()), 1);
-					// Area* area2 = app->getArea(toStandardString(textBox1->Text->ToString()), 2);
-				 //}
-				 //// TODO draw to grid table 
-				 //throw std::exception("Not finished yet");
+				 // TODO
+				 // memory leak
+				 Area* area = app->getArea(toStandardString(textBox1->Text->ToString()));
+
+				 throw std::exception("Not finished yet!");
 			 }
+
 	public: static std::string toStandardString(System::String^ string)
 	{
 		using System::Runtime::InteropServices::Marshal;
@@ -620,5 +599,24 @@ namespace SemestralnaPracaAUS02withGUI {
 		Marshal::FreeHGlobal(pointer);
 		return returnString;
 	}
+	private: System::Void filterNazovRadio_Click(System::Object^  sender, System::EventArgs^  e) {
+		// allow uncheck
+		filterNazovRadio->Checked = !filterNazovRadio->Checked;
+	}
+	private: System::Void filterUcastRadio_Click(System::Object^  sender, System::EventArgs^  e) {
+		// allow uncheck
+		if (filterVoliciRadio->Checked)
+		{
+			filterVoliciRadio->Checked = false;
+		}
+	}
+	private: System::Void filterVoliciRadio_Click(System::Object^  sender, System::EventArgs^  e) {
+		// allow uncheck
+		if (filterVoliciRadio->Checked)
+		{
+			filterVoliciRadio->Checked = false;
+		}
+	}
+
 	};
 }

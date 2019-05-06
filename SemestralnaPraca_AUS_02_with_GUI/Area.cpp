@@ -1,14 +1,24 @@
 #include "Area.h"
 
+
 using namespace std;
 
 Area::Area(std::string nazov) : nazov(nazov)
 {
-	//cout << "Created Area named " << nazov << endl;
+	prveKolo = new VolebneKolo(1);
+	druheKolo = new VolebneKolo(2);
+	arrayKol = new structures::Array<VolebneKolo*>(3);
+
+	arrayKol->operator[](0) = nullptr; //aby sa index zhodoval s kolo, pre neskoršie h¾adanie
+	arrayKol->operator[](1) = prveKolo;
+	arrayKol->operator[](2) = druheKolo;
 }
 
 Area::~Area()
 {
+	delete prveKolo;
+	delete druheKolo;
+	delete arrayKol;
 }
 
 void Area::toString()

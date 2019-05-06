@@ -1,7 +1,11 @@
 #pragma once
 #include <iostream> 
 #include <string> 
+#include "structures/array/array.h"
+#include "VolebneKolo.h"
+
 using namespace std;
+
 class Area
 {
 public:
@@ -11,27 +15,23 @@ public:
 	std::string getName() const { return this->nazov; }
 	void toString();
 
-	int getPocetVydanychObalok(const int volebneKolo) const { return this->pocetVydanychObalok; }
-	int getPocetOdovzdanychObalok(const int volebneKolo) const { return this->pocetOdovzdanychObalok; }
-	int getPocetPlatnychHlasov(const int volebneKolo) const { return this->pocetPlatnychHlasov; }
-	int getPocetVolicov(const int volebneKolo) const { return this->pocetVolicov; }
-	double getUcastVolicov(const int volebneKolo) const { return this->ucast; }
+	int getPocetVydanychObalok(const int volebneKolo) const { return arrayKol->operator[](volebneKolo)->getPocetVydanychObalok(); }
+	int getPocetOdovzdanychObalok(const int volebneKolo) const { return arrayKol->operator[](volebneKolo)->getPocetOdovzdanychObalok(); }
+	int getPocetPlatnychHlasov(const int volebneKolo) const { return arrayKol->operator[](volebneKolo)->getPocetPlatnychHlasov(); }
+	int getPocetVolicov(const int volebneKolo) const { return arrayKol->operator[](volebneKolo)->getPocetVolicov(); }
+	double getUcastVolicov(const int volebneKolo) const { return arrayKol->operator[](volebneKolo)->getUcastVolicov(); }
 
-	void setPocetVydanychObalok(int pocet, int volebneKolo) { this->pocetVydanychObalok = pocet; }
-	void setPocetOdovzdanychObalok(int pocet, int volebneKolo) { this->pocetOdovzdanychObalok = pocet; }
-	void setPocetPlatnychHlasov(int pocet, int volebneKolo) { this->pocetPlatnychHlasov = pocet; }
-	void setPocetVolicov(int pocet, int volebneKolo) { this->pocetVolicov = pocet; }
-	void setUcastVolicov(double pocet, int volebneKolo) { this->ucast = pocet; }
+	void setPocetVydanychObalok(int pocet, int volebneKolo) { arrayKol->operator[](volebneKolo)->setPocetVydanychObalok(pocet); }
+	void setPocetOdovzdanychObalok(int pocet, int volebneKolo) { arrayKol->operator[](volebneKolo)->setPocetOdovzdanychObalok(pocet); }
+	void setPocetPlatnychHlasov(int pocet, int volebneKolo) { arrayKol->operator[](volebneKolo)->setPocetPlatnychHlasov(pocet); }
+	void setPocetVolicov(int pocet, int volebneKolo) { arrayKol->operator[](volebneKolo)->setPocetVolicov(pocet); }
+	void setUcastVolicov(double pocet, int volebneKolo) { arrayKol->operator[](volebneKolo)->setUcastVolicov(pocet); }
 
 private:
 	std::string nazov;
-
-	int pocetVydanychObalok;
-	int pocetOdovzdanychObalok;
-	int pocetPlatnychHlasov;
-	int pocetVolicov;
-
-	double ucast;
+	VolebneKolo* prveKolo;
+	VolebneKolo* druheKolo;
+	structures::Array<VolebneKolo*>* arrayKol;
 
 protected:
 	void setName(std::string name) { this->nazov = name; };

@@ -13,7 +13,7 @@ App::~App()
 {
 }
 
-Area* App::getArea(std::string nazov, int volebneKolo)
+Area* App::getArea(std::string nazov)
 {
 	// FIXME
 	throw std::logic_error("Not finished yet");
@@ -21,10 +21,11 @@ Area* App::getArea(std::string nazov, int volebneKolo)
 	KriteriumNazov * kriteriumMeno = new KriteriumNazov();
 	FilterHasName * filter = new FilterHasName();
 	Area * tempArea = nullptr;
-	//filter->setAlpha("Žilinský kraj");
 
 	// TODO for cez tabuľku -> údaje -> kraje atď, ako parametre sem!
 	filter->setAlpha(nazov);
+
+	//filter->setAlpha("Žilinský kraj");
 	//bool test = filter->evaluate(*this->getVolebneKolo(volebneKolo)->getKraje()->operator[]("Žilinský kraj"), *kriteriumMeno);
 
 	return tempArea;

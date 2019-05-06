@@ -46,31 +46,6 @@ void Nacitanie::loadData()
 	this->loadDataObce("spolu_obce.csv");
 }
 
-void Nacitanie::pridajObec(Obec* area)
-{
-	// NOTE možnos upravy metódy insert 
-	if (obceSorted->containsKey(area->getName())) {
-		area->makeUniqueNazov();
-		cout << "Find duplicates -> renamed to: " << area->getName() << endl;
-	}
-	//if (obceSortedVolici->containsKey(area->getPocetVolicov())) { area->makeUniqueVolici(); }
-	//if (obceSortedUcast->containsKey(area->getUcastVolicov())) { area->makeUniqueUcast(); }
-
-	obceSorted->insert(area->getName(), area);
-	//obceSortedVolici->insert(area->getPocetVolicov(), area);
-	//obceSortedUcast->insert(area->getPocetVolicov(), area);
-}
-void  Nacitanie::pridajOkres(Okres* area)
-{
-	// Ziadne duplikáty sa nemôžu vyskytova 
-	okresySorted->insert(area->getName(), area);
-}
-
-void  Nacitanie::pridajKraj(Kraj* area)
-{
-	// Ziadne duplikáty sa nemôžu vyskytova 
-	krajeSorted->insert(area->getName(), area);
-}
 
 void Nacitanie::loadDataKraje(string nazovSuboru)
 {
@@ -140,6 +115,7 @@ void Nacitanie::loadDataOkresy(string nazovSuboru)
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
+	getline(file, tmp); // vynechaj hlavièku
 
 	while (file.good())
 	{
@@ -167,7 +143,7 @@ void Nacitanie::loadDataOkresy(string nazovSuboru)
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
 		getline(file, tmp, ';');	// Poèet platných hlasov všetkých kandidátov
 		tempArea->setPocetPlatnychHlasov(std::stoi(tmp), kolo);
-		getline(file, tmp);	//  Podiel platných hlasov všetkých kandidátov v %
+		getline(file, tmp, ';');	//  Podiel platných hlasov všetkých kandidátov v %
 
 		// 2.kolo
 		kolo = 2;
@@ -195,6 +171,7 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 	string tmp, nazovObce, nazovOkresu, nazovKraja;
 	int kolo = -1;
 
+	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
@@ -231,7 +208,7 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
 		getline(file, tmp, ';');	// Poèet platných hlasov všetkých kandidátov
 		tempArea->setPocetPlatnychHlasov(std::stoi(tmp), kolo);
-		getline(file, tmp);	//  Podiel platných hlasov všetkých kandidátov v %
+		getline(file, tmp, ';');	//  Podiel platných hlasov všetkých kandidátov v %
 
 		// 2.kolo
 		kolo = 2;
@@ -252,4 +229,29 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 
 		this->pridajObec(tempArea);
 	}
+}
+void Nacitanie::pridajObec(Obec* area)
+{
+	// NOTE možnos upravy metódy insert 
+	if (obceSorted->containsKey(area->getName())) {
+		area->makeUniqueNazov();
+		cout << "Find duplicates -> renamed to: " << area->getName() << endl;
+	}
+	//if (obceSortedVolici->containsKey(area->getPocetVolicov())) { area->makeUniqueVolici(); }
+	//if (obceSortedUcast->containsKey(area->getUcastVolicov())) { area->makeUniqueUcast(); }
+
+	obceSorted->insert(area->getName(), area);
+	//obceSortedVolici->insert(area->getPocetVolicov(), area);
+	//obceSortedUcast->insert(area->getPocetVolicov(), area);
+}
+void  Nacitanie::pridajOkres(Okres* area)
+{
+	// Ziadne duplikáty sa nemôžu vyskytova 
+	okresySorted->insert(area->getName(), area);
+}
+
+void  Nacitanie::pridajKraj(Kraj* area)
+{
+	// Ziadne duplikáty sa nemôžu vyskytova 
+	krajeSorted->insert(area->getName(), area);
 }
