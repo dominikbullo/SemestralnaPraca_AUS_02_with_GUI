@@ -26,16 +26,18 @@ private:
 class KriteriumVolici : public Kriterium<int, Area>
 {
 public:
-	int evaluate(const Area& a) const override { return a.getPocetVolicov(); }
+	int evaluate(const Area& a) const override { return a.getPocetVolicov(kolo); }
 	void setArea(Area* area) { this->area = area; }
+	void setKolo(int kolo) { this->kolo = kolo; }
 private:
 	Area * area;
+	int kolo;
 };
 
 class KriteriumVydaneObalky : public Kriterium<int, Area>
 {
 public:
-	int evaluate(const Area& a) const override { return a.getPocetVydanychObalok(); }
+	int evaluate(const Area& a) const override { return a.getPocetVydanychObalok(kolo); }
 	void setArea(Area* area) { this->area = area; }
 	void setKolo(int kolo) { this->kolo = kolo; }
 private:
@@ -47,7 +49,7 @@ private:
 class KriteriumUcast : public Kriterium<double, Area>
 {
 public:
-	double evaluate(const Area& a) const override { return a.getUcastVolicov(); }
+	double evaluate(const Area& a) const override { return a.getUcastVolicov(kolo); }
 	void setArea(Area* area) { this->area = area; }
 	void setKolo(int kolo) { this->kolo = kolo; }
 
@@ -59,7 +61,7 @@ private:
 class KriteriumOdovzdaneObalky : public Kriterium<double, Area>
 {
 public:
-	double evaluate(const Area& a) const override { return a.getPocetOdovzdanychObalok(); }
+	double evaluate(const Area& a) const override { return a.getPocetOdovzdanychObalok(kolo); }
 	void setArea(Area* area) { this->area = area; }
 	void setKolo(int kolo) { this->kolo = kolo; }
 private:
