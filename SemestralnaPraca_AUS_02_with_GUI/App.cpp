@@ -2,17 +2,15 @@
 
 using namespace std;
 
-App::App(structures::Array<VolebneKolo*> *data) : data(data)
+App::App(Nacitanie* loader) : loader(loader)
 {
-	prveKolo = data->operator[](0);
-	druheKolo = data->operator[](1);
+	krajeSorted = loader->getKraje();
+	okresySorted = loader->getOkresy();
+	obceSorted = loader->getObce();
 }
 
 App::~App()
 {
-	delete prveKolo;
-	delete druheKolo;
-	delete data;
 }
 
 Area* App::getArea(std::string nazov, int volebneKolo)
@@ -27,7 +25,12 @@ Area* App::getArea(std::string nazov, int volebneKolo)
 
 	// TODO for cez tabuľku -> údaje -> kraje atď, ako parametre sem!
 	filter->setAlpha(nazov);
-	bool test = filter->evaluate(*this->getVolebneKolo(volebneKolo)->getKraje()->operator[]("Žilinský kraj"), *kriteriumMeno);
+	//bool test = filter->evaluate(*this->getVolebneKolo(volebneKolo)->getKraje()->operator[]("Žilinský kraj"), *kriteriumMeno);
 
 	return tempArea;
+}
+
+void App::test()
+{
+	//Obec * tmp = (*obce)[new Key("Žilinský kraj")];
 }

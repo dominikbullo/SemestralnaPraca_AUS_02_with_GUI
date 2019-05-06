@@ -177,9 +177,6 @@
     <ClInclude Include="MyForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VolebneKolo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -233,9 +230,6 @@
     <ClCompile Include="MyForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VolebneKolo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -252,12 +246,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="PRE_2019_KOLO2_tab02_kraje.csv" />
-    <None Include="PRE_2019_KOLO2_tab02_obce.csv" />
-    <None Include="PRE_2019_KOLO2_tab02_okresy.csv" />
-    <None Include="PRE_2019_KOLO1_tab02_kraje.csv" />
-    <None Include="PRE_2019_KOLO1_tab02_obce.csv" />
-    <None Include="PRE_2019_KOLO1_tab02_okresy.csv" />
+    <None Include="spolu_kraje.csv" />
+    <None Include="spolu_obce.csv" />
+    <None Include="spolu_okresy.csv" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="aus.natvis" />

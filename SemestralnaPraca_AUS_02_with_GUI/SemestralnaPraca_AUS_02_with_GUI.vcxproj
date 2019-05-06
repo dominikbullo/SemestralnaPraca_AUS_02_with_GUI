@@ -191,7 +191,6 @@
     <ClInclude Include="structures\tree\multi_way_tree.h" />
     <ClInclude Include="structures\tree\tree.h" />
     <ClInclude Include="structures\vector\vector.h" />
-    <ClInclude Include="VolebneKolo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
@@ -209,7 +208,6 @@
     <ClCompile Include="structures\structure.cpp" />
     <ClCompile Include="structures\table\sorting\sort.cpp" />
     <ClCompile Include="structures\vector\vector.cpp" />
-    <ClCompile Include="VolebneKolo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -225,12 +223,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="PRE_2019_KOLO1_tab02_kraje.csv" />
-    <None Include="PRE_2019_KOLO1_tab02_obce.csv" />
-    <None Include="PRE_2019_KOLO1_tab02_okresy.csv" />
-    <None Include="PRE_2019_KOLO2_tab02_kraje.csv" />
-    <None Include="PRE_2019_KOLO2_tab02_obce.csv" />
-    <None Include="PRE_2019_KOLO2_tab02_okresy.csv" />
+    <None Include="spolu_kraje.csv" />
+    <None Include="spolu_obce.csv" />
+    <None Include="spolu_okresy.csv" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="aus.natvis" />

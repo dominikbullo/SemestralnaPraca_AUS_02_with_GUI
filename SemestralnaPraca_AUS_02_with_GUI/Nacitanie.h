@@ -5,28 +5,41 @@
 #include <string>
 #include <sstream>
 
-#include "structures\table\unsorted_sequence_table.h"
-#include "structures\table\sorted_sequence_table.h"
+#include "structures/table/unsorted_sequence_table.h"
+#include "structures/table/sorted_sequence_table.h"
+#include "structures/array/array.h"
 
 #include "Area.h"
-#include "VolebneKolo.h"
 
 class Nacitanie
 {
 private:
-	VolebneKolo* prveKolo;
-	VolebneKolo* druheKolo;
+	structures::SortedSequenceTable<string, Obec*> *obceSorted;
+	//structures::UnsortedSequenceTable<string, Obec*> *obceUnsorted;
+
+	structures::SortedSequenceTable<string, Okres*> *okresySorted;
+	//structures::UnsortedSequenceTable<string, Okres*> *okresyUnsorted;
+
+	structures::SortedSequenceTable<string, Kraj*> *krajeSorted;
+	//structures::UnsortedSequenceTable<string, Kraj*> *krajeUnsorted;
+
+protected:
+	void loadData();
+	void loadDataKraje(string nazovSuboru);
+	void loadDataOkresy(string nazovSuboru);
+	void loadDataObce(string nazovSuboru);
+
+	void pridajObec(Obec* area);
+	void pridajOkres(Okres* area);
+	void pridajKraj(Kraj* area);
+
 public:
 	Nacitanie();
 	~Nacitanie();
-	void loadData();
 
-	structures::Array<VolebneKolo*>* getData();
+	structures::SortedSequenceTable<string, Kraj*>* getKraje() { return this->krajeSorted; }
+	structures::SortedSequenceTable<string, Okres*>* getOkresy() { return this->okresySorted; }
+	structures::SortedSequenceTable<string, Obec*>* getObce() { return this->obceSorted; }
 
-	void loadData(string nazovSuboru, VolebneKolo & volebneKolo);
-
-	void loadDataKraje(string nazovSuboru, VolebneKolo & volebneKolo);
-	void loadDataOkresy(string nazovSuboru, VolebneKolo & volebneKolo);
-	void loadDataObce(string nazovSuboru, VolebneKolo & volebneKolo);
 };
 

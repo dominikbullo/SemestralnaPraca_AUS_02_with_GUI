@@ -27,7 +27,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->numericUpDown2->Maximum = System::Decimal(std::numeric_limits<int>::max());
 
 			loader = new Nacitanie();
-			app = new App(loader->getData());
+			app = new App(loader);
 
 			updateTable();
 
@@ -515,37 +515,37 @@ namespace SemestralnaPracaAUS02withGUI {
 			 {
 				 updateTableHeaders();
 
-				 this->dataGridView1->Rows->Clear();
-				 VolebneKolo* tmp = app->getVolebneKolo(1);
-				 int i = 0;
+				 //this->dataGridView1->Rows->Clear();
+				 ////VolebneKolo* tmp = app->getVolebneKolo(1);
+				 //int i = 0;
 
-				 if (zobrazKraje->Checked)
-				 {
-					 for (auto * item : *tmp->getKraje())
-					 {
-						 this->dataGridView1->Rows->Add();
-						 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
-						 ++i;
-					 }
-				 }
-				 else if (zobrazOkresy->Checked)
-				 {
-					 for (auto * item : *tmp->getOkresy())
-					 {
-						 this->dataGridView1->Rows->Add();
-						 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
-						 ++i;
-					 }
-				 }
-				 else if (zobrazObce->Checked)
-				 {
-					 for (auto * item : *tmp->getObce())
-					 {
-						 this->dataGridView1->Rows->Add();
-						 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
-						 ++i;
-					 }
-				 }
+				 //if (zobrazKraje->Checked)
+				 //{
+					// for (auto * item : *tmp->getKraje())
+					// {
+					//	 this->dataGridView1->Rows->Add();
+					//	 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
+					//	 ++i;
+					// }
+				 //}
+				 //else if (zobrazOkresy->Checked)
+				 //{
+					// for (auto * item : *tmp->getOkresy())
+					// {
+					//	 this->dataGridView1->Rows->Add();
+					//	 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
+					//	 ++i;
+					// }
+				 //}
+				 //else if (zobrazObce->Checked)
+				 //{
+					// for (auto * item : *tmp->getObce())
+					// {
+					//	 this->dataGridView1->Rows->Add();
+					//	 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
+					//	 ++i;
+					// }
+				 //}
 			 }
 
 			 void updateTableHeaders()
@@ -560,49 +560,49 @@ namespace SemestralnaPracaAUS02withGUI {
 					 "Prijaté obálky 1.kolo","Prijaté obálky 2.kolo"
 				 };
 
-				 for (int i = 0; i < _countof(test); i++)
-				 {
-					 if (this->obidveKola->Checked)
-					 {
-						 auto selection = test[i];
-						 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
-					 }
-					 else
-					 {
-						 if (this->prveKolo->Checked && i % 2 == 0)
-						 {
-							 auto selection = test[i];
-							 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
+				 //for (int i = 0; i < _countof(test); i++)
+				 //{
+					// if (this->obidveKola->Checked)
+					// {
+					//	 auto selection = test[i];
+					//	 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
+					// }
+					// else
+					// {
+					//	 if (this->prveKolo->Checked && i % 2 == 0)
+					//	 {
+					//		 auto selection = test[i];
+					//		 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
 
-						 }
-						 if (this->druheKolo->Checked && i % 2 != 0)
-						 {
-							 auto selection = test[i];
-							 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
-						 }
-					 }
+					//	 }
+					//	 if (this->druheKolo->Checked && i % 2 != 0)
+					//	 {
+					//		 auto selection = test[i];
+					//		 this->dataGridView1->Columns->Add(gcnew String(selection.c_str()), gcnew String(selection.c_str()));
+					//	 }
+					// }
 
-					 // TODO parsing string as oznacenie/kluc toho stlpca
-				 }
+					// // TODO parsing string as oznacenie/kluc toho stlpca
+				 //}
 			 }
 
 			 void filterByName()
 			 {
-				 if (prveKolo)
-				 {
-					 Area* area1 = app->getArea(toStandardString(textBox1->Text->ToString()), 1);
-				 }
-				 if (druheKolo)
-				 {
-					 Area* area2 = app->getArea(toStandardString(textBox1->Text->ToString()), 2);
-				 }
-				 if (obidveKola)
-				 {
-					 Area* area1 = app->getArea(toStandardString(textBox1->Text->ToString()), 1);
-					 Area* area2 = app->getArea(toStandardString(textBox1->Text->ToString()), 2);
-				 }
-				 // TODO draw to grid table 
-				 throw std::exception("Not finished yet");
+				 //if (prveKolo)
+				 //{
+					// Area* area1 = app->getArea(toStandardString(textBox1->Text->ToString()), 1);
+				 //}
+				 //if (druheKolo)
+				 //{
+					// Area* area2 = app->getArea(toStandardString(textBox1->Text->ToString()), 2);
+				 //}
+				 //if (obidveKola)
+				 //{
+					// Area* area1 = app->getArea(toStandardString(textBox1->Text->ToString()), 1);
+					// Area* area2 = app->getArea(toStandardString(textBox1->Text->ToString()), 2);
+				 //}
+				 //// TODO draw to grid table 
+				 //throw std::exception("Not finished yet");
 			 }
 	public: static std::string toStandardString(System::String^ string)
 	{
