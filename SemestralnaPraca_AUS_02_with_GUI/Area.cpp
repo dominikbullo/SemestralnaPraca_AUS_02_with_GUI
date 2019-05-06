@@ -33,7 +33,7 @@ bool Obec::isIn(Area& area) const
 
 void Obec::makeUniqueNazov()
 {
-	std::string uniqueNazov = this->getName() + "_" + this->nazovOkresu;
+	std::string uniqueNazov = this->getName() + " - " + this->nazovOkresu;
 	this->setName(uniqueNazov);
 }
 

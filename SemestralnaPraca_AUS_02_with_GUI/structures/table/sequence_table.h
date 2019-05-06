@@ -148,6 +148,7 @@ namespace structures
 		TableItem<K, T>* item = findTableItem(key);
 		if (item == nullptr) {
 			throw std::out_of_range("Key is not in table.");
+			//return 0;
 		}
 		return item->accessData();
 	}

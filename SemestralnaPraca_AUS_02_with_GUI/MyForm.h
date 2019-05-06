@@ -80,6 +80,7 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: Nacitanie* loader;
 	private: App* app;
 
+
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
 
 
@@ -124,12 +125,13 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Windows::Forms::RadioButton^  druheKolo;
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::ComboBox^  comboBox1;
-	private: System::Windows::Forms::TextBox^  textBox1;
+
 	private: System::Windows::Forms::RadioButton^  filterNazovRadio;
 	private: System::Windows::Forms::RadioButton^  filterUcastRadio;
 
 
 	private: System::Windows::Forms::RadioButton^  filterVoliciRadio;
+	private: System::Windows::Forms::TextBox^  textBox1;
 
 
 
@@ -231,19 +233,16 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->filterUcastRadio->TabIndex = 44;
 			this->filterUcastRadio->Text = L"Volebná účasť (%)";
 			this->filterUcastRadio->UseVisualStyleBackColor = true;
-			this->filterUcastRadio->Click += gcnew System::EventHandler(this, &MyForm::filterUcastRadio_Click);
 			// 
 			// filterVoliciRadio
 			// 
 			this->filterVoliciRadio->AutoSize = true;
-			this->filterVoliciRadio->Enabled = false;
 			this->filterVoliciRadio->Location = System::Drawing::Point(6, 93);
 			this->filterVoliciRadio->Name = L"filterVoliciRadio";
 			this->filterVoliciRadio->Size = System::Drawing::Size(97, 17);
 			this->filterVoliciRadio->TabIndex = 43;
 			this->filterVoliciRadio->Text = L"Zapísaný voliči";
 			this->filterVoliciRadio->UseVisualStyleBackColor = true;
-			this->filterVoliciRadio->Click += gcnew System::EventHandler(this, &MyForm::filterVoliciRadio_Click);
 			// 
 			// filterNazovRadio
 			// 
@@ -254,7 +253,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->filterNazovRadio->TabIndex = 42;
 			this->filterNazovRadio->Text = L"Hľadaný názov";
 			this->filterNazovRadio->UseVisualStyleBackColor = true;
-			this->filterNazovRadio->Click += gcnew System::EventHandler(this, &MyForm::filterNazovRadio_Click);
 			// 
 			// textBox1
 			// 
@@ -326,6 +324,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->zobrazObce->TabStop = true;
 			this->zobrazObce->Text = L"Obce";
 			this->zobrazObce->UseVisualStyleBackColor = true;
+			this->zobrazObce->CheckedChanged += gcnew System::EventHandler(this, &MyForm::zobrazObce_CheckedChanged);
 			// 
 			// zobrazOkresy
 			// 
@@ -336,6 +335,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->zobrazOkresy->TabIndex = 1;
 			this->zobrazOkresy->Text = L"Okresy";
 			this->zobrazOkresy->UseVisualStyleBackColor = true;
+			this->zobrazOkresy->CheckedChanged += gcnew System::EventHandler(this, &MyForm::zobrazOkresy_CheckedChanged);
 			// 
 			// zobrazKraje
 			// 
@@ -346,6 +346,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->zobrazKraje->TabIndex = 0;
 			this->zobrazKraje->Text = L"Kraje";
 			this->zobrazKraje->UseVisualStyleBackColor = true;
+			this->zobrazKraje->CheckedChanged += gcnew System::EventHandler(this, &MyForm::zobrazKraje_CheckedChanged);
 			// 
 			// groupBox3
 			// 
@@ -412,6 +413,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->obidveKola->TabIndex = 29;
 			this->obidveKola->Text = L"SPOLU";
 			this->obidveKola->UseVisualStyleBackColor = true;
+			this->obidveKola->CheckedChanged += gcnew System::EventHandler(this, &MyForm::obidveKola_CheckedChanged);
 			// 
 			// druheKolo
 			// 
@@ -422,6 +424,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->druheKolo->TabIndex = 28;
 			this->druheKolo->Text = L"2. KOLO";
 			this->druheKolo->UseVisualStyleBackColor = true;
+			this->druheKolo->CheckedChanged += gcnew System::EventHandler(this, &MyForm::druheKolo_CheckedChanged);
 			// 
 			// prveKolo
 			// 
@@ -434,6 +437,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->prveKolo->TabStop = true;
 			this->prveKolo->Text = L"1. KOLO";
 			this->prveKolo->UseVisualStyleBackColor = true;
+			this->prveKolo->CheckedChanged += gcnew System::EventHandler(this, &MyForm::prveKolo_CheckedChanged);
 			// 
 			// button1
 			// 
@@ -495,6 +499,7 @@ namespace SemestralnaPracaAUS02withGUI {
 		updateTable();
 	}
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+		updateTableHeaders();
 		if (filterNazovRadio->Checked)
 		{
 			filterByName();
@@ -507,14 +512,12 @@ namespace SemestralnaPracaAUS02withGUI {
 		{
 			throw std::exception("Not implemented yet");
 		}
-		updateTable();
 	}
 			 void updateTable()
 			 {
 				 updateTableHeaders();
 
 				 this->dataGridView1->Rows->Clear();
-
 				 if (zobrazKraje->Checked)
 				 {
 					 zobrazTabulkuDoDataGridView(*loader->getKraje());
@@ -541,16 +544,10 @@ namespace SemestralnaPracaAUS02withGUI {
 			 }
 			 void updateTableHeaders()
 			 {
-				 this->dataGridView1->Columns->Clear();
-				 this->dataGridView1->Columns->Add("Area", "Area");
-
 				 // TODO parsing string as oznacenie/kluc toho stlpca
-				 string headerTableItems[12] = {
-					 "Voliči 1.kolo", "Voliči 2.kolo","Voliči spolu",
-					 "Účasť 1.kolo","Účasť 2.kolo","Účasť spolu",
-					 "Vydané obálky 1.kolo","Vydané obálky 2.kolo","Vydané obálky spolu",
-					 "Prijaté obálky 1.kolo","Prijaté obálky 2.kolo","Prijaté obálky spolu"
-				 };
+
+				 this->dataGridView1->Columns->Add("Area", "Area");
+				 //this->dataGridView1->Columns["Voliči 1.kolo"]->Visible = false;
 
 				 for (int i = 0; i < _countof(headerTableItems); i++)
 				 {
@@ -576,11 +573,24 @@ namespace SemestralnaPracaAUS02withGUI {
 
 			 void filterByName()
 			 {
+				 //throw std::exception("Not finished yet!");
+
+
 				 // TODO
 				 // memory leak
+				 // TODO ja viem, aký typ chcem
 				 Area* area = app->getArea(toStandardString(textBox1->Text->ToString()));
-
-				 throw std::exception("Not finished yet!");
+				 // TODO keď obec tak zobrazujem kraj okres
+				 // TODO keď okres tak aj kraj
+				 // TODO premyslieť tabuľku
+				 area->toString();
+				 this->dataGridView1->Rows->Clear();
+				 auto row = this->dataGridView1->Rows->Add();
+				 this->dataGridView1->Rows[row]->Cells[0]->Value = gcnew String(area->getName().c_str());
+				 this->dataGridView1->Rows[row]->Cells[1]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(1)).c_str());
+				 this->dataGridView1->Rows[row]->Cells[2]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(2)).c_str());
+				 this->dataGridView1->Rows[row]->Cells[3]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(1)).c_str());
+				 this->dataGridView1->Rows[row]->Cells[4]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(2)).c_str());
 			 }
 
 	public: static std::string toStandardString(System::String^ string)
@@ -599,24 +609,48 @@ namespace SemestralnaPracaAUS02withGUI {
 		Marshal::FreeHGlobal(pointer);
 		return returnString;
 	}
-	private: System::Void filterNazovRadio_Click(System::Object^  sender, System::EventArgs^  e) {
-		// allow uncheck
-		filterNazovRadio->Checked = !filterNazovRadio->Checked;
-	}
-	private: System::Void filterUcastRadio_Click(System::Object^  sender, System::EventArgs^  e) {
-		// allow uncheck
-		if (filterVoliciRadio->Checked)
+	private: System::Void zobrazKraje_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		if (zobrazKraje->Checked)
 		{
-			filterVoliciRadio->Checked = false;
+			// len vtedy, keď zaškrtnem túto možnosť
+			updateTable();
 		}
 	}
-	private: System::Void filterVoliciRadio_Click(System::Object^  sender, System::EventArgs^  e) {
-		// allow uncheck
-		if (filterVoliciRadio->Checked)
+	private: System::Void zobrazObce_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		if (zobrazObce->Checked)
 		{
-			filterVoliciRadio->Checked = false;
+			// len vtedy, keď zaškrtnem túto možnosť
+			updateTable();
 		}
 	}
-
+	private: System::Void zobrazOkresy_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		if (zobrazOkresy->Checked)
+		{
+			// len vtedy, keď zaškrtnem túto možnosť
+			updateTable();
+		}
+	}
+	private: System::Void prveKolo_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		if (prveKolo->Checked)
+		{
+			// len vtedy, keď zaškrtnem túto možnosť
+			/*updateTable();*/
+		}
+	}
+	private: System::Void druheKolo_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		if (prveKolo->Checked)
+		{
+			// len vtedy, keď zaškrtnem túto možnosť
+			/*updateTable();*/
+		}
+	}
+	private: System::Void obidveKola_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		if (obidveKola->Checked)
+		{
+			//this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
+			// len vtedy, keď zaškrtnem túto možnosť
+			/*updateTable();*/
+		}
+	}
 	};
 }
