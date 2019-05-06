@@ -17,9 +17,10 @@ App::~App()
 
 Area* App::getArea(std::string nazov, int volebneKolo)
 {
-	throw std::exception("Not finished yet");
+	// FIXME
+	throw std::logic_error("Not finished yet");
 
-	CriterionName * kriteriumMeno = new CriterionName();
+	KriteriumNazov * kriteriumMeno = new KriteriumNazov();
 	FilterHasName * filter = new FilterHasName();
 	Area * tempArea = nullptr;
 	//filter->setAlpha("Žilinský kraj");

@@ -494,10 +494,26 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 		updateTable();
 	}
+
+
+	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
+		if (filterNazovRadio->Checked)
+		{
+			filterByName();
+		}
+		else if (filterVoliciRadio->Checked)
+		{
+			throw std::exception("Not implemented yet");
+		}
+		else
+		{
+			throw std::exception("Not implemented yet");
+		}
+		updateTable();
+	}
 			 void updateTable()
 			 {
 				 updateTableHeaders();
-				 if (this->dataGridView1->Columns->Count <= 0) { return; }
 
 				 this->dataGridView1->Rows->Clear();
 				 VolebneKolo* tmp = app->getVolebneKolo(1);
@@ -570,21 +586,6 @@ namespace SemestralnaPracaAUS02withGUI {
 				 }
 			 }
 
-	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-		if (filterNazovRadio->Checked)
-		{
-			filterByName();
-		}
-		else if (filterVoliciRadio->Checked)
-		{
-			throw std::exception("Not implemented yet");
-		}
-		else
-		{
-			throw std::exception("Not implemented yet");
-		}
-		updateTable();
-	}
 			 void filterByName()
 			 {
 				 if (prveKolo)

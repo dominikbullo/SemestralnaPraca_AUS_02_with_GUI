@@ -16,7 +16,7 @@ void Area::toString()
 	cout << "This is a Area named " << nazov << endl;
 }
 
-bool Obec::isIn(Area& area)
+bool Obec::isIn(Area& area) const
 {
 	return false;
 }

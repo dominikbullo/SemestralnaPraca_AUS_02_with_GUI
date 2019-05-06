@@ -9,15 +9,9 @@ using namespace System::Windows::Forms;
 int main()
 {
 	// TODO's
-
-	// TODO aké štruktúry? 
-	// TODO načítaj dáta -> void Nacitanie::loadData(): Not finished yet!
-	// TODO kritéria cez template alebo nie ?
-	// TODO filtre cez template alebo nie ?
-	// TODO úlohy 3 a 4
+	// TODO Kriterium voliči - volebne kola -> štruktúra inak -> prerobiť FIXME
 
 	// FIXME's
-
 	// FIXME prečo sa formulár vymazáva dva krát ?  ->memory leak or read acces violation
 
 	initHeapMonitor();

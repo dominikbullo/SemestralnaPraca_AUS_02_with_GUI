@@ -189,10 +189,10 @@
     <ClInclude Include="Filter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Criterion.h">
+    <ClInclude Include="Key.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Key.h">
+    <ClInclude Include="Kriterium.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

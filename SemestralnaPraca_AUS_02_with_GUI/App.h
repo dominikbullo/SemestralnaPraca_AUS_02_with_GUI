@@ -4,7 +4,7 @@
 #include "structures/array/array.h"
 #include "Area.h"
 #include "VolebneKolo.h"
-#include "Criterion.h"
+#include "Kriterium.h"
 #include "Filter.h"
 #include "Nacitanie.h"
 

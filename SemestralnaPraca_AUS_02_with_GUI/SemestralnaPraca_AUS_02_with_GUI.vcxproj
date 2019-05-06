@@ -132,7 +132,7 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Area.h" />
-    <ClInclude Include="Criterion.h" />
+    <ClInclude Include="Kriterium.h" />
     <ClInclude Include="Filter.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="MyForm.h">
