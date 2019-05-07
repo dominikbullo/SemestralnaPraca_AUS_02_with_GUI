@@ -21,10 +21,6 @@ Area::~Area()
 	delete arrayKol;
 }
 
-void Area::toString()
-{
-	cout << "This is a Area named " << nazov << endl;
-}
 
 bool Obec::isIn(Area& area) const
 {
@@ -35,16 +31,4 @@ void Obec::makeUniqueNazov()
 {
 	std::string uniqueNazov = this->getName() + " - " + this->nazovOkresu;
 	this->setName(uniqueNazov);
-}
-
-void Obec::makeUniqueVolici()
-{
-	//std::string uniqueNazov = this->getName() + "_" + this->nazovOkresu;
-	//this->setName(uniqueNazov);
-}
-
-void Obec::makeUniqueUcast()
-{
-	/*std::string uniqueNazov = this->getName() + "_" + this->nazovOkresu;
-	this->setName(uniqueNazov);*/
 }

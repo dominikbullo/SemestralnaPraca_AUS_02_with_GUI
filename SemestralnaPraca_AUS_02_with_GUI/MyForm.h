@@ -247,10 +247,12 @@ namespace SemestralnaPracaAUS02withGUI {
 			// filterNazovRadio
 			// 
 			this->filterNazovRadio->AutoSize = true;
+			this->filterNazovRadio->Checked = true;
 			this->filterNazovRadio->Location = System::Drawing::Point(6, 29);
 			this->filterNazovRadio->Name = L"filterNazovRadio";
 			this->filterNazovRadio->Size = System::Drawing::Size(98, 17);
 			this->filterNazovRadio->TabIndex = 42;
+			this->filterNazovRadio->TabStop = true;
 			this->filterNazovRadio->Text = L"Hľadaný názov";
 			this->filterNazovRadio->UseVisualStyleBackColor = true;
 			// 
@@ -538,17 +540,27 @@ namespace SemestralnaPracaAUS02withGUI {
 				 for (auto * item : tabulka)
 				 {
 					 this->dataGridView1->Rows->Add();
-					 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getName().c_str());
+					 this->dataGridView1->Rows[i]->Cells[0]->Value = gcnew String(item->accessData()->getClassName().c_str());
+					 this->dataGridView1->Rows[i]->Cells[1]->Value = gcnew String(item->accessData()->getName().c_str());
 					 i++;
 				 }
 			 }
 			 void updateTableHeaders()
 			 {
 				 // TODO parsing string as oznacenie/kluc toho stlpca
+				 string headerTableItems[14] = {
+					 "Kraj","Okres",
+					 "Voliči 1.kolo", "Voliči 2.kolo","Voliči spolu",
+					 "Účasť 1.kolo","Účasť 2.kolo","Účasť spolu",
+					 "Vydané obálky 1.kolo","Vydané obálky 2.kolo","Vydané obálky spolu",
+					 "Prijaté obálky 1.kolo","Prijaté obálky 2.kolo","Prijaté obálky spolu"
+				 };
 
-				 this->dataGridView1->Columns->Add("Area", "Area");
+				 this->dataGridView1->Columns->Add("Typ", "Typ");
+				 this->dataGridView1->Columns->Add("Nazov", "Názov");
 				 //this->dataGridView1->Columns["Voliči 1.kolo"]->Visible = false;
 
+				 // TODO vytvor tabuľku a následne len skry odkry stĺpce
 				 for (int i = 0; i < _countof(headerTableItems); i++)
 				 {
 					 if (this->obidveKola->Checked)
@@ -573,24 +585,27 @@ namespace SemestralnaPracaAUS02withGUI {
 
 			 void filterByName()
 			 {
-				 //throw std::exception("Not finished yet!");
+				 // TODO tabuľka - skryť odkryť ? zobraziť nezobraziť ?
+				 throw std::exception("Not finished yet!");
 
+				 structures::ArrayList<Area*>* areas = app->getAreas(toStandardString(textBox1->Text->ToString()));
 
-				 // TODO
-				 // memory leak
-				 // TODO ja viem, aký typ chcem
-				 Area* area = app->getArea(toStandardString(textBox1->Text->ToString()));
-				 // TODO keď obec tak zobrazujem kraj okres
-				 // TODO keď okres tak aj kraj
-				 // TODO premyslieť tabuľku
-				 area->toString();
 				 this->dataGridView1->Rows->Clear();
-				 auto row = this->dataGridView1->Rows->Add();
-				 this->dataGridView1->Rows[row]->Cells[0]->Value = gcnew String(area->getName().c_str());
-				 this->dataGridView1->Rows[row]->Cells[1]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(1)).c_str());
-				 this->dataGridView1->Rows[row]->Cells[2]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(2)).c_str());
-				 this->dataGridView1->Rows[row]->Cells[3]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(1)).c_str());
-				 this->dataGridView1->Rows[row]->Cells[4]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(2)).c_str());
+
+				 for each (Area* area in *areas)
+				 {
+					 //cout << typeid(area).name() << endl;
+					 cout << "Found  wit filter Area type " << area->getClassName() << endl;
+					 auto row = this->dataGridView1->Rows->Add();
+					 this->dataGridView1->Rows[row]->Cells[0]->Value = gcnew String(area->getClassName().c_str());
+					 this->dataGridView1->Rows[row]->Cells[1]->Value = gcnew String(area->getName().c_str());
+					 this->dataGridView1->Rows[row]->Cells[2]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(1)).c_str());
+					 this->dataGridView1->Rows[row]->Cells[3]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(2)).c_str());
+					 this->dataGridView1->Rows[row]->Cells[4]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(1)).c_str());
+					 this->dataGridView1->Rows[row]->Cells[5]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(2)).c_str());
+				 }
+
+				 delete areas;
 			 }
 
 	public: static std::string toStandardString(System::String^ string)

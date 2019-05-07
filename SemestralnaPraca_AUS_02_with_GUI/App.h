@@ -20,10 +20,11 @@ public:
 	App(Nacitanie* loader);
 	~App();
 
+	structures::ArrayList<Area*>* getAreas(std::string nazov);
+
 	structures::SortedSequenceTable<string, Okres*>* getOkresy() { return this->okresySorted; }
 	structures::SortedSequenceTable<string, Obec*>* getObce() { return this->obceSorted; }
 	structures::SortedSequenceTable<string, Kraj*>* getKraje() { return this->krajeSorted; }
-	Area * getArea(std::string nazov);
 
 	void test();
 	//VolebneKolo* getVolebneKolo(int kolo) { return data->operator[](kolo - 1); }

@@ -13,7 +13,8 @@ public:
 	~Area();
 
 	std::string getName() const { return this->nazov; }
-	void toString();
+
+	virtual std::string getClassName() { return "Area"; };
 
 	int getPocetVydanychObalok(const int volebneKolo) const { return arrayKol->operator[](volebneKolo)->getPocetVydanychObalok(); }
 	int getPocetOdovzdanychObalok(const int volebneKolo) const { return arrayKol->operator[](volebneKolo)->getPocetOdovzdanychObalok(); }
@@ -44,6 +45,7 @@ public:
 	{
 		cout << "Created Kraj " << nazov << endl;
 	}
+	std::string getClassName() override { return "Kraj"; };
 };
 
 class Okres : public Area
@@ -54,6 +56,7 @@ public:
 	{
 		cout << "Created Okres " << nazov << endl;
 	}
+	std::string getClassName() override { return "Okres"; };
 private:
 	std::string nazovKraja;
 };
@@ -66,13 +69,12 @@ public:
 	{
 		cout << "Created Obec " << nazov << endl;
 	}
+	std::string getClassName() override { return "Obec"; };
+
 	bool isIn(Area & area) const;
 	void makeUniqueNazov();
-	void makeUniqueVolici();
-	void makeUniqueUcast();
 
 private:
 	std::string nazovKraja;
 	std::string nazovOkresu;
 };
-

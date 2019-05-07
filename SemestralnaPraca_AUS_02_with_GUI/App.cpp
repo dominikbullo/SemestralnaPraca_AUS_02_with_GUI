@@ -12,18 +12,14 @@ App::App(Nacitanie* loader) : loader(loader)
 App::~App()
 {
 }
-
-Area* App::getArea(std::string nazov)
+structures::ArrayList<Area*>* App::getAreas(std::string nazov)
 {
 	// FIXME
 	//throw std::logic_error("Not finished yet");
-
+	// TODO treba deštruktory
+	structures::ArrayList<Area*>* matches = new structures::ArrayList<Area*>();
 	KriteriumNazov * kriteriumMeno = new KriteriumNazov();
 	FilterHasName * filter = new FilterHasName();
-
-	//Kraj * tempKraj = nullptr;
-	//Kraj * tempKraj = nullptr;
-	//Kraj * tempKraj = nullptr;
 
 	Kraj* tempKraj = nullptr;
 	Okres* tempOkres = nullptr;
@@ -40,24 +36,27 @@ Area* App::getArea(std::string nazov)
 	{
 		if (filter->evaluate(*tempKraj, *kriteriumMeno))
 		{
-			return tempKraj;
+			matches->add(tempKraj);
 		}
 	}
 	if (this->okresySorted->tryFind(nazov, tempOkres))
 	{
 		if (filter->evaluate(*tempOkres, *kriteriumMeno))
 		{
-			return tempOkres;
+			matches->add(tempOkres);
 		}
 	}
 	if (this->obceSorted->tryFind(nazov, tempObec))
 	{
 		if (filter->evaluate(*tempObec, *kriteriumMeno))
 		{
-			return tempObec;
+			matches->add(tempObec);
 		}
 	}
-	return nullptr;
+	delete kriteriumMeno;
+	delete filter;
+
+	return matches;
 }
 
 void App::test()

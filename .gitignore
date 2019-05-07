@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /PRE_2019_KOLO1_xlsx.zip
 /PRE_2019_KOLO2_xlsx.zip
+/enc_temp_folder/*
