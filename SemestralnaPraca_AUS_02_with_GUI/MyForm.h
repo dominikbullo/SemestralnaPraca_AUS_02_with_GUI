@@ -219,7 +219,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->groupBox1->Controls->Add(this->numericUpDown1);
 			this->groupBox1->Location = System::Drawing::Point(581, 160);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(357, 247);
+			this->groupBox1->Size = System::Drawing::Size(282, 247);
 			this->groupBox1->TabIndex = 28;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Filtre";
@@ -308,7 +308,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->groupBox2->Controls->Add(this->zobrazObce);
 			this->groupBox2->Controls->Add(this->zobrazOkresy);
 			this->groupBox2->Controls->Add(this->zobrazKraje);
-			this->groupBox2->Location = System::Drawing::Point(720, 23);
+			this->groupBox2->Location = System::Drawing::Point(760, 23);
 			this->groupBox2->Name = L"groupBox2";
 			this->groupBox2->Size = System::Drawing::Size(103, 118);
 			this->groupBox2->TabIndex = 40;
@@ -443,9 +443,9 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(863, 23);
+			this->button1->Location = System::Drawing::Point(748, 426);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 118);
+			this->button1->Size = System::Drawing::Size(115, 118);
 			this->button1->TabIndex = 42;
 			this->button1->Text = L"ZOBRAZ";
 			this->button1->UseVisualStyleBackColor = true;
@@ -455,7 +455,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(964, 617);
+			this->ClientSize = System::Drawing::Size(885, 617);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox3);
