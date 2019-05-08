@@ -20,11 +20,9 @@ structures::ArrayList<Area*>* App::getAreasNazov(std::string nazov)
 
 	filter->setAlpha(nazov);
 
-
 	Kraj* tempKraj = nullptr;
 	Okres* tempOkres = nullptr;
 	Obec* tempObec = nullptr;
-
 
 	if (this->krajeSorted->tryFind(nazov, tempKraj))
 	{
@@ -69,6 +67,7 @@ structures::ArrayList<Area*>* App::getAreasVolici(int pocetOd, int pocetDo, int 
 			matches->add(area->accessData());
 		}
 	}
+
 	for (auto area : *okresySorted)
 	{
 		if (filter->evaluate(*area->accessData(), *kriterium))
@@ -76,6 +75,7 @@ structures::ArrayList<Area*>* App::getAreasVolici(int pocetOd, int pocetDo, int 
 			matches->add(area->accessData());
 		}
 	}
+
 	for (auto area : *obceSorted)
 	{
 		if (filter->evaluate(*area->accessData(), *kriterium))
@@ -93,8 +93,8 @@ structures::ArrayList<Area*>* App::getAreasVolici(int pocetOd, int pocetDo, int 
 structures::ArrayList<Area*>* App::getAreasUcast(int ucastOd, int ucastDo, int kolo)
 {
 	structures::ArrayList<Area*>* matches = new structures::ArrayList<Area*>();
-	KriteriumVolici * kriterium = new KriteriumVolici(kolo);
-	FilterVolici * filter = new FilterVolici();
+	KriteriumUcast * kriterium = new KriteriumUcast(kolo);
+	FilterUcast * filter = new FilterUcast();
 
 	filter->setAlpha(ucastOd);
 	filter->setBeta(ucastDo);

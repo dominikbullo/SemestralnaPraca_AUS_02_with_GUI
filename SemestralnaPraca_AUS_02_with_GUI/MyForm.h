@@ -533,6 +533,14 @@ namespace SemestralnaPracaAUS02withGUI {
 			if (selectedKolo == 1 || selectedKolo == 2)
 			{
 				structures::ArrayList<Area*>* areas = app->getAreasVolici((int)numericUpDown1->Value, (int)numericUpDown2->Value, selectedKolo);
+
+				cout << "Splnaju kriteria" << endl;
+				for (Area* area : *areas)
+				{
+					cout << area->getClassName() << " " << area->getName() << " splna kriteria" << endl;
+				}
+
+				delete areas;
 			}
 			else
 			{
@@ -541,7 +549,23 @@ namespace SemestralnaPracaAUS02withGUI {
 		}
 		if (filterUcastRadio->Checked)
 		{
-			throw std::exception("Not implemented yet");
+			int selectedKolo = getSelectedKolo();
+			if (selectedKolo == 1 || selectedKolo == 2)
+			{
+				structures::ArrayList<Area*>* areas = app->getAreasVolici((int)numericUpDown1->Value, (int)numericUpDown2->Value, selectedKolo);
+
+				cout << "Splnaju kriteria" << endl;
+				for (Area* area : *areas)
+				{
+					cout << area->getClassName() << " " << area->getName() << " splna kriteria" << endl;
+				}
+
+				delete areas;
+			}
+			else
+			{
+				MessageBox::Show("Zle zvolene kolo. Pre tento vyber nie je mozne najst vysledky");
+			}
 		}
 	}
 
@@ -549,7 +573,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			 {
 				 if (prveKolo->Checked) { return 1; };
 				 if (druheKolo->Checked) { return 2; };
-				 if (obidveKola->Checked) { return 3; };
+				 if (obidveKola->Checked) { return 0; };
 			 }
 			 void updateTable()
 			 {

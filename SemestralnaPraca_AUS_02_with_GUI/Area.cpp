@@ -15,6 +15,10 @@ Area::Area(std::string nazov) : nazov(nazov)
 
 Area::~Area()
 {
+	for (size_t i = 0; i < arrayKol->size(); i++)
+	{
+		delete arrayKol->operator[](i);
+	}
 	delete arrayKol;
 }
 
