@@ -521,6 +521,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			if (prveKolo->Checked) { return 1; };
 			if (druheKolo->Checked) { return 2; };
 			if (obidveKola->Checked) { return 0; };
+			return -1;
 		}
 
 		void updateTable()

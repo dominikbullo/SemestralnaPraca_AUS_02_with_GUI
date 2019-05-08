@@ -126,9 +126,3 @@ structures::ArrayList<Area*>* App::getAreasUcast(double ucastOd, double ucastDo,
 
 	return matches;
 }
-
-
-void App::test()
-{
-	//Obec * tmp = (*obce)[new Key("Žilinský kraj")];
-}

@@ -14,22 +14,22 @@ template <typename T, typename O>
 class Filter_FI : public Filter<T, O>
 {
 public:
-	bool evaluate(O& o, Kriterium<T, O>& c) override { T result = c.evaluate(o); return result >= alpha && result <= beta; }
-	void setAlpha(T alpha) { this->alpha = alpha; }
-	void setBeta(T beta) { this->beta = beta; }
+	bool evaluate(O& o, Kriterium<T, O>& c) override { T result = c.evaluate(o); return result >= this->alpha_ && result <= this->beta_; }
+	void setAlpha(T alpha) { this->alpha_ = alpha; }
+	void setBeta(T beta) { this->beta_ = beta; }
 private:
-	T alpha;
-	T beta;
+	T alpha_;
+	T beta_;
 };
 
 template <typename T, typename O>
 class Filter_fi : public Filter<T, O>
 {
 public:
-	bool evaluate(O& o, Kriterium<T, O>& c) override { return (c.evaluate(o) == this->alpha); }
-	void setAlpha(T alpha) { this->alpha = alpha; }
+	bool evaluate(O& o, Kriterium<T, O>& c) override { return (c.evaluate(o) == this->alpha_); }
+	void setAlpha(T alpha) { this->alpha_ = alpha; }
 private:
-	T alpha;
+	T alpha_;
 };
 
 
