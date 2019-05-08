@@ -7,13 +7,17 @@ using namespace std;
 Nacitanie::Nacitanie()
 {
 	obceSorted = new structures::SortedSequenceTable<string, Obec*>();
-	//obceUnsorted = new structures::UnsortedSequenceTable<string, Obec*>();
+
+	//obceUnsortedVolici = new structures::UnsortedSequenceTable<SortingKey*, Obec*>();
+	//obceUnsortedUcast = new structures::UnsortedSequenceTable<SortingKey*, Obec*>();
+
+	obceUnsortedVolici1 = new structures::UnsortedSequenceTable<SortingKey*, Obec*>();
+	obceUnsortedVolici2 = new structures::UnsortedSequenceTable<SortingKey*, Obec*>();
+	obceUnsortedUcast1 = new structures::UnsortedSequenceTable<SortingKey*, Obec *>();
+	obceUnsortedUcast2 = new structures::UnsortedSequenceTable<SortingKey*, Obec *>();
 
 	okresySorted = new structures::SortedSequenceTable<string, Okres*>();
-	//okresyUnsorted = new structures::UnsortedSequenceTable<string, Okres*>();
-
 	krajeSorted = new structures::SortedSequenceTable<string, Kraj*>();
-	//krajeUnsorted = new structures::UnsortedSequenceTable<string, Kraj*>();
 
 	this->loadData();
 }
@@ -242,7 +246,11 @@ void Nacitanie::pridajObec(Obec* area)
 	//if (obceSortedUcast->containsKey(area->getUcastVolicov())) { area->makeUniqueUcast(); }
 
 	area->calculateSumValuesForBothRounds();
-	obceSorted->insert(area->getName(), area);
+	obceSorted->insertHard(area->getName(), area);
+
+	obceUnsortedVolici1->insertHard(new SortingKey(area), area);
+	obceUnsortedUcast->insertHard(new SortingKey(area), area);
+	//obceUnsortedUcast2->insertHard(std::to_string(area->getPocetVolicov(2)) + "_" + area->getNazovOkresu(), area);
 	//obceSortedVolici->insert(area->getPocetVolicov(), area);
 	//obceSortedUcast->insert(area->getPocetVolicov(), area);
 }

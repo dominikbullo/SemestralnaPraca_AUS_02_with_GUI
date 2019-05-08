@@ -11,18 +11,24 @@
 #include "structures/array/array.h"
 
 #include "Area.h"
+#include "SortingKey.h"
 
 class Nacitanie
 {
 private:
 	structures::SortedSequenceTable<string, Obec*> *obceSorted;
-	//structures::UnsortedSequenceTable<string, Obec*> *obceUnsorted;
+
+	//structures::UnsortedSequenceTable<SortingKey*, Obec*> *aaaa;
+	//structures::UnsortedSequenceTable<SortingKey*, Obec*> *obceUnsortedVolici;
+	//structures::UnsortedSequenceTable<SortingKey*, Obec*> *obceUnsortedUcast;
+
+	structures::UnsortedSequenceTable<SortingKey*, Obec*> *obceUnsortedVolici1;
+	structures::UnsortedSequenceTable<SortingKey*, Obec*> *obceUnsortedVolici2;
+	structures::UnsortedSequenceTable<SortingKey*, Obec*> *obceUnsortedUcast1;
+	structures::UnsortedSequenceTable<SortingKey*, Obec*> *obceUnsortedUcast2;
 
 	structures::SortedSequenceTable<string, Okres*> *okresySorted;
-	//structures::UnsortedSequenceTable<string, Okres*> *okresyUnsorted;
-
 	structures::SortedSequenceTable<string, Kraj*> *krajeSorted;
-	//structures::UnsortedSequenceTable<string, Kraj*> *krajeUnsorted;
 
 protected:
 	void loadData();
@@ -41,6 +47,12 @@ public:
 	structures::SortedSequenceTable<string, Kraj*>* getKraje() { return this->krajeSorted; }
 	structures::SortedSequenceTable<string, Okres*>* getOkresy() { return this->okresySorted; }
 	structures::SortedSequenceTable<string, Obec*>* getObce() { return this->obceSorted; }
+
+	structures::UnsortedSequenceTable<SortingKey*, Obec*>* getObceUnsortedVolici1() { return this->obceUnsortedVolici1; }
+	structures::UnsortedSequenceTable<SortingKey*, Obec*>* getObceUnsortedVolici2() { return this->obceUnsortedVolici2; }
+
+	structures::UnsortedSequenceTable<SortingKey*, Obec*>* getObceUnsortedUcast1() { return this->obceUnsortedUcast1; }
+	structures::UnsortedSequenceTable<SortingKey*, Obec*>* getObceUnsortedUcast2() { return this->obceUnsortedUcast2; }
 
 };
 

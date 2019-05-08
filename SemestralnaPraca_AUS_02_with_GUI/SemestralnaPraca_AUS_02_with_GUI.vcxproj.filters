@@ -186,13 +186,13 @@
     <ClInclude Include="Filter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Key.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Kriterium.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VolebneKolo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SortingKey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -239,10 +239,10 @@
     <ClCompile Include="Area.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Key.cpp">
+    <ClCompile Include="VolebneKolo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VolebneKolo.cpp">
+    <ClCompile Include="SortingKey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

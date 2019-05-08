@@ -69,6 +69,8 @@ public:
 		cout << "Created Obec " << nazov << endl;
 	}
 	std::string getClassName() override { return "Obec"; };
+	std::string getNazovOkresu() const { return this->nazovOkresu; };
+	std::string getNazovKraja() const { return this->nazovKraja; };
 
 	bool isIn(Area & area) const;
 	void makeUniqueNazov();

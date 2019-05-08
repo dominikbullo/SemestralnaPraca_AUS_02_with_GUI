@@ -1,7 +1,12 @@
 ﻿#pragma once
 #include "structures/table/unsorted_sequence_table.h"
 #include "structures/table/sorted_sequence_table.h"
+
+#include "structures/table/sorting/heap_sort.h"
+#include "structures/table/sorting/quick_sort.h"
+
 #include "structures/array/array.h"
+
 #include "Area.h"
 #include "Kriterium.h"
 #include "Filter.h"
@@ -16,6 +21,12 @@ private:
 	structures::SortedSequenceTable<string, Okres*> *okresySorted;
 	structures::SortedSequenceTable<string, Kraj*> *krajeSorted;
 
+	structures::UnsortedSequenceTable<string, Obec*>* obceUnsortedVolici1;
+	structures::UnsortedSequenceTable<string, Obec*>* obceUnsortedVolici2;
+
+	structures::UnsortedSequenceTable<string, Obec*>* obceUnsortedUcast1;
+	structures::UnsortedSequenceTable<string, Obec*>* obceUnsortedUcast2;
+
 public:
 	App(Nacitanie* loader);
 	~App();
@@ -24,7 +35,7 @@ public:
 	structures::ArrayList<Area*>* getAreasVolici(int pocetOd, int pocetDo, int kolo);
 	structures::ArrayList<Area*>* getAreasUcast(double ucastOd, double ucastDo, int kolo);
 
-	structures::SortedSequenceTable<string, Okres*>* getOkresy() { return this->okresySorted; }
-	structures::SortedSequenceTable<string, Obec*>* getObce() { return this->obceSorted; }
-	structures::SortedSequenceTable<string, Kraj*>* getKraje() { return this->krajeSorted; }
+	//structures::SortedSequenceTable<string, Okres*>* getOkresy() { return this->okresySorted; }
+	//structures::SortedSequenceTable<string, Obec*>* getObce() { return this->obceSorted; }
+	//structures::SortedSequenceTable<string, Kraj*>* getKraje() { return this->krajeSorted; }
 };

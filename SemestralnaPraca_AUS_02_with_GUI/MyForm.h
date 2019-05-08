@@ -135,6 +135,7 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Windows::Forms::CheckBox^  checkBox3;
 	private: System::Windows::Forms::CheckBox^  checkBox2;
 	private: System::Windows::Forms::CheckBox^  checkBox1;
+private: System::Windows::Forms::ComboBox^  comboBox1;
 
 
 
@@ -187,6 +188,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->druheKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->prveKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->BeginInit();
@@ -478,19 +480,31 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(748, 426);
+			this->button1->Location = System::Drawing::Point(711, 478);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(115, 118);
+			this->button1->Size = System::Drawing::Size(121, 62);
 			this->button1->TabIndex = 42;
 			this->button1->Text = L"ZOBRAZ";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
+			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"vzostupne", L"zostupne" });
+			this->comboBox1->Location = System::Drawing::Point(711, 427);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(121, 21);
+			this->comboBox1->Sorted = true;
+			this->comboBox1->TabIndex = 43;
+			this->comboBox1->Text = L"vzostupne";
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(885, 617);
+			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox3);

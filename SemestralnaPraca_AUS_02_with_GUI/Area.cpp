@@ -1,6 +1,5 @@
 #include "Area.h"
 
-
 using namespace std;
 
 Area::Area(std::string nazov) : nazov(nazov)

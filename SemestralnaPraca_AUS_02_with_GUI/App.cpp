@@ -7,6 +7,16 @@ App::App(Nacitanie* loader) : loader(loader)
 	krajeSorted = loader->getKraje();
 	okresySorted = loader->getOkresy();
 	obceSorted = loader->getObce();
+
+	obceUnsortedVolici1 = loader->getObceUnsortedVolici1();
+	// TODO rovnaky pocet znakov ak
+	structures::Sort<string, Obec *> *sort = new structures::HeapSort<string, Obec *>();
+	sort->sort(*obceUnsortedVolici1);
+
+	obceUnsortedVolici2 = loader->getObceUnsortedVolici2();
+
+	obceUnsortedUcast1 = loader->getObceUnsortedUcast1();
+	obceUnsortedUcast2 = loader->getObceUnsortedUcast2();
 }
 
 App::~App()
