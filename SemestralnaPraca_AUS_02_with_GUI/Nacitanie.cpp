@@ -215,7 +215,6 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 		// 2.kolo
 		kolo = 2;
 
-		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
 		tempArea->setPocetVolicov(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Poèet vydaných obálok

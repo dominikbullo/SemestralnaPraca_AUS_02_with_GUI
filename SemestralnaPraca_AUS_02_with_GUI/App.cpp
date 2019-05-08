@@ -90,7 +90,7 @@ structures::ArrayList<Area*>* App::getAreasVolici(int pocetOd, int pocetDo, int 
 	return matches;
 }
 
-structures::ArrayList<Area*>* App::getAreasUcast(int ucastOd, int ucastDo, int kolo)
+structures::ArrayList<Area*>* App::getAreasUcast(double ucastOd, double ucastDo, int kolo)
 {
 	structures::ArrayList<Area*>* matches = new structures::ArrayList<Area*>();
 	KriteriumUcast * kriterium = new KriteriumUcast(kolo);
