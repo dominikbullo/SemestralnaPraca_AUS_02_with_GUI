@@ -16,13 +16,37 @@ namespace structures
 		/// <summary> Utriedi tabulku triedenim Quick sort. </summary>
 		/// <param name = "table"> NonortedSequenceTable, ktoru ma utriedit. </param>
 		void sort(UnsortedSequenceTable<K, T>& table) override;
+	private:
+		void quick(int min, int max, UnsortedSequenceTable<K, T>& table);
 	};
 
 	template<typename K, typename T>
 	inline void QuickSort<K, T>::sort(UnsortedSequenceTable<K, T>& table)
 	{
-		// TODO 12: QuickSort
-		throw std::exception("QuickSort<K, T>::sort: Not implemented yet.");
+		quick(0, table.size() - 1, table);
+	}
+	template<typename K, typename T>
+	inline void QuickSort<K, T>::quick(int min, int max, UnsortedSequenceTable<K, T>& table)
+	{
+		int pivot = table.getItemAtIndex((min + max) / 2).getKey();
+		int left = min;
+		int right = max;
+		do {
+			while (table.getItemAtIndex(left).getKey() < pivot)
+				left++;
+			while (table.getItemAtIndex(right).getKey() > pivot)
+				right--;
+			if (left <= right) {
+				table.swap(left, right);
+				left++;
+				right--;
+				notify();
+			}
+		} while (left <= right);
+		if (min < right)
+			quick(min, right, table);
+		if (left < max)
+			quick(left, max, table);
 	}
 
 }

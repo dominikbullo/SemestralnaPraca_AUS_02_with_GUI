@@ -29,6 +29,7 @@ namespace structures
 		/// <param name = "data"> Vkladane data. </param>
 		/// <exception cref="std::logic_error"> Vyhodena, ak tabulka uz obsahuje data s takymto klucom. </exception>  
 		void insert(const K& key, const T& data) override;
+
 	protected:
 		/// <summary> Najde prvok tabulky s danym klucom. </summary>
 		/// <param name = "key"> Hladany kluc. </param>
@@ -74,6 +75,7 @@ namespace structures
 		}
 		list_->insert(new TableItem<K, T>(key, data), keyIndex);
 	}
+
 
 	template<typename K, typename T>
 	inline TableItem<K, T>* SortedSequenceTable<K, T>::findTableItem(const K & key) const
