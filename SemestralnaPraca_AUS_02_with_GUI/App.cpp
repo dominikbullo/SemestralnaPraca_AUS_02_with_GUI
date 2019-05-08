@@ -10,8 +10,9 @@ App::App(Nacitanie* loader) : loader(loader)
 
 	obceUnsortedVolici1 = loader->getObceUnsortedVolici1();
 	// TODO rovnaky pocet znakov ak
-	structures::Sort<SortingKey<int>*, Obec *> *sort = new structures::HeapSort<SortingKey<int>*, Obec *>();
-	sort->sort(*obceUnsortedVolici1);
+	structures::HeapSort<SortingKey<int>*, Obec *> *sort = new structures::HeapSort<SortingKey<int>*, Obec *>();
+	//sort->sort(*obceUnsortedVolici1);
+	sort->sortByCustomKey(*obceUnsortedVolici1);
 
 	obceUnsortedVolici2 = loader->getObceUnsortedVolici2();
 

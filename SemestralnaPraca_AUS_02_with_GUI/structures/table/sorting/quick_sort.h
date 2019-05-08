@@ -48,5 +48,4 @@ namespace structures
 		if (left < max)
 			quick(left, max, table);
 	}
-
 }

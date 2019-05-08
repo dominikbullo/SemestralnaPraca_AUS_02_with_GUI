@@ -8,14 +8,12 @@ public:
 	SortingKey(Obec* area, int kolo, T value);
 	//bool operator==(const SortingKey& other) { return  value == other.value && nazov == other.nazov; };
 	//bool operator!=(const SortingKey& other) { return  value != other.value && nazov != other.nazov; };
-	bool operator<(const SortingKey& other) {
-		// TODO operator nevola tento 
-		return value < other.value
-	};
-	bool operator<=(const SortingKey& other) { return value <= other.value };
-	bool operator>(const SortingKey& other) { return value > other.value };
-	bool operator>=(const SortingKey& other) { return value >= other.value };
-
+	//bool operator< (const SortingKey& x, const SortingKey& y) { return x.value < y.value };
+	bool SortingKey::operator<(const SortingKey& other) const { return this->value < other.value };
+	bool SortingKey::operator<=(const SortingKey& other) const { return this->value <= other.value };
+	bool SortingKey::operator>(const SortingKey& other) const { return this->value > other.value };
+	bool SortingKey::operator>=(const SortingKey& other) const { return this->value >= other.value };
+	T getValue() { return this->value; }
 private:
 	const std::string nazov;
 	const std::string nazovOkresu;
