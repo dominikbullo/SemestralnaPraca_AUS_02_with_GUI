@@ -124,7 +124,7 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: System::Windows::Forms::RadioButton^  druheKolo;
 	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::ComboBox^  comboBox1;
+
 
 	private: System::Windows::Forms::RadioButton^  filterNazovRadio;
 	private: System::Windows::Forms::RadioButton^  filterUcastRadio;
@@ -132,6 +132,9 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: System::Windows::Forms::RadioButton^  filterVoliciRadio;
 	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::CheckBox^  checkBox3;
+	private: System::Windows::Forms::CheckBox^  checkBox2;
+	private: System::Windows::Forms::CheckBox^  checkBox1;
 
 
 
@@ -164,7 +167,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->filterVoliciRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->filterNazovRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->numericUpDown4 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown3 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown2 = (gcnew System::Windows::Forms::NumericUpDown());
@@ -182,6 +184,9 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->druheKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->prveKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->BeginInit();
@@ -212,7 +217,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->groupBox1->Controls->Add(this->filterVoliciRadio);
 			this->groupBox1->Controls->Add(this->filterNazovRadio);
 			this->groupBox1->Controls->Add(this->textBox1);
-			this->groupBox1->Controls->Add(this->comboBox1);
 			this->groupBox1->Controls->Add(this->numericUpDown4);
 			this->groupBox1->Controls->Add(this->numericUpDown3);
 			this->groupBox1->Controls->Add(this->numericUpDown2);
@@ -258,19 +262,11 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(111, 29);
+			this->textBox1->Location = System::Drawing::Point(6, 52);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(140, 20);
+			this->textBox1->Size = System::Drawing::Size(245, 20);
 			this->textBox1->TabIndex = 41;
 			this->textBox1->Text = L"Žilina";
-			// 
-			// comboBox1
-			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(6, 54);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(245, 21);
-			this->comboBox1->TabIndex = 40;
 			// 
 			// numericUpDown4
 			// 
@@ -305,12 +301,15 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// groupBox2
 			// 
+			this->groupBox2->Controls->Add(this->checkBox3);
+			this->groupBox2->Controls->Add(this->checkBox2);
+			this->groupBox2->Controls->Add(this->checkBox1);
 			this->groupBox2->Controls->Add(this->zobrazObce);
 			this->groupBox2->Controls->Add(this->zobrazOkresy);
 			this->groupBox2->Controls->Add(this->zobrazKraje);
-			this->groupBox2->Location = System::Drawing::Point(760, 23);
+			this->groupBox2->Location = System::Drawing::Point(692, 23);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(103, 118);
+			this->groupBox2->Size = System::Drawing::Size(171, 118);
 			this->groupBox2->TabIndex = 40;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Zobraz";
@@ -451,6 +450,39 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
 			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Location = System::Drawing::Point(61, 23);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(50, 17);
+			this->checkBox1->TabIndex = 3;
+			this->checkBox1->Text = L"Kraje";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			// 
+			// checkBox2
+			// 
+			this->checkBox2->AutoSize = true;
+			this->checkBox2->Location = System::Drawing::Point(61, 56);
+			this->checkBox2->Name = L"checkBox2";
+			this->checkBox2->Size = System::Drawing::Size(59, 17);
+			this->checkBox2->TabIndex = 4;
+			this->checkBox2->Text = L"Okresy";
+			this->checkBox2->UseVisualStyleBackColor = true;
+			this->checkBox2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox2_CheckedChanged);
+			// 
+			// checkBox3
+			// 
+			this->checkBox3->AutoSize = true;
+			this->checkBox3->Checked = true;
+			this->checkBox3->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->checkBox3->Location = System::Drawing::Point(61, 88);
+			this->checkBox3->Name = L"checkBox3";
+			this->checkBox3->Size = System::Drawing::Size(52, 17);
+			this->checkBox3->TabIndex = 5;
+			this->checkBox3->Text = L"Obce";
+			this->checkBox3->UseVisualStyleBackColor = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -505,24 +537,10 @@ namespace SemestralnaPracaAUS02withGUI {
 		if (filterNazovRadio->Checked)
 		{
 			// TODO tabuľka - skryť odkryť ? zobraziť nezobraziť ?
-			throw std::exception("Not finished yet!");
+			//throw std::exception("Not finished yet!");
 
 			structures::ArrayList<Area*>* areas = app->getAreasNazov(toStandardString(textBox1->Text->ToString()));
-
-			this->dataGridView1->Rows->Clear();
-
-			for each (Area* area in *areas)
-			{
-				//cout << typeid(area).name() << endl;
-				cout << "Found  wit filter Area type " << area->getClassName() << endl;
-				auto row = this->dataGridView1->Rows->Add();
-				this->dataGridView1->Rows[row]->Cells[0]->Value = gcnew String(area->getClassName().c_str());
-				this->dataGridView1->Rows[row]->Cells[1]->Value = gcnew String(area->getName().c_str());
-				this->dataGridView1->Rows[row]->Cells[2]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(1)).c_str());
-				this->dataGridView1->Rows[row]->Cells[3]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(2)).c_str());
-				this->dataGridView1->Rows[row]->Cells[4]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(1)).c_str());
-				this->dataGridView1->Rows[row]->Cells[5]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(2)).c_str());
-			}
+			arrayListToDataGridTable(areas);
 
 			delete areas;
 		}
@@ -533,12 +551,12 @@ namespace SemestralnaPracaAUS02withGUI {
 			if (selectedKolo == 1 || selectedKolo == 2)
 			{
 				structures::ArrayList<Area*>* areas = app->getAreasVolici((int)numericUpDown1->Value, (int)numericUpDown2->Value, selectedKolo);
-
-				cout << "Splnaju kriteria" << endl;
-				for (Area* area : *areas)
-				{
-					cout << area->getClassName() << " " << area->getName() << " splna kriteria" << endl;
-				}
+				arrayListToDataGridTable(areas);
+				//cout << "Splnaju kriteria" << endl;
+				//for (Area* area : *areas)
+				//{
+				//	cout << area->getClassName() << " " << area->getName() << " splna kriteria" << endl;
+				//}
 
 				delete areas;
 			}
@@ -553,12 +571,12 @@ namespace SemestralnaPracaAUS02withGUI {
 			if (selectedKolo == 1 || selectedKolo == 2)
 			{
 				structures::ArrayList<Area*>* areas = app->getAreasVolici((int)numericUpDown1->Value, (int)numericUpDown2->Value, selectedKolo);
-
-				cout << "Splnaju kriteria" << endl;
-				for (Area* area : *areas)
-				{
-					cout << area->getClassName() << " " << area->getName() << " splna kriteria" << endl;
-				}
+				arrayListToDataGridTable(areas);
+				//cout << "Splnaju kriteria" << endl;
+				//for (Area* area : *areas)
+				//{
+				//	cout << area->getClassName() << " " << area->getName() << " splna kriteria" << endl;
+				//}
 
 				delete areas;
 			}
@@ -575,23 +593,24 @@ namespace SemestralnaPracaAUS02withGUI {
 				 if (druheKolo->Checked) { return 2; };
 				 if (obidveKola->Checked) { return 0; };
 			 }
+
 			 void updateTable()
 			 {
 				 updateTableHeaders();
 
 				 this->dataGridView1->Rows->Clear();
-				 if (zobrazKraje->Checked)
-				 {
-					 zobrazTabulkuDoDataGridView(*loader->getKraje());
-				 }
-				 else if (zobrazOkresy->Checked)
-				 {
-					 zobrazTabulkuDoDataGridView(*loader->getOkresy());
-				 }
-				 else
-				 {
-					 zobrazTabulkuDoDataGridView(*loader->getObce());
-				 }
+				 /* if (zobrazKraje->Checked)
+				  {
+					  zobrazTabulkuDoDataGridView(*loader->getKraje());
+				  }
+				  else if (zobrazOkresy->Checked)
+				  {
+					  zobrazTabulkuDoDataGridView(*loader->getOkresy());
+				  }
+				  else
+				  {
+					  zobrazTabulkuDoDataGridView(*loader->getObce());
+				  }*/
 			 }
 			 template <typename T>
 			 void zobrazTabulkuDoDataGridView(T tabulka)
@@ -605,6 +624,34 @@ namespace SemestralnaPracaAUS02withGUI {
 					 i++;
 				 }
 			 }
+
+			 void arrayListToDataGridTable(structures::ArrayList<Area*> *arrayList)
+			 {
+				 //throw std::exception("Not finished yet!");
+
+				 this->dataGridView1->Rows->Clear();
+				 for each (Area* area in *arrayList)
+				 {
+					 //cout << typeid(area).name() << endl;
+					 cout << "Found  wit filter Area type " << area->getClassName() << endl;
+					 auto row = this->dataGridView1->Rows->Add();
+					 this->dataGridView1->Rows[row]->Cells[0]->Value = gcnew String(area->getClassName().c_str());
+					 this->dataGridView1->Rows[row]->Cells[1]->Value = gcnew String(area->getName().c_str());
+					 this->dataGridView1->Rows[row]->Cells[2]->Value = roundAndFormat(area->getPocetVolicov(1));
+					 this->dataGridView1->Rows[row]->Cells[3]->Value = roundAndFormat(area->getPocetVolicov(2));
+					 this->dataGridView1->Rows[row]->Cells[4]->Value = roundAndFormat(area->getUcastVolicov(1), 2);
+					 this->dataGridView1->Rows[row]->Cells[5]->Value = roundAndFormat(area->getUcastVolicov(2), 2);
+				 }
+			 }
+			 System::String^  roundAndFormat(const double x) { return roundAndFormat(x, 0); }
+			 System::String^  roundAndFormat(const double x, const int decDigits) {
+				 stringstream ss;
+				 ss << fixed;
+				 ss.precision(decDigits); // set # places after decimal
+				 ss << x;
+				 return gcnew String(ss.str().c_str());
+			 }
+
 			 void updateTableHeaders()
 			 {
 				 // TODO parsing string as oznacenie/kluc toho stlpca
@@ -703,6 +750,8 @@ namespace SemestralnaPracaAUS02withGUI {
 			// len vtedy, keď zaškrtnem túto možnosť
 			/*updateTable();*/
 		}
+	}
+	private: System::Void checkBox2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	}
 	};
 }

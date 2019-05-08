@@ -1,4 +1,5 @@
 #include "Nacitanie.h"
+#define REMOVE_SPACES(x) remove_if(x.begin(), x.end(), isspace);
 
 using namespace std;
 
@@ -71,11 +72,12 @@ void Nacitanie::loadDataKraje(string nazovSuboru)
 		kolo = 1;
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
+		//REMOVE_SPACES(tmp);
 		tempArea->setPocetVolicov(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Poèet vydaných obálok
 		tempArea->setPocetVydanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Úèas volièov v %
-		tempArea->setUcastVolicov(std::stof(tmp), kolo);
+		tempArea->setUcastVolicov(std::stod(tmp), kolo);
 		getline(file, tmp, ';');	// Poèet odovzdaných obálok
 		tempArea->setPocetOdovzdanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
@@ -91,7 +93,7 @@ void Nacitanie::loadDataKraje(string nazovSuboru)
 		getline(file, tmp, ';');	// Poèet vydaných obálok - 2.kolo
 		tempArea->setPocetVydanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Úèas volièov v % - 2.kolo
-		tempArea->setUcastVolicov(std::stof(tmp), kolo);
+		tempArea->setUcastVolicov(std::stod(tmp), kolo);
 		getline(file, tmp, ';');	// Poèet odovzdaných obálok - 2.kolo
 		tempArea->setPocetOdovzdanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v % - 2.kolo
@@ -137,7 +139,7 @@ void Nacitanie::loadDataOkresy(string nazovSuboru)
 		getline(file, tmp, ';');	// Poèet vydaných obálok
 		tempArea->setPocetVydanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Úèas volièov v %
-		tempArea->setUcastVolicov(std::stof(tmp), kolo);
+		tempArea->setUcastVolicov(std::stod(tmp), kolo);
 		getline(file, tmp, ';');	// Poèet odovzdaných obálok
 		tempArea->setPocetOdovzdanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
@@ -153,7 +155,7 @@ void Nacitanie::loadDataOkresy(string nazovSuboru)
 		getline(file, tmp, ';');	// Poèet vydaných obálok
 		tempArea->setPocetVydanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Úèas volièov v %
-		tempArea->setUcastVolicov(std::stof(tmp), kolo);
+		tempArea->setUcastVolicov(std::stod(tmp), kolo);
 		getline(file, tmp, ';');	// Poèet odovzdaných obálok
 		tempArea->setPocetOdovzdanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
@@ -202,7 +204,7 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 		getline(file, tmp, ';');	// Poèet vydaných obálok
 		tempArea->setPocetVydanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Úèas volièov v %
-		tempArea->setUcastVolicov(std::stof(tmp), kolo);
+		tempArea->setUcastVolicov(std::stod(tmp), kolo);
 		getline(file, tmp, ';');	// Poèet odovzdaných obálok
 		tempArea->setPocetOdovzdanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
@@ -219,7 +221,7 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 		getline(file, tmp, ';');	// Poèet vydaných obálok
 		tempArea->setPocetVydanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Úèas volièov v %
-		tempArea->setUcastVolicov(std::stof(tmp), kolo);
+		tempArea->setUcastVolicov(std::stod(tmp), kolo);
 		getline(file, tmp, ';');	// Poèet odovzdaných obálok
 		tempArea->setPocetOdovzdanychObalok(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Podiel odovzdaných obálok v %
