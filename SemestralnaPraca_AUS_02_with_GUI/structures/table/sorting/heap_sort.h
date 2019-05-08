@@ -22,11 +22,13 @@ namespace structures
 	inline void HeapSort<K, T>::sort(UnsortedSequenceTable<K, T>& table)
 	{
 		bool swapping;
-		for (int i = 1; i < table.size(); i++) {
+		for (int i = 1; i < (int)table.size(); i++) {
 			int current = i;
 			do {
 				swapping = false;
 				int father = (current - 1) / 2;
+				auto test1 = table.getItemAtIndex(current).getKey();
+				auto test2 = table.getItemAtIndex(father).getKey();
 				if ((current > 0) && (table.getItemAtIndex(current).getKey() > table.getItemAtIndex(father).getKey())) {
 					table.swap(current, father);
 					current = father;

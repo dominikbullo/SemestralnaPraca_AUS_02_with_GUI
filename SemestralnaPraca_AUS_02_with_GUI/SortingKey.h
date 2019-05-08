@@ -1,12 +1,33 @@
 #pragma once
 #include "Area.h"
+
+template <typename T>
 class SortingKey
 {
 public:
-	SortingKey(Area* area);
+	SortingKey(Obec* area, int kolo, T value);
+	//bool operator==(const SortingKey& other) { return  value == other.value && nazov == other.nazov; };
+	//bool operator!=(const SortingKey& other) { return  value != other.value && nazov != other.nazov; };
+	bool operator<(const SortingKey& other) {
+		// TODO operator nevola tento 
+		return value < other.value
+	};
+	bool operator<=(const SortingKey& other) { return value <= other.value };
+	bool operator>(const SortingKey& other) { return value > other.value };
+	bool operator>=(const SortingKey& other) { return value >= other.value };
+
 private:
 	const std::string nazov;
 	const std::string nazovOkresu;
-	const double value;
+	const int kolo;
+	const T value;
 };
 
+template<typename T>
+inline SortingKey<T>::SortingKey(Obec * area, int kolo, T value) :
+	nazov(area->getName()),
+	nazovOkresu(area->getNazovOkresu()),
+	kolo(kolo),
+	value(value)
+{
+}

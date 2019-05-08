@@ -21,11 +21,11 @@ private:
 	structures::SortedSequenceTable<string, Okres*> *okresySorted;
 	structures::SortedSequenceTable<string, Kraj*> *krajeSorted;
 
-	structures::UnsortedSequenceTable<string, Obec*>* obceUnsortedVolici1;
-	structures::UnsortedSequenceTable<string, Obec*>* obceUnsortedVolici2;
+	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici1;
+	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici2;
 
-	structures::UnsortedSequenceTable<string, Obec*>* obceUnsortedUcast1;
-	structures::UnsortedSequenceTable<string, Obec*>* obceUnsortedUcast2;
+	structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>* obceUnsortedUcast1;
+	structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>* obceUnsortedUcast2;
 
 public:
 	App(Nacitanie* loader);

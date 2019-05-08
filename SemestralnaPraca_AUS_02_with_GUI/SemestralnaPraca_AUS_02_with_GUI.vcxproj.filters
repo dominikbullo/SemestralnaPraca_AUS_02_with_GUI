@@ -242,9 +242,6 @@
     <ClCompile Include="VolebneKolo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SortingKey.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

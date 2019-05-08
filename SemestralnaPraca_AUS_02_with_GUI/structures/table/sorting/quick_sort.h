@@ -28,7 +28,7 @@ namespace structures
 	template<typename K, typename T>
 	inline void QuickSort<K, T>::quick(int min, int max, UnsortedSequenceTable<K, T>& table)
 	{
-		int pivot = table.getItemAtIndex((min + max) / 2).getKey();
+		K pivot = table.getItemAtIndex((min + max) / 2).getKey();
 		int left = min;
 		int right = max;
 		do {
