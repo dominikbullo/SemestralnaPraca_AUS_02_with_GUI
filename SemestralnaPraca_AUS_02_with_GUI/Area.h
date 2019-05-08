@@ -13,6 +13,7 @@ public:
 	~Area();
 
 	std::string getName() const { return this->nazov; }
+	void calculateSumValuesForBothRounds();
 
 	virtual std::string getClassName() { return "Area"; };
 
@@ -30,8 +31,6 @@ public:
 
 private:
 	std::string nazov;
-	VolebneKolo* prveKolo;
-	VolebneKolo* druheKolo;
 	structures::Array<VolebneKolo*>* arrayKol;
 
 protected:

@@ -20,7 +20,9 @@ public:
 	App(Nacitanie* loader);
 	~App();
 
-	structures::ArrayList<Area*>* getAreas(std::string nazov);
+	structures::ArrayList<Area*>* getAreasNazov(std::string nazov);
+	structures::ArrayList<Area*>* getAreasVolici(int pocetOd, int pocetDo, int kolo);
+	structures::ArrayList<Area*>* getAreasUcast(int ucastOd, int ucastDo, int kolo);
 
 	structures::SortedSequenceTable<string, Okres*>* getOkresy() { return this->okresySorted; }
 	structures::SortedSequenceTable<string, Obec*>* getObce() { return this->obceSorted; }

@@ -14,7 +14,7 @@ template <typename T, typename O>
 class Filter_FI : public Filter<T, O>
 {
 public:
-	bool evaluate(O& o, Kriterium<T, O>& c) override { T result = c.evaluate(o); return result >= alpha && result <= beta; }
+	bool evaluate(O& o, Kriterium<T, O>& c) override { T result = c.evaluate(o); 	return result >= alpha && result <= beta; }
 	void setAlpha(T alpha) { this->alpha = alpha; }
 	void setBeta(T beta) { this->beta = beta; }
 private:
@@ -34,4 +34,5 @@ private:
 
 
 class FilterHasName : public Filter_fi<std::string, Area> {};
+class FilterVolici : public Filter_FI<int, Area> {};
 class FilterUcast : public Filter_FI<int, Area> {};

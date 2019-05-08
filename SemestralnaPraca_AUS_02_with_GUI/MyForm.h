@@ -504,17 +504,53 @@ namespace SemestralnaPracaAUS02withGUI {
 		updateTableHeaders();
 		if (filterNazovRadio->Checked)
 		{
-			filterByName();
+			// TODO tabuľka - skryť odkryť ? zobraziť nezobraziť ?
+			throw std::exception("Not finished yet!");
+
+			structures::ArrayList<Area*>* areas = app->getAreasNazov(toStandardString(textBox1->Text->ToString()));
+
+			this->dataGridView1->Rows->Clear();
+
+			for each (Area* area in *areas)
+			{
+				//cout << typeid(area).name() << endl;
+				cout << "Found  wit filter Area type " << area->getClassName() << endl;
+				auto row = this->dataGridView1->Rows->Add();
+				this->dataGridView1->Rows[row]->Cells[0]->Value = gcnew String(area->getClassName().c_str());
+				this->dataGridView1->Rows[row]->Cells[1]->Value = gcnew String(area->getName().c_str());
+				this->dataGridView1->Rows[row]->Cells[2]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(1)).c_str());
+				this->dataGridView1->Rows[row]->Cells[3]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(2)).c_str());
+				this->dataGridView1->Rows[row]->Cells[4]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(1)).c_str());
+				this->dataGridView1->Rows[row]->Cells[5]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(2)).c_str());
+			}
+
+			delete areas;
 		}
 		if (filterVoliciRadio->Checked)
 		{
-			throw std::exception("Not implemented yet");
+			int selectedKolo = getSelectedKolo();
+
+			if (selectedKolo == 1 || selectedKolo == 2)
+			{
+				structures::ArrayList<Area*>* areas = app->getAreasVolici((int)numericUpDown1->Value, (int)numericUpDown2->Value, selectedKolo);
+			}
+			else
+			{
+				MessageBox::Show("Zle zvolene kolo. Pre tento vyber nie je mozne najst vysledky");
+			}
 		}
 		if (filterUcastRadio->Checked)
 		{
 			throw std::exception("Not implemented yet");
 		}
 	}
+
+			 int getSelectedKolo()
+			 {
+				 if (prveKolo->Checked) { return 1; };
+				 if (druheKolo->Checked) { return 2; };
+				 if (obidveKola->Checked) { return 3; };
+			 }
 			 void updateTable()
 			 {
 				 updateTableHeaders();
@@ -583,30 +619,7 @@ namespace SemestralnaPracaAUS02withGUI {
 				 }
 			 }
 
-			 void filterByName()
-			 {
-				 // TODO tabuľka - skryť odkryť ? zobraziť nezobraziť ?
-				 throw std::exception("Not finished yet!");
 
-				 structures::ArrayList<Area*>* areas = app->getAreas(toStandardString(textBox1->Text->ToString()));
-
-				 this->dataGridView1->Rows->Clear();
-
-				 for each (Area* area in *areas)
-				 {
-					 //cout << typeid(area).name() << endl;
-					 cout << "Found  wit filter Area type " << area->getClassName() << endl;
-					 auto row = this->dataGridView1->Rows->Add();
-					 this->dataGridView1->Rows[row]->Cells[0]->Value = gcnew String(area->getClassName().c_str());
-					 this->dataGridView1->Rows[row]->Cells[1]->Value = gcnew String(area->getName().c_str());
-					 this->dataGridView1->Rows[row]->Cells[2]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(1)).c_str());
-					 this->dataGridView1->Rows[row]->Cells[3]->Value = gcnew String(std::to_string(area->getPocetOdovzdanychObalok(2)).c_str());
-					 this->dataGridView1->Rows[row]->Cells[4]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(1)).c_str());
-					 this->dataGridView1->Rows[row]->Cells[5]->Value = gcnew String(std::to_string(area->getPocetPlatnychHlasov(2)).c_str());
-				 }
-
-				 delete areas;
-			 }
 
 	public: static std::string toStandardString(System::String^ string)
 	{

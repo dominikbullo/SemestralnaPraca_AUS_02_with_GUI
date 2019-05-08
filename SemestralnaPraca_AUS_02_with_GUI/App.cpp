@@ -12,52 +12,121 @@ App::App(Nacitanie* loader) : loader(loader)
 App::~App()
 {
 }
-structures::ArrayList<Area*>* App::getAreas(std::string nazov)
+structures::ArrayList<Area*>* App::getAreasNazov(std::string nazov)
 {
-	// FIXME
-	//throw std::logic_error("Not finished yet");
-	// TODO treba deštruktory
 	structures::ArrayList<Area*>* matches = new structures::ArrayList<Area*>();
-	KriteriumNazov * kriteriumMeno = new KriteriumNazov();
+	KriteriumNazov * kriterium = new KriteriumNazov();
 	FilterHasName * filter = new FilterHasName();
+
+	filter->setAlpha(nazov);
+
 
 	Kraj* tempKraj = nullptr;
 	Okres* tempOkres = nullptr;
 	Obec* tempObec = nullptr;
 
-	filter->setAlpha(nazov);
-
-	//bool test = filter->evaluate(*this->getVolebneKolo(volebneKolo)->getKraje()->operator[]("Žilinský kraj"), *kriteriumMeno);
-	//auto found = this->krajeSorted->tryFind(nazov, tempKraj);
-	//auto found = this->okresySorted->tryFind(nazov, tempOkres);
-	//auto found = this->obceSorted->tryFind(nazov, tempObec);
 
 	if (this->krajeSorted->tryFind(nazov, tempKraj))
 	{
-		if (filter->evaluate(*tempKraj, *kriteriumMeno))
+		if (filter->evaluate(*tempKraj, *kriterium))
 		{
 			matches->add(tempKraj);
 		}
 	}
 	if (this->okresySorted->tryFind(nazov, tempOkres))
 	{
-		if (filter->evaluate(*tempOkres, *kriteriumMeno))
+		if (filter->evaluate(*tempOkres, *kriterium))
 		{
 			matches->add(tempOkres);
 		}
 	}
 	if (this->obceSorted->tryFind(nazov, tempObec))
 	{
-		if (filter->evaluate(*tempObec, *kriteriumMeno))
+		if (filter->evaluate(*tempObec, *kriterium))
 		{
 			matches->add(tempObec);
 		}
 	}
-	delete kriteriumMeno;
+	delete kriterium;
 	delete filter;
 
 	return matches;
 }
+
+structures::ArrayList<Area*>* App::getAreasVolici(int pocetOd, int pocetDo, int kolo)
+{
+	structures::ArrayList<Area*>* matches = new structures::ArrayList<Area*>();
+	KriteriumVolici * kriterium = new KriteriumVolici(kolo);
+	FilterVolici * filter = new FilterVolici();
+
+	filter->setAlpha(pocetOd);
+	filter->setBeta(pocetDo);
+
+	for (auto area : *krajeSorted)
+	{
+		if (filter->evaluate(*area->accessData(), *kriterium))
+		{
+			matches->add(area->accessData());
+		}
+	}
+	for (auto area : *okresySorted)
+	{
+		if (filter->evaluate(*area->accessData(), *kriterium))
+		{
+			matches->add(area->accessData());
+		}
+	}
+	for (auto area : *obceSorted)
+	{
+		if (filter->evaluate(*area->accessData(), *kriterium))
+		{
+			matches->add(area->accessData());
+		}
+	}
+
+	delete kriterium;
+	delete filter;
+
+	return matches;
+}
+
+structures::ArrayList<Area*>* App::getAreasUcast(int ucastOd, int ucastDo, int kolo)
+{
+	structures::ArrayList<Area*>* matches = new structures::ArrayList<Area*>();
+	KriteriumVolici * kriterium = new KriteriumVolici(kolo);
+	FilterVolici * filter = new FilterVolici();
+
+	filter->setAlpha(ucastOd);
+	filter->setBeta(ucastDo);
+
+	for (auto area : *krajeSorted)
+	{
+		if (filter->evaluate(*area->accessData(), *kriterium))
+		{
+			matches->add(area->accessData());
+		}
+	}
+	for (auto area : *okresySorted)
+	{
+		if (filter->evaluate(*area->accessData(), *kriterium))
+		{
+			matches->add(area->accessData());
+		}
+	}
+	for (auto area : *obceSorted)
+	{
+		if (filter->evaluate(*area->accessData(), *kriterium))
+		{
+			matches->add(area->accessData());
+		}
+	}
+
+	delete kriterium;
+	delete filter;
+
+	return matches;
+}
+
 
 void App::test()
 {

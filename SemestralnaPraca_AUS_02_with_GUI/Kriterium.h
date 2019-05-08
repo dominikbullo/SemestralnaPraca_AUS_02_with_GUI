@@ -26,9 +26,10 @@ private:
 class KriteriumVolici : public Kriterium<int, Area>
 {
 public:
+	KriteriumVolici(int kolo) :kolo(kolo) {};
 	int evaluate(const Area& a) const override { return a.getPocetVolicov(kolo); }
 	void setArea(Area* area) { this->area = area; }
-	void setKolo(int kolo) { this->kolo = kolo; }
+	//void setKolo(int kolo) { this->kolo = kolo; }
 private:
 	Area * area;
 	int kolo;
@@ -45,13 +46,13 @@ private:
 	int kolo;
 };
 
-
 class KriteriumUcast : public Kriterium<double, Area>
 {
 public:
+	KriteriumUcast(int kolo) :kolo(kolo) {};
 	double evaluate(const Area& a) const override { return a.getUcastVolicov(kolo); }
 	void setArea(Area* area) { this->area = area; }
-	void setKolo(int kolo) { this->kolo = kolo; }
+	//void setKolo(int kolo) { this->kolo = kolo; }
 
 private:
 	Area * area;

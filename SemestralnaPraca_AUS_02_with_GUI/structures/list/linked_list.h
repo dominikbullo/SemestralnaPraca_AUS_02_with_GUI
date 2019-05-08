@@ -215,29 +215,20 @@ namespace structures
 	inline LinkedList<T>::LinkedList(const LinkedList<T>& other) :
 		LinkedList()
 	{
-		LinkedListItem<T>* item = other.first_;
-		while (item != 0)
-		{
-			this->add(item->accessData());
-			item = item->getNext();
-		}
-		size_ = other.size_;
+		//LinkedListItem<T>* item = other.first_;
+		//while (item != 0)
+		//{
+		//	this->add(item->accessData());
+		//	item = item->getNext();
+		//}
+		//size_ = other.size_;
+		*this = other;
 	}
 
 	template<typename T>
 	inline LinkedList<T>::~LinkedList()
 	{
-		LinkedListItem<T>* forRemove = first_;
-		LinkedListItem<T>* next = 0;
-		while (forRemove != 0)
-		{
-			next = forRemove->getNext();
-			delete forRemove;
-			forRemove = next;
-		}
-		first_ = 0;
-		last_ = 0;
-		size_ = 0;
+		clear();
 	}
 
 	template<typename T>
@@ -394,17 +385,14 @@ namespace structures
 	template<typename T>
 	inline void LinkedList<T>::clear()
 	{
-		LinkedListItem<T>* forRemove(first_);
-		LinkedListItem<T>* next(0);
-		while (forRemove != 0)
-		{
-			next = forRemove->getNext();
-			delete forRemove;
-			forRemove = next;
+		LinkedListItem<T> * cur = first_;
+		while (cur != nullptr) {
+			first_ = first_->getNext();
+			delete cur;
+			cur = first_;
 		}
 		size_ = 0;
-		first_ = 0;
-		last_ = 0;
+		last_ = nullptr;
 	}
 
 	template<typename T>
@@ -440,7 +428,7 @@ namespace structures
 	template<typename T>
 	inline LinkedList<T>::LinkedListIterator::~LinkedListIterator()
 	{
-		position_ = 0;
+		position_ = nullptr;
 	}
 
 	// neviem ci spravne

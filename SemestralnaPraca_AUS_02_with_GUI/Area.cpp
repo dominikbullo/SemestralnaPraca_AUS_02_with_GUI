@@ -5,22 +5,18 @@ using namespace std;
 
 Area::Area(std::string nazov) : nazov(nazov)
 {
-	prveKolo = new VolebneKolo(1);
-	druheKolo = new VolebneKolo(2);
 	arrayKol = new structures::Array<VolebneKolo*>(3);
 
-	arrayKol->operator[](0) = nullptr; //aby sa index zhodoval s kolo, pre neskoršie h¾adanie
-	arrayKol->operator[](1) = prveKolo;
-	arrayKol->operator[](2) = druheKolo;
+	/// Aby sa index zhodoval s kolom, pre neskoršie h¾adanie, na 0 pozicií budú sumárne hodnoty za obidve kolá
+	arrayKol->operator[](0) = new VolebneKolo(0);  // tu budu sumárne hodnoty za obidve kola 
+	arrayKol->operator[](1) = new VolebneKolo(1);
+	arrayKol->operator[](2) = new VolebneKolo(2);
 }
 
 Area::~Area()
 {
-	delete prveKolo;
-	delete druheKolo;
 	delete arrayKol;
 }
-
 
 bool Obec::isIn(Area& area) const
 {
@@ -31,4 +27,13 @@ void Obec::makeUniqueNazov()
 {
 	std::string uniqueNazov = this->getName() + " - " + this->nazovOkresu;
 	this->setName(uniqueNazov);
+}
+void Area::calculateSumValuesForBothRounds()
+{
+	// TODO overenie, èi sú tam hodnoty
+	setPocetVydanychObalok(getPocetVydanychObalok(1) + getPocetVydanychObalok(2), 0);
+	setPocetOdovzdanychObalok(getPocetOdovzdanychObalok(1) + getPocetOdovzdanychObalok(2), 0);
+	setPocetPlatnychHlasov(getPocetPlatnychHlasov(1) + getPocetPlatnychHlasov(2), 0);
+	setPocetVolicov(getPocetVolicov(1) + getPocetVolicov(2), 0);
+	setUcastVolicov(getUcastVolicov(1) + getUcastVolicov(2), 0);
 }

@@ -240,6 +240,7 @@ void Nacitanie::pridajObec(Obec* area)
 	//if (obceSortedVolici->containsKey(area->getPocetVolicov())) { area->makeUniqueVolici(); }
 	//if (obceSortedUcast->containsKey(area->getUcastVolicov())) { area->makeUniqueUcast(); }
 
+	area->calculateSumValuesForBothRounds();
 	obceSorted->insert(area->getName(), area);
 	//obceSortedVolici->insert(area->getPocetVolicov(), area);
 	//obceSortedUcast->insert(area->getPocetVolicov(), area);
@@ -247,11 +248,13 @@ void Nacitanie::pridajObec(Obec* area)
 void  Nacitanie::pridajOkres(Okres* area)
 {
 	// Ziadne duplikáty sa nemôu vyskytova 
+	area->calculateSumValuesForBothRounds();
 	okresySorted->insert(area->getName(), area);
 }
 
 void  Nacitanie::pridajKraj(Kraj* area)
 {
-	// Ziadne duplikáty sa nemôu vyskytova 
+	// Ziadne duplikáty sa nemôu vyskytova
+	area->calculateSumValuesForBothRounds();
 	krajeSorted->insert(area->getName(), area);
 }
