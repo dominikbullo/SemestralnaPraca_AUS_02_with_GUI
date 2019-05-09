@@ -39,6 +39,12 @@ namespace structures
 		/// <param name = "first"> Prvy prvok. </param>
 		/// <param name = "second"> Druhy prvok. </param>
 		static void swap(TableItem<K, T>& first, TableItem<K, T>& second);
+
+
+		/// <summary> Vlozi data s danym klucom do tabulky. </summary>
+		/// <param name = "key"> Kluc vkladanych dat. </param>
+		/// <param name = "data"> Vkladane data. </param>
+		void insertHard(const K& key, const T& data);
 	};
 
 	template<typename K, typename T>
@@ -78,6 +84,14 @@ namespace structures
 		TableItem<K, T> temp(first);
 		first = second;
 		second = temp;
+	}
+
+	template<typename K, typename T>
+	inline void UnsortedSequenceTable<K, T>::insertHard(const K & key, const T & data)
+	{
+		// vypnutá kontrola kľúča -> volám v prípade, že zaručujem, že sa neobjaví duplicita
+		// v mojom prípade metóda volaná LEN po vložení do usporiadanej tabuľky
+		list_->add(new TableItem<K, T>(key, data));
 	}
 
 }

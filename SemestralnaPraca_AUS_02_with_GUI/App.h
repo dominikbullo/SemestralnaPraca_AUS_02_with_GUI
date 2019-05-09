@@ -17,9 +17,9 @@ class App
 {
 private:
 	Nacitanie* loader;
-	structures::SortedSequenceTable<wstring, Obec*> *obceSorted;
-	structures::SortedSequenceTable<wstring, Okres*> *okresySorted;
-	structures::SortedSequenceTable<wstring, Kraj*> *krajeSorted;
+	structures::SortedSequenceTable<std::string, Obec*> *obceSorted;
+	structures::SortedSequenceTable<std::string, Okres*> *okresySorted;
+	structures::SortedSequenceTable<std::string, Kraj*> *krajeSorted;
 
 	// kvôli rýchlemu zoradeniu, pri veľkom množstve dát -> redukujem počet prvkov, lebo nechcem zoradovať iné hodnoty
 	//structures::UnsortedSequenceTable<SortingKey<std::string>*, Obec*>* obceUnsortedNazov;
@@ -39,7 +39,7 @@ public:
 	structures::ArrayList<Area*>* getAreasUcast(double ucastOd, double ucastDo, int kolo);
 
 	template<typename T> void sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table);
-	template<typename K> void sortTable(structures::UnsortedSequenceTable<SortingKey<K>*, Obec*>* table, bool desc);
+	template<typename T> void sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table, bool desc);
 };
 
 template<typename T>

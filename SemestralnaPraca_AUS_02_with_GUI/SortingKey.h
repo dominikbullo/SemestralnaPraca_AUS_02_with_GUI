@@ -5,8 +5,8 @@ template <typename T>
 class SortingKey
 {
 public:
-	SortingKey(Obec* area);
 	SortingKey(Obec * area, T value);
+	~SortingKey() {};
 	//bool operator==(const SortingKey& other) { return  value == other.value && nazov == other.nazov; };
 	//bool operator!=(const SortingKey& other) { return  value != other.value && nazov != other.nazov; };
 	//bool operator< (const SortingKey& x, const SortingKey& y) { return x.value < y.value };
@@ -25,16 +25,10 @@ private:
 };
 
 template<typename T>
-inline SortingKey<T>::SortingKey(Obec * area) :
-	nazovOkresu(area->getNazovOkresu()),
-	value(area->getName())
-{
-}
-
-template<typename T>
 inline SortingKey<T>::SortingKey(Obec * area, T value) :
 	nazov(area->getName()),
 	nazovOkresu(area->getNazovOkresu()),
 	value(value)
 {
 }
+

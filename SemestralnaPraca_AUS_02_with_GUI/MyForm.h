@@ -132,10 +132,11 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: System::Windows::Forms::RadioButton^  filterVoliciRadio;
 	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::CheckBox^  checkBox3;
-	private: System::Windows::Forms::CheckBox^  checkBox2;
-	private: System::Windows::Forms::CheckBox^  checkBox1;
+
+
+
 private: System::Windows::Forms::ComboBox^  comboBox1;
+private: System::Windows::Forms::Button^  button2;
 
 
 
@@ -173,9 +174,6 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			this->numericUpDown2 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->zobrazObce = (gcnew System::Windows::Forms::RadioButton());
 			this->zobrazOkresy = (gcnew System::Windows::Forms::RadioButton());
 			this->zobrazKraje = (gcnew System::Windows::Forms::RadioButton());
@@ -189,6 +187,7 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			this->prveKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->BeginInit();
@@ -216,6 +215,7 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			// groupBox1
 			// 
 			this->groupBox1->Controls->Add(this->filterUcastRadio);
+			this->groupBox1->Controls->Add(this->button1);
 			this->groupBox1->Controls->Add(this->filterVoliciRadio);
 			this->groupBox1->Controls->Add(this->filterNazovRadio);
 			this->groupBox1->Controls->Add(this->textBox1);
@@ -223,9 +223,9 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			this->groupBox1->Controls->Add(this->numericUpDown3);
 			this->groupBox1->Controls->Add(this->numericUpDown2);
 			this->groupBox1->Controls->Add(this->numericUpDown1);
-			this->groupBox1->Location = System::Drawing::Point(581, 160);
+			this->groupBox1->Location = System::Drawing::Point(577, 306);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(282, 247);
+			this->groupBox1->Size = System::Drawing::Size(282, 299);
 			this->groupBox1->TabIndex = 28;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Filtre";
@@ -306,51 +306,15 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			// 
 			// groupBox2
 			// 
-			this->groupBox2->Controls->Add(this->checkBox3);
-			this->groupBox2->Controls->Add(this->checkBox2);
-			this->groupBox2->Controls->Add(this->checkBox1);
 			this->groupBox2->Controls->Add(this->zobrazObce);
 			this->groupBox2->Controls->Add(this->zobrazOkresy);
 			this->groupBox2->Controls->Add(this->zobrazKraje);
-			this->groupBox2->Location = System::Drawing::Point(692, 23);
+			this->groupBox2->Location = System::Drawing::Point(779, 23);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(171, 118);
+			this->groupBox2->Size = System::Drawing::Size(80, 118);
 			this->groupBox2->TabIndex = 40;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Zobraz";
-			// 
-			// checkBox3
-			// 
-			this->checkBox3->AutoSize = true;
-			this->checkBox3->Checked = true;
-			this->checkBox3->CheckState = System::Windows::Forms::CheckState::Checked;
-			this->checkBox3->Location = System::Drawing::Point(61, 88);
-			this->checkBox3->Name = L"checkBox3";
-			this->checkBox3->Size = System::Drawing::Size(52, 17);
-			this->checkBox3->TabIndex = 5;
-			this->checkBox3->Text = L"Obce";
-			this->checkBox3->UseVisualStyleBackColor = true;
-			// 
-			// checkBox2
-			// 
-			this->checkBox2->AutoSize = true;
-			this->checkBox2->Location = System::Drawing::Point(61, 56);
-			this->checkBox2->Name = L"checkBox2";
-			this->checkBox2->Size = System::Drawing::Size(59, 17);
-			this->checkBox2->TabIndex = 4;
-			this->checkBox2->Text = L"Okresy";
-			this->checkBox2->UseVisualStyleBackColor = true;
-			this->checkBox2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox2_CheckedChanged);
-			// 
-			// checkBox1
-			// 
-			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(61, 23);
-			this->checkBox1->Name = L"checkBox1";
-			this->checkBox1->Size = System::Drawing::Size(50, 17);
-			this->checkBox1->TabIndex = 3;
-			this->checkBox1->Text = L"Kraje";
-			this->checkBox1->UseVisualStyleBackColor = true;
 			// 
 			// zobrazObce
 			// 
@@ -389,12 +353,14 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			// 
 			// groupBox3
 			// 
+			this->groupBox3->Controls->Add(this->button2);
+			this->groupBox3->Controls->Add(this->comboBox1);
 			this->groupBox3->Controls->Add(this->radioButton4);
 			this->groupBox3->Controls->Add(this->radioButton5);
 			this->groupBox3->Controls->Add(this->radioButton6);
-			this->groupBox3->Location = System::Drawing::Point(581, 426);
+			this->groupBox3->Location = System::Drawing::Point(578, 165);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(103, 118);
+			this->groupBox3->Size = System::Drawing::Size(281, 135);
 			this->groupBox3->TabIndex = 41;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Zoraď";
@@ -402,7 +368,7 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			// radioButton4
 			// 
 			this->radioButton4->AutoSize = true;
-			this->radioButton4->Location = System::Drawing::Point(6, 84);
+			this->radioButton4->Location = System::Drawing::Point(6, 106);
 			this->radioButton4->Name = L"radioButton4";
 			this->radioButton4->Size = System::Drawing::Size(54, 17);
 			this->radioButton4->TabIndex = 2;
@@ -412,7 +378,7 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			// radioButton5
 			// 
 			this->radioButton5->AutoSize = true;
-			this->radioButton5->Location = System::Drawing::Point(6, 52);
+			this->radioButton5->Location = System::Drawing::Point(6, 61);
 			this->radioButton5->Name = L"radioButton5";
 			this->radioButton5->Size = System::Drawing::Size(50, 17);
 			this->radioButton5->TabIndex = 1;
@@ -423,7 +389,7 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			// 
 			this->radioButton6->AutoSize = true;
 			this->radioButton6->Checked = true;
-			this->radioButton6->Location = System::Drawing::Point(6, 19);
+			this->radioButton6->Location = System::Drawing::Point(7, 19);
 			this->radioButton6->Name = L"radioButton6";
 			this->radioButton6->Size = System::Drawing::Size(56, 17);
 			this->radioButton6->TabIndex = 0;
@@ -480,9 +446,9 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(711, 478);
+			this->button1->Location = System::Drawing::Point(10, 237);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(121, 62);
+			this->button1->Size = System::Drawing::Size(241, 44);
 			this->button1->TabIndex = 42;
 			this->button1->Text = L"ZOBRAZ";
 			this->button1->UseVisualStyleBackColor = true;
@@ -492,20 +458,28 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 			// 
 			this->comboBox1->FormattingEnabled = true;
 			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"vzostupne", L"zostupne" });
-			this->comboBox1->Location = System::Drawing::Point(711, 427);
+			this->comboBox1->Location = System::Drawing::Point(107, 19);
 			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(121, 21);
+			this->comboBox1->Size = System::Drawing::Size(97, 21);
 			this->comboBox1->Sorted = true;
 			this->comboBox1->TabIndex = 43;
 			this->comboBox1->Text = L"vzostupne";
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(107, 76);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(97, 47);
+			this->button2->TabIndex = 44;
+			this->button2->Text = L"ZORAĎ";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(885, 617);
-			this->Controls->Add(this->comboBox1);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(878, 617);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox3);
 			this->Controls->Add(this->groupBox2);
@@ -772,5 +746,7 @@ private: System::Windows::Forms::ComboBox^  comboBox1;
 	}
 	private: System::Void numericUpDown4_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
 	}
-	};
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+};
 }

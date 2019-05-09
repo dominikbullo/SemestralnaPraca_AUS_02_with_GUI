@@ -8,7 +8,7 @@ Nacitanie::Nacitanie()
 {
 	obceSorted = new structures::SortedSequenceTable<string, Obec*>();
 
-	obceUnsortedNazov = new structures::UnsortedSequenceTable<SortingKey<std::string>*, Obec*>();
+	//obceTestWstring = new structures::UnsortedSequenceTable<std::wstring, Obec*>();
 
 	obceUnsortedVolici1 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
 	obceUnsortedVolici2 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
@@ -25,6 +25,30 @@ Nacitanie::Nacitanie()
 
 Nacitanie::~Nacitanie()
 {
+	for (auto * item : *obceUnsortedVolici1)
+	{
+		delete item->getKey();
+	}
+	delete obceUnsortedVolici1;
+
+	for (auto * item : *obceUnsortedVolici2)
+	{
+		delete item->getKey();
+	}
+	delete obceUnsortedVolici2;
+
+	for (auto * item : *obceUnsortedUcast1)
+	{
+		delete item->getKey();
+	}
+	delete obceUnsortedUcast1;
+
+	for (auto * item : *obceUnsortedUcast2)
+	{
+		delete item->getKey();
+	}
+	delete obceUnsortedUcast2;
+
 	for (auto * item : *obceSorted)
 	{
 		delete item->accessData();
@@ -42,6 +66,7 @@ Nacitanie::~Nacitanie()
 		delete item->accessData();
 	}
 	delete krajeSorted;
+
 }
 
 void Nacitanie::loadData()
@@ -193,7 +218,6 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 		getline(file, tmp, ';');		// Kód okresu
 		getline(file, nazovOkresu, ';');// Názov okresu
 
-
 		getline(file, tmp, ';');		// Kód obce
 		getline(file, nazovObce, ';');	// Názov obce
 
@@ -242,11 +266,8 @@ void Nacitanie::pridajObec(Obec* area)
 		area->makeUniqueNazov();
 		cout << "Find duplicates -> renamed to: " << area->getName() << endl;
 	}
-
 	area->calculateSumValuesForBothRounds();
-	obceSorted->insertHard(area->getName(), area);
-
-	//obceUnsortedNazov->insertHard(new SortingKey<std::string>(area), area);
+	obceSorted->insert(area->getName(), area);
 
 	obceUnsortedVolici1->insertHard(new SortingKey<int>(area, area->getPocetVolicov(1)), area);
 	obceUnsortedVolici2->insertHard(new SortingKey<int>(area, area->getPocetVolicov(2)), area);

@@ -4,9 +4,9 @@ using namespace std;
 
 App::App(Nacitanie* loader) : loader(loader)
 {
-	//krajeSorted = loader->getKraje();
-	//okresySorted = loader->getOkresy();
-	//obceSorted = loader->getObce();
+	krajeSorted = loader->getKraje();
+	okresySorted = loader->getOkresy();
+	obceSorted = loader->getObce();
 
 	//obceUnsortedNazov = loader->getObceUnsortedNazov();
 
@@ -15,15 +15,11 @@ App::App(Nacitanie* loader) : loader(loader)
 
 	obceUnsortedUcast1 = loader->getObceUnsortedUcast1();
 	obceUnsortedUcast2 = loader->getObceUnsortedUcast2();
-
-	//sortTable<int>(obceUnsortedVolici1);
-	//sortTable<double>(loader->getObceUnsortedUcast1());
-	//sortTable<std::string>(obceUnsortedNazov);
-	//sort1->sort(*obceUnsortedVolici1);
 }
 App::~App()
 {
 }
+
 structures::ArrayList<Area*>* App::getAreasNazov(std::string nazov)
 {
 	structures::ArrayList<Area*>* matches = new structures::ArrayList<Area*>();
@@ -32,34 +28,16 @@ structures::ArrayList<Area*>* App::getAreasNazov(std::string nazov)
 
 	filter->setAlpha(nazov);
 
-	Kraj* tempKraj = nullptr;
-	Okres* tempOkres = nullptr;
-	Obec* tempObec = nullptr;
+	Kraj* tempKraj;
+	Okres* tempOkres;
+	Obec* tempObec;
 
-	//if (this->krajeSorted->tryFind(nazov, tempKraj))
-	//{
-	//	if (filter->evaluate(*tempKraj, *kriterium))
-	//	{
-	//		matches->add(tempKraj);
-	//	}
-	//}
-	//if (this->okresySorted->tryFind(nazov, tempOkres))
-	//{
-	//	if (filter->evaluate(*tempOkres, *kriterium))
-	//	{
-	//		matches->add(tempOkres);
-	//	}
-	//}
-	//if (this->obceSorted->tryFind(nazov, tempObec))
-	//{
-	//	if (filter->evaluate(*tempObec, *kriterium))
-	//	{
-	//		matches->add(tempObec);
-	//	}
-	//}
+	if (this->krajeSorted->tryFind(nazov, tempKraj) && filter->evaluate(*tempKraj, *kriterium)) { matches->add(tempKraj); }
+	if (this->okresySorted->tryFind(nazov, tempOkres) && filter->evaluate(*tempOkres, *kriterium)) { matches->add(tempOkres); }
+	if (this->obceSorted->tryFind(nazov, tempObec) && filter->evaluate(*tempObec, *kriterium)) { matches->add(tempObec); }
+
 	delete kriterium;
 	delete filter;
-
 	return matches;
 }
 

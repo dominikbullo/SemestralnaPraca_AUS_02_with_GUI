@@ -53,11 +53,6 @@ namespace structures
 		/// <exception cref="std::logic_error"> Vyhodena, ak tabulka uz obsahuje data s takymto klucom. </exception>  
 		void insert(const K& key, const T& data) override;
 
-		/// <summary> Vlozi data s danym klucom do tabulky. </summary>
-		/// <param name = "key"> Kluc vkladanych dat. </param>
-		/// <param name = "data"> Vkladane data. </param>
-		void insertHard(const K& key, const T& data);
-
 		/// <summary> Odstrani z tabulky prvok s danym klucom. </summary>
 		/// <param name = "key"> Kluc prvku. </param>
 		/// <returns> Odstranene data. </returns>
@@ -175,15 +170,6 @@ namespace structures
 		{
 			throw std::logic_error("SequenceTable<K, T>::insert: Key is already in table");
 		}
-		list_->add(new TableItem<K, T>(key, data));
-	}
-
-
-	template<typename K, typename T>
-	inline void SequenceTable<K, T>::insertHard(const K & key, const T & data)
-	{
-		// vypnutá kontrola kľúča -> volám v prípade, že zaručujem, že sa neobjaví duplicita
-		// v mojom prípade metóda volaná LEN po vložení do usporiadanej tabuľky
 		list_->add(new TableItem<K, T>(key, data));
 	}
 

@@ -76,7 +76,6 @@ namespace structures
 		list_->insert(new TableItem<K, T>(key, data), keyIndex);
 	}
 
-
 	template<typename K, typename T>
 	inline TableItem<K, T>* SortedSequenceTable<K, T>::findTableItem(const K & key) const
 	{
@@ -92,7 +91,6 @@ namespace structures
 	template<typename K, typename T>
 	inline int SortedSequenceTable<K, T>::indexOfKey(const K & key, int indexStart, int indexEnd, bool & found) const
 	{
-
 		if (indexStart == indexEnd) {
 			found = false;
 			return indexStart;
