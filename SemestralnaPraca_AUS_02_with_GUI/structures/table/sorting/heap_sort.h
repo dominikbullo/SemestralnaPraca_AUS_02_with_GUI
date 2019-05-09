@@ -17,7 +17,6 @@ namespace structures
 		/// <summary> Utriedi tabulku triedenim Heap sort. </summary>
 		/// <param name = "table"> NonortedSequenceTable, ktoru ma utriedit. </param>
 		void sort(UnsortedSequenceTable<K, T>& table) override;
-		void sortByCustomKey(UnsortedSequenceTable<K, T>& table);
 		void sortByCustomKey(UnsortedSequenceTable<K, T>& table, bool desc);
 	};
 
@@ -38,9 +37,6 @@ namespace structures
 				//{
 				//	throw std::exception("TOTO sa nesmie sta!");
 				//}
-				//auto test3 = table.getItemAtIndex(father).getKey().value;
-				//auto test4 = table.getItemAtIndex(father).getKey()->value;
-				//if ((current > 0) && (table.getItemAtIndex(current).getKey()->getValue() > table.getItemAtIndex(father).getKey()->getValue())) {
 				if ((current > 0) && (table.getItemAtIndex(current).getKey() > table.getItemAtIndex(father).getKey())) {
 					table.swap(current, father);
 					current = father;
@@ -68,13 +64,6 @@ namespace structures
 				//notify();
 			} while (swapping);
 		}
-
-	}
-
-	template<typename K, typename T>
-	inline void HeapSort<K, T>::sortByCustomKey(UnsortedSequenceTable<K, T>& table)
-	{
-		sortByCustomKey(table, false);
 	}
 
 	template<typename K, typename T>
@@ -95,6 +84,8 @@ namespace structures
 					}
 				}
 				else {
+					auto test1 = table.getItemAtIndex(current).getKey()->getValue();
+					auto test2 = table.getItemAtIndex(father).getKey()->getValue();
 					if ((current > 0) && (table.getItemAtIndex(current).getKey()->getValue() > table.getItemAtIndex(father).getKey()->getValue()))
 					{
 						table.swap(current, father);

@@ -18,9 +18,7 @@ class Nacitanie
 private:
 	structures::SortedSequenceTable<string, Obec*> *obceSorted;
 
-	//structures::UnsortedSequenceTable<SortingKey*, Obec*> *aaaa;
-	//structures::UnsortedSequenceTable<SortingKey*, Obec*> *obceUnsortedVolici;
-	//structures::UnsortedSequenceTable<SortingKey*, Obec*> *obceUnsortedUcast;
+	//structures::UnsortedSequenceTable<SortingKey<std::string>*, Obec*> *obceUnsortedNazov;
 
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*> *obceUnsortedVolici1;
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*> *obceUnsortedVolici2;
@@ -48,6 +46,8 @@ public:
 	structures::Table<string, Kraj*>* getKraje() { return this->krajeSorted; }
 	structures::Table<string, Okres*>* getOkresy() { return this->okresySorted; }
 	structures::Table<string, Obec*>* getObce() { return this->obceSorted; }
+
+	//structures::UnsortedSequenceTable<SortingKey<std::string>*, Obec*>* getObceUnsortedNazov() { return this->obceUnsortedNazov; }
 
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* getObceUnsortedVolici1() { return this->obceUnsortedVolici1; }
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* getObceUnsortedVolici2() { return this->obceUnsortedVolici2; }

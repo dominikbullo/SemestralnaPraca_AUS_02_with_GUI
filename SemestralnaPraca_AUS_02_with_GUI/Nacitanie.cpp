@@ -8,8 +8,7 @@ Nacitanie::Nacitanie()
 {
 	obceSorted = new structures::SortedSequenceTable<string, Obec*>();
 
-	//obceUnsortedVolici = new structures::UnsortedSequenceTable<SortingKey*, Obec*>();
-	//obceUnsortedUcast = new structures::UnsortedSequenceTable<SortingKey*, Obec*>();
+	obceUnsortedNazov = new structures::UnsortedSequenceTable<SortingKey<std::string>*, Obec*>();
 
 	obceUnsortedVolici1 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
 	obceUnsortedVolici2 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
@@ -243,19 +242,17 @@ void Nacitanie::pridajObec(Obec* area)
 		area->makeUniqueNazov();
 		cout << "Find duplicates -> renamed to: " << area->getName() << endl;
 	}
-	//if (obceSortedVolici->containsKey(area->getPocetVolicov())) { area->makeUniqueVolici(); }
-	//if (obceSortedUcast->containsKey(area->getUcastVolicov())) { area->makeUniqueUcast(); }
 
 	area->calculateSumValuesForBothRounds();
 	obceSorted->insertHard(area->getName(), area);
 
-	//obceUnsortedVolici1->insertHard(new SortingKey<std::string>(area), area);
+	//obceUnsortedNazov->insertHard(new SortingKey<std::string>(area), area);
 
-	obceUnsortedVolici1->insertHard(new SortingKey<int>(area, 1, area->getPocetVolicov(1)), area);
-	obceUnsortedVolici2->insertHard(new SortingKey<int>(area, 2, area->getPocetVolicov(2)), area);
+	obceUnsortedVolici1->insertHard(new SortingKey<int>(area, area->getPocetVolicov(1)), area);
+	obceUnsortedVolici2->insertHard(new SortingKey<int>(area, area->getPocetVolicov(2)), area);
 
-	obceUnsortedUcast1->insertHard(new SortingKey<double>(area, 1, area->getUcastVolicov(1)), area);
-	obceUnsortedUcast2->insertHard(new SortingKey<double>(area, 2, area->getUcastVolicov(2)), area);
+	obceUnsortedUcast1->insertHard(new SortingKey<double>(area, area->getUcastVolicov(1)), area);
+	obceUnsortedUcast2->insertHard(new SortingKey<double>(area, area->getUcastVolicov(2)), area);
 
 	//obceUnsortedUcast2->insertHard(std::to_string(area->getPocetVolicov(2)) + "_" + area->getNazovOkresu(), area);
 	//obceSortedVolici->insert(area->getPocetVolicov(), area);

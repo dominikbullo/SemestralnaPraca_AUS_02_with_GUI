@@ -17,9 +17,12 @@ class App
 {
 private:
 	Nacitanie* loader;
-	structures::Table<string, Obec*> *obceSorted;
-	structures::Table<string, Okres*> *okresySorted;
-	structures::Table<string, Kraj*> *krajeSorted;
+	structures::SortedSequenceTable<wstring, Obec*> *obceSorted;
+	structures::SortedSequenceTable<wstring, Okres*> *okresySorted;
+	structures::SortedSequenceTable<wstring, Kraj*> *krajeSorted;
+
+	// kvôli rýchlemu zoradeniu, pri veľkom množstve dát -> redukujem počet prvkov, lebo nechcem zoradovať iné hodnoty
+	//structures::UnsortedSequenceTable<SortingKey<std::string>*, Obec*>* obceUnsortedNazov;
 
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici1;
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici2;
@@ -35,7 +38,20 @@ public:
 	structures::ArrayList<Area*>* getAreasVolici(int pocetOd, int pocetDo, int kolo);
 	structures::ArrayList<Area*>* getAreasUcast(double ucastOd, double ucastDo, int kolo);
 
-	//structures::SortedSequenceTable<string, Okres*>* getOkresy() { return this->okresySorted; }
-	//structures::SortedSequenceTable<string, Obec*>* getObce() { return this->obceSorted; }
-	//structures::SortedSequenceTable<string, Kraj*>* getKraje() { return this->krajeSorted; }
+	template<typename T> void sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table);
+	template<typename K> void sortTable(structures::UnsortedSequenceTable<SortingKey<K>*, Obec*>* table, bool desc);
 };
+
+template<typename T>
+inline void App::sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table)
+{
+	// primarne sortujem od najmenšieho po najväčší
+	sortTable(table, false);
+}
+
+template<typename K>
+inline void App::sortTable(structures::UnsortedSequenceTable<SortingKey<K>*, Obec*>* table, bool desc)
+{
+	structures::HeapSort<SortingKey<K>*, Obec *> *sort = new structures::HeapSort<SortingKey<K>*, Obec *>();
+	sort->sortByCustomKey(*table, desc);
+}
