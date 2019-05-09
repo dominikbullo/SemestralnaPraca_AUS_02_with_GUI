@@ -17,9 +17,9 @@ class App
 {
 private:
 	Nacitanie* loader;
-	structures::SortedSequenceTable<string, Obec*> *obceSorted;
-	structures::SortedSequenceTable<string, Okres*> *okresySorted;
-	structures::SortedSequenceTable<string, Kraj*> *krajeSorted;
+	structures::Table<string, Obec*> *obceSorted;
+	structures::Table<string, Okres*> *okresySorted;
+	structures::Table<string, Kraj*> *krajeSorted;
 
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici1;
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici2;

@@ -249,6 +249,8 @@ void Nacitanie::pridajObec(Obec* area)
 	area->calculateSumValuesForBothRounds();
 	obceSorted->insertHard(area->getName(), area);
 
+	//obceUnsortedVolici1->insertHard(new SortingKey<std::string>(area), area);
+
 	obceUnsortedVolici1->insertHard(new SortingKey<int>(area, 1, area->getPocetVolicov(1)), area);
 	obceUnsortedVolici2->insertHard(new SortingKey<int>(area, 2, area->getPocetVolicov(2)), area);
 

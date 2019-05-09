@@ -2,6 +2,7 @@
 
 #include "sort.h"
 #include "../unsorted_sequence_table.h"
+#include "../../../SortingKey.h"
 
 namespace structures
 {
@@ -17,6 +18,7 @@ namespace structures
 		/// <param name = "table"> NonortedSequenceTable, ktoru ma utriedit. </param>
 		void sort(UnsortedSequenceTable<K, T>& table) override;
 		void sortByCustomKey(UnsortedSequenceTable<K, T>& table);
+		void sortByCustomKey(UnsortedSequenceTable<K, T>& table, bool desc);
 	};
 
 	template<typename K, typename T>
@@ -28,9 +30,8 @@ namespace structures
 			do {
 				swapping = false;
 				int father = (current - 1) / 2;
-				//auto test1 = table.getItemAtIndex(current).getKey().getValue();
-				//auto test1 = table.getItemAtIndex(current).getKey();
-				//auto test2 = table.getItemAtIndex(father).getKey();
+				//K test1 = table.getItemAtIndex(current).getKey();
+				//K test2 = table.getItemAtIndex(father).getKey();
 				//auto test3 = table.getItemAtIndex(current).getKey()->getValue();
 				//auto test4 = table.getItemAtIndex(father).getKey()->getValue();
 				//if (test1 > test2 != test3 > test4)
@@ -73,17 +74,35 @@ namespace structures
 	template<typename K, typename T>
 	inline void HeapSort<K, T>::sortByCustomKey(UnsortedSequenceTable<K, T>& table)
 	{
+		sortByCustomKey(table, false);
+	}
+
+	template<typename K, typename T>
+	inline void HeapSort<K, T>::sortByCustomKey(UnsortedSequenceTable<K, T>& table, bool desc)
+	{
+		// primary sorting from smallest to biggest
 		bool swapping;
 		for (int i = 1; i < (int)table.size(); i++) {
 			int current = i;
 			do {
 				swapping = false;
 				int father = (current - 1) / 2;
-				if ((current > 0) && (table.getItemAtIndex(current).getKey()->getValue() > table.getItemAtIndex(father).getKey()->getValue())) {
-					table.swap(current, father);
-					current = father;
-					swapping = true;
+				if (desc) {
+					if ((current > 0) && (table.getItemAtIndex(current).getKey()->getValue() < table.getItemAtIndex(father).getKey()->getValue())) {
+						table.swap(father, current);
+						father = current;
+						swapping = true;
+					}
 				}
+				else {
+					if ((current > 0) && (table.getItemAtIndex(current).getKey()->getValue() > table.getItemAtIndex(father).getKey()->getValue()))
+					{
+						table.swap(current, father);
+						current = father;
+						swapping = true;
+					}
+				}
+
 			} while (swapping);
 		}
 		for (int i = table.size() - 1; i > 0; i--) {
@@ -95,13 +114,37 @@ namespace structures
 				int left = current * 2 + 1;
 				int right = current * 2 + 2;
 				if (left < i && right < i)
-					max = table.getItemAtIndex(left).getKey()->getValue() > table.getItemAtIndex(right).getKey()->getValue() ? left : right;
+				{
+					if (desc)
+					{
+						max = table.getItemAtIndex(left).getKey()->getValue() < table.getItemAtIndex(right).getKey()->getValue() ? left : right;
+					}
+					else
+					{
+						max = table.getItemAtIndex(left).getKey()->getValue() > table.getItemAtIndex(right).getKey()->getValue() ? left : right;
+					}
+				}
 				else
+				{
 					max = left < i ? left : right;
-				if (max < i && table.getItemAtIndex(max).getKey()->getValue() > table.getItemAtIndex(current).getKey()->getValue()) {
-					table.swap(max, current);
-					current = max;
-					swapping = true;
+				}
+
+				if (desc)
+				{
+					if (max < i && table.getItemAtIndex(max).getKey()->getValue() < table.getItemAtIndex(current).getKey()->getValue()) {
+						table.swap(max, current);
+						current = max;
+						swapping = true;
+					}
+				}
+				else
+				{
+					if (max < i && table.getItemAtIndex(max).getKey()->getValue() > table.getItemAtIndex(current).getKey()->getValue()) {
+						table.swap(max, current);
+						current = max;
+						swapping = true;
+					}
+
 				}
 				//notify();
 			} while (swapping);

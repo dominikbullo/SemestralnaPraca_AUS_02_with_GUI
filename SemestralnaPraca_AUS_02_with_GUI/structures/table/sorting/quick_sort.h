@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "sort.h"
+#include "../../../SortingKey.h"
 #include "../unsorted_sequence_table.h"
 
 namespace structures
@@ -28,12 +29,15 @@ namespace structures
 	template<typename K, typename T>
 	inline void QuickSort<K, T>::quick(int min, int max, UnsortedSequenceTable<K, T>& table)
 	{
+		//auto pivot = table.getItemAtIndex((min + max) / 2).getKey()->getValue();
 		K pivot = table.getItemAtIndex((min + max) / 2).getKey();
 		int left = min;
 		int right = max;
 		do {
+			//while (table.getItemAtIndex(left).getKey()->getValue() < pivot)
 			while (table.getItemAtIndex(left).getKey() < pivot)
 				left++;
+			//while (table.getItemAtIndex(right).getKey()->getValue() > pivot)
 			while (table.getItemAtIndex(right).getKey() > pivot)
 				right--;
 			if (left <= right) {

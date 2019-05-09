@@ -45,9 +45,9 @@ public:
 	Nacitanie();
 	~Nacitanie();
 
-	structures::SortedSequenceTable<string, Kraj*>* getKraje() { return this->krajeSorted; }
-	structures::SortedSequenceTable<string, Okres*>* getOkresy() { return this->okresySorted; }
-	structures::SortedSequenceTable<string, Obec*>* getObce() { return this->obceSorted; }
+	structures::Table<string, Kraj*>* getKraje() { return this->krajeSorted; }
+	structures::Table<string, Okres*>* getOkresy() { return this->okresySorted; }
+	structures::Table<string, Obec*>* getObce() { return this->obceSorted; }
 
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* getObceUnsortedVolici1() { return this->obceUnsortedVolici1; }
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* getObceUnsortedVolici2() { return this->obceUnsortedVolici2; }
