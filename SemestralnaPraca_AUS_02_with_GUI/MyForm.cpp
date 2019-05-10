@@ -9,10 +9,12 @@ using namespace System::Windows::Forms;
 int main()
 {
 	// TODO's
-	// TODO Kriterium voliči - volebne kola -> štruktúra inak -> prerobiť FIXME
+	// TODO -> vypiš arrayList do GUI
+	// TODO -> dorobiť 4ku -> kriteria evaulate
 
-	// FIXME's
-	// FIXME prečo sa formulár vymazáva dva krát ?  ->memory leak or read acces violation
+	// NEDEĽA
+	// TODO Dokumentácia 
+	// TODO Final testing
 
 	initHeapMonitor();
 	std::locale::global(std::locale("")); // kvôli diakritike 

@@ -13,8 +13,6 @@ App::App(Nacitanie* loader) : loader(loader)
 
 	obceUnsortedUcast1 = loader->getObceUnsortedUcast1();
 	obceUnsortedUcast2 = loader->getObceUnsortedUcast2();
-
-	sortTable(obceUnsortedVolici1);
 }
 App::~App()
 {
