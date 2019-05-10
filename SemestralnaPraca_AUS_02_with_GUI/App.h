@@ -1,11 +1,5 @@
 ﻿#pragma once
-#include "structures/table/unsorted_sequence_table.h"
-#include "structures/table/sorted_sequence_table.h"
-
 #include "structures/table/sorting/heap_sort.h"
-#include "structures/table/sorting/quick_sort.h"
-
-#include "structures/array/array.h"
 
 #include "Area.h"
 #include "Kriterium.h"
@@ -17,13 +11,9 @@ class App
 {
 private:
 	Nacitanie* loader;
-	structures::SortedSequenceTable<std::string, Obec*> *obceSorted;
-	structures::SortedSequenceTable<std::string, Okres*> *okresySorted;
 	structures::SortedSequenceTable<std::string, Kraj*> *krajeSorted;
-
-	// kvôli rýchlemu zoradeniu, pri veľkom množstve dát -> redukujem počet prvkov, lebo nechcem zoradovať iné hodnoty
-	//structures::UnsortedSequenceTable<SortingKey<std::string>*, Obec*>* obceUnsortedNazov;
-
+	structures::SortedSequenceTable<std::string, Okres*> *okresySorted;
+	structures::SortedSequenceTable<std::string, Obec*> *obceSorted;
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici1;
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici2;
 
@@ -39,19 +29,11 @@ public:
 	structures::ArrayList<Area*>* getAreasUcast(double ucastOd, double ucastDo, int kolo);
 
 	template<typename T> void sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table);
-	template<typename T> void sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table, bool desc);
 };
 
-template<typename T>
-inline void App::sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table)
-{
-	// primarne sortujem od najmenšieho po najväčší
-	sortTable(table, false);
-}
-
 template<typename K>
-inline void App::sortTable(structures::UnsortedSequenceTable<SortingKey<K>*, Obec*>* table, bool desc)
+inline void App::sortTable(structures::UnsortedSequenceTable<SortingKey<K>*, Obec*>* table)
 {
 	structures::HeapSort<SortingKey<K>*, Obec *> *sort = new structures::HeapSort<SortingKey<K>*, Obec *>();
-	sort->sortByCustomKey(*table, desc);
+	sort->sortByCustomKey(*table);
 }

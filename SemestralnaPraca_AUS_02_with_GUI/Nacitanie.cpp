@@ -6,18 +6,14 @@ using namespace std;
 
 Nacitanie::Nacitanie()
 {
+	krajeSorted = new structures::SortedSequenceTable<string, Kraj*>();
+	okresySorted = new structures::SortedSequenceTable<string, Okres*>();
 	obceSorted = new structures::SortedSequenceTable<string, Obec*>();
-
-	//obceTestWstring = new structures::UnsortedSequenceTable<std::wstring, Obec*>();
-
 	obceUnsortedVolici1 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
 	obceUnsortedVolici2 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
 
 	obceUnsortedUcast1 = new structures::UnsortedSequenceTable<SortingKey<double>*, Obec *>();
 	obceUnsortedUcast2 = new structures::UnsortedSequenceTable<SortingKey<double>*, Obec *>();
-
-	okresySorted = new structures::SortedSequenceTable<string, Okres*>();
-	krajeSorted = new structures::SortedSequenceTable<string, Kraj*>();
 
 	this->loadData();
 }
@@ -37,17 +33,6 @@ Nacitanie::~Nacitanie()
 	}
 	delete obceUnsortedVolici2;
 
-	for (auto * item : *obceUnsortedUcast1)
-	{
-		delete item->getKey();
-	}
-	delete obceUnsortedUcast1;
-
-	for (auto * item : *obceUnsortedUcast2)
-	{
-		delete item->getKey();
-	}
-	delete obceUnsortedUcast2;
 
 	for (auto * item : *obceSorted)
 	{
@@ -66,7 +51,6 @@ Nacitanie::~Nacitanie()
 		delete item->accessData();
 	}
 	delete krajeSorted;
-
 }
 
 void Nacitanie::loadData()
@@ -274,10 +258,6 @@ void Nacitanie::pridajObec(Obec* area)
 
 	obceUnsortedUcast1->insertHard(new SortingKey<double>(area, area->getUcastVolicov(1)), area);
 	obceUnsortedUcast2->insertHard(new SortingKey<double>(area, area->getUcastVolicov(2)), area);
-
-	//obceUnsortedUcast2->insertHard(std::to_string(area->getPocetVolicov(2)) + "_" + area->getNazovOkresu(), area);
-	//obceSortedVolici->insert(area->getPocetVolicov(), area);
-	//obceSortedUcast->insert(area->getPocetVolicov(), area);
 }
 void  Nacitanie::pridajOkres(Okres* area)
 {

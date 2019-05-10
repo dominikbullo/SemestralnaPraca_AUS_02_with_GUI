@@ -2,7 +2,6 @@
 
 #include "sort.h"
 #include "../unsorted_sequence_table.h"
-#include "../../../SortingKey.h"
 
 namespace structures
 {
@@ -17,7 +16,7 @@ namespace structures
 		/// <summary> Utriedi tabulku triedenim Heap sort. </summary>
 		/// <param name = "table"> NonortedSequenceTable, ktoru ma utriedit. </param>
 		void sort(UnsortedSequenceTable<K, T>& table) override;
-		void sortByCustomKey(UnsortedSequenceTable<K, T>& table, bool desc);
+		void sortByCustomKey(UnsortedSequenceTable<K, T>& table);
 	};
 
 	template<typename K, typename T>
@@ -29,14 +28,6 @@ namespace structures
 			do {
 				swapping = false;
 				int father = (current - 1) / 2;
-				//K test1 = table.getItemAtIndex(current).getKey();
-				//K test2 = table.getItemAtIndex(father).getKey();
-				//auto test3 = table.getItemAtIndex(current).getKey()->getValue();
-				//auto test4 = table.getItemAtIndex(father).getKey()->getValue();
-				//if (test1 > test2 != test3 > test4)
-				//{
-				//	throw std::exception("TOTO sa nesmie sta!");
-				//}
 				if ((current > 0) && (table.getItemAtIndex(current).getKey() > table.getItemAtIndex(father).getKey())) {
 					table.swap(current, father);
 					current = father;
@@ -44,7 +35,7 @@ namespace structures
 				}
 			} while (swapping);
 		}
-		for (int i = table.size() - 1; i > 0; i--) {
+		for (int i = (int)table.size() - 1; i > 0; i--) {
 			table.swap(0, i);
 			int current = 0;
 			do {
@@ -64,39 +55,27 @@ namespace structures
 				//notify();
 			} while (swapping);
 		}
+		//throw std::exception("HeapSort<K, T>::sort: Not implemented yet.");
 	}
 
 	template<typename K, typename T>
-	inline void HeapSort<K, T>::sortByCustomKey(UnsortedSequenceTable<K, T>& table, bool desc)
+	inline void HeapSort<K, T>::sortByCustomKey(UnsortedSequenceTable<K, T>& table)
 	{
-		// primary sorting from smallest to biggest
 		bool swapping;
 		for (int i = 1; i < (int)table.size(); i++) {
 			int current = i;
 			do {
 				swapping = false;
 				int father = (current - 1) / 2;
-				if (desc) {
-					if ((current > 0) && (table.getItemAtIndex(current).getKey()->getValue() < table.getItemAtIndex(father).getKey()->getValue())) {
-						table.swap(father, current);
-						father = current;
-						swapping = true;
-					}
+				if ((current > 0) && (*table.getItemAtIndex(current).getKey() > *table.getItemAtIndex(father).getKey()))
+				{
+					table.swap(current, father);
+					current = father;
+					swapping = true;
 				}
-				else {
-					auto test1 = table.getItemAtIndex(current).getKey()->getValue();
-					auto test2 = table.getItemAtIndex(father).getKey()->getValue();
-					if ((current > 0) && (table.getItemAtIndex(current).getKey()->getValue() > table.getItemAtIndex(father).getKey()->getValue()))
-					{
-						table.swap(current, father);
-						current = father;
-						swapping = true;
-					}
-				}
-
 			} while (swapping);
 		}
-		for (int i = table.size() - 1; i > 0; i--) {
+		for (int i = (int)table.size() - 1; i > 0; i--) {
 			table.swap(0, i);
 			int current = 0;
 			do {
@@ -105,37 +84,13 @@ namespace structures
 				int left = current * 2 + 1;
 				int right = current * 2 + 2;
 				if (left < i && right < i)
-				{
-					if (desc)
-					{
-						max = table.getItemAtIndex(left).getKey()->getValue() < table.getItemAtIndex(right).getKey()->getValue() ? left : right;
-					}
-					else
-					{
-						max = table.getItemAtIndex(left).getKey()->getValue() > table.getItemAtIndex(right).getKey()->getValue() ? left : right;
-					}
-				}
+					max = *table.getItemAtIndex(left).getKey() > *table.getItemAtIndex(right).getKey() ? left : right;
 				else
-				{
 					max = left < i ? left : right;
-				}
-
-				if (desc)
-				{
-					if (max < i && table.getItemAtIndex(max).getKey()->getValue() < table.getItemAtIndex(current).getKey()->getValue()) {
-						table.swap(max, current);
-						current = max;
-						swapping = true;
-					}
-				}
-				else
-				{
-					if (max < i && table.getItemAtIndex(max).getKey()->getValue() > table.getItemAtIndex(current).getKey()->getValue()) {
-						table.swap(max, current);
-						current = max;
-						swapping = true;
-					}
-
+				if (max < i && *table.getItemAtIndex(max).getKey() > *table.getItemAtIndex(current).getKey()) {
+					table.swap(max, current);
+					current = max;
+					swapping = true;
 				}
 				//notify();
 			} while (swapping);

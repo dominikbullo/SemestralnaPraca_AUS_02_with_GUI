@@ -23,6 +23,8 @@ Area::~Area()
 
 bool Obec::isIn(Area& area) const
 {
+	// TODO premyslie -> cyklus pre obce ? 
+	// alebo kadı kraj a okres ešte bude ma štruktúry
 	return false;
 }
 

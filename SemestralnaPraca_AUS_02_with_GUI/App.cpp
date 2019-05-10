@@ -8,13 +8,13 @@ App::App(Nacitanie* loader) : loader(loader)
 	okresySorted = loader->getOkresy();
 	obceSorted = loader->getObce();
 
-	//obceUnsortedNazov = loader->getObceUnsortedNazov();
-
 	obceUnsortedVolici1 = loader->getObceUnsortedVolici1();
 	obceUnsortedVolici2 = loader->getObceUnsortedVolici2();
 
 	obceUnsortedUcast1 = loader->getObceUnsortedUcast1();
 	obceUnsortedUcast2 = loader->getObceUnsortedUcast2();
+
+	sortTable(obceUnsortedVolici1);
 }
 App::~App()
 {

@@ -9,22 +9,19 @@
 #include "structures/table/unsorted_sequence_table.h"
 #include "structures/table/sorted_sequence_table.h"
 #include "structures/array/array.h"
-
 #include "Area.h"
 #include "SortingKey.h"
 
 class Nacitanie
 {
 private:
-	structures::SortedSequenceTable<string, Obec*> *obceSorted;
-	//structures::UnsortedSequenceTable<std::wstring, Obec*> *obceTestWstring;
-
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*> *obceUnsortedVolici1;
 	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*> *obceUnsortedVolici2;
 
 	structures::UnsortedSequenceTable<SortingKey<double>*, Obec*> *obceUnsortedUcast1;
 	structures::UnsortedSequenceTable<SortingKey<double>*, Obec*> *obceUnsortedUcast2;
 
+	structures::SortedSequenceTable<string, Obec*> *obceSorted;
 	structures::SortedSequenceTable<string, Okres*> *okresySorted;
 	structures::SortedSequenceTable<string, Kraj*> *krajeSorted;
 
