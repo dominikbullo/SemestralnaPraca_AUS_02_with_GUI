@@ -23,9 +23,7 @@ Area::~Area()
 
 bool Obec::isIn(Area& area) const
 {
-	// TODO premyslie -> cyklus pre obce ? 
-	// alebo každý kraj a okres ešte bude ma štruktúry
-	return false;
+	return this->nazovOkresu == area.getName() || this->nazovKraja == area.getName();
 }
 
 void Obec::makeUniqueNazov()

@@ -7,12 +7,6 @@ App::App(Nacitanie* loader) : loader(loader)
 	krajeSorted = loader->getKraje();
 	okresySorted = loader->getOkresy();
 	obceSorted = loader->getObce();
-
-	//obceUnsortedVolici1 = loader->getObceUnsortedVolici1();
-	//obceUnsortedVolici2 = loader->getObceUnsortedVolici2();
-
-	//obceUnsortedUcast1 = loader->getObceUnsortedUcast1();
-	//obceUnsortedUcast2 = loader->getObceUnsortedUcast2();
 }
 App::~App()
 {
@@ -30,9 +24,9 @@ structures::ArrayList<Area*>* App::getAreasNazov(std::string nazov)
 	Okres* tempOkres;
 	Obec* tempObec;
 
-	if (this->krajeSorted->tryFind(nazov, tempKraj) && filter->evaluate(*tempKraj, *kriterium)) { matches->add(tempKraj); }
-	if (this->okresySorted->tryFind(nazov, tempOkres) && filter->evaluate(*tempOkres, *kriterium)) { matches->add(tempOkres); }
-	if (this->obceSorted->tryFind(nazov, tempObec) && filter->evaluate(*tempObec, *kriterium)) { matches->add(tempObec); }
+	if (loader->getKraje()->tryFind(nazov, tempKraj) && filter->evaluate(*tempKraj, *kriterium)) { matches->add(tempKraj); }
+	if (loader->getOkresy()->tryFind(nazov, tempOkres) && filter->evaluate(*tempOkres, *kriterium)) { matches->add(tempOkres); }
+	if (loader->getObce()->tryFind(nazov, tempObec) && filter->evaluate(*tempObec, *kriterium)) { matches->add(tempObec); }
 
 	delete kriterium;
 	delete filter;

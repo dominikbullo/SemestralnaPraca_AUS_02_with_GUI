@@ -291,7 +291,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->numericUpDown4->Size = System::Drawing::Size(112, 20);
 			this->numericUpDown4->TabIndex = 39;
 			this->numericUpDown4->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 50, 0, 0, 0 });
-			this->numericUpDown4->ValueChanged += gcnew System::EventHandler(this, &MyForm::numericUpDown4_ValueChanged);
 			// 
 			// numericUpDown3
 			// 
@@ -340,7 +339,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->zobrazObce->TabStop = true;
 			this->zobrazObce->Text = L"Obce";
 			this->zobrazObce->UseVisualStyleBackColor = true;
-			this->zobrazObce->CheckedChanged += gcnew System::EventHandler(this, &MyForm::zobrazObce_CheckedChanged);
 			// 
 			// zobrazOkresy
 			// 
@@ -351,7 +349,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->zobrazOkresy->TabIndex = 1;
 			this->zobrazOkresy->Text = L"Okresy";
 			this->zobrazOkresy->UseVisualStyleBackColor = true;
-			this->zobrazOkresy->CheckedChanged += gcnew System::EventHandler(this, &MyForm::zobrazOkresy_CheckedChanged);
 			// 
 			// zobrazKraje
 			// 
@@ -362,7 +359,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->zobrazKraje->TabIndex = 0;
 			this->zobrazKraje->Text = L"Kraje";
 			this->zobrazKraje->UseVisualStyleBackColor = true;
-			this->zobrazKraje->CheckedChanged += gcnew System::EventHandler(this, &MyForm::zobrazKraje_CheckedChanged);
 			// 
 			// groupBox3
 			// 
@@ -453,7 +449,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->obidveKola->TabIndex = 29;
 			this->obidveKola->Text = L"SPOLU";
 			this->obidveKola->UseVisualStyleBackColor = true;
-			this->obidveKola->CheckedChanged += gcnew System::EventHandler(this, &MyForm::obidveKola_CheckedChanged);
 			// 
 			// druheKolo
 			// 
@@ -464,7 +459,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->druheKolo->TabIndex = 28;
 			this->druheKolo->Text = L"2. KOLO";
 			this->druheKolo->UseVisualStyleBackColor = true;
-			this->druheKolo->CheckedChanged += gcnew System::EventHandler(this, &MyForm::druheKolo_CheckedChanged);
 			// 
 			// prveKolo
 			// 
@@ -477,7 +471,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->prveKolo->TabStop = true;
 			this->prveKolo->Text = L"1. KOLO";
 			this->prveKolo->UseVisualStyleBackColor = true;
-			this->prveKolo->CheckedChanged += gcnew System::EventHandler(this, &MyForm::prveKolo_CheckedChanged);
 			// 
 			// MyForm
 			// 
@@ -623,19 +616,6 @@ namespace SemestralnaPracaAUS02withGUI {
 		return returnString;
 	}
 
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		//selectedArea = 
-		//textBox1->Text = gcnew String(selectedArea);
-	}
-
-	private: System::Void comboBox1_ContextMenuStripChanged(System::Object^  sender, System::EventArgs^  e) {
-		//selectedArea = comboBox1->GetItemText();
-		//textBox1->Text = gcnew String(comboBox1->SelectedItem->ToString());
-		//textBox1->Text = gcnew String(selectedArea->toString());
-	}
-	private: System::Void comboBox1_SelectedValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		//textBox1->Text = gcnew String(comboBox1->SelectedItem->ToString());
-	}
 	private: System::Void checkedListBox1_ItemCheck(System::Object^  sender, System::Windows::Forms::ItemCheckEventArgs^  e) {
 		updateTable();
 	}
@@ -696,52 +676,6 @@ namespace SemestralnaPracaAUS02withGUI {
 		}
 	}
 
-	private: System::Void zobrazKraje_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		if (zobrazKraje->Checked)
-		{
-			updateTable();
-		}
-	}
-	private: System::Void zobrazObce_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		if (zobrazObce->Checked)
-		{
-			// len vtedy, keď zaškrtnem túto možnosť
-			updateTable();
-		}
-	}
-	private: System::Void zobrazOkresy_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		if (zobrazOkresy->Checked)
-		{
-			// len vtedy, keď zaškrtnem túto možnosť
-			updateTable();
-		}
-	}
-	private: System::Void prveKolo_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		if (prveKolo->Checked)
-		{
-			// len vtedy, keď zaškrtnem túto možnosť
-			/*updateTable();*/
-		}
-	}
-	private: System::Void druheKolo_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		if (prveKolo->Checked)
-		{
-			// len vtedy, keď zaškrtnem túto možnosť
-			/*updateTable();*/
-		}
-	}
-	private: System::Void obidveKola_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		if (obidveKola->Checked)
-		{
-			//this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
-			// len vtedy, keď zaškrtnem túto možnosť
-			/*updateTable();*/
-		}
-	}
-	private: System::Void checkBox2_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void numericUpDown4_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		auto test = comboBox1->SelectedItem->ToString();
 

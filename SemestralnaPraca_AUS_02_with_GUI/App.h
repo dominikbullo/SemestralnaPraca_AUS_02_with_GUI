@@ -14,11 +14,6 @@ private:
 	structures::SortedSequenceTable<std::string, Kraj*> *krajeSorted;
 	structures::SortedSequenceTable<std::string, Okres*> *okresySorted;
 	structures::SortedSequenceTable<std::string, Obec*> *obceSorted;
-	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici1;
-	structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* obceUnsortedVolici2;
-
-	structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>* obceUnsortedUcast1;
-	structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>* obceUnsortedUcast2;
 
 public:
 	App(Nacitanie* loader);
