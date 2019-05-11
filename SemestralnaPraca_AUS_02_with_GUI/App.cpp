@@ -8,15 +8,28 @@ App::App(Nacitanie* loader) : loader(loader)
 	okresySorted = loader->getOkresy();
 	obceSorted = loader->getObce();
 
-	structures::HeapSort<std::string, Obec*, std::string, Area> *sortString = new structures::HeapSort<std::string, Obec *, std::string, Area>();
-	structures::HeapSort<std::string, Obec*, int, Area> *sortInt = new structures::HeapSort<std::string, Obec *, int, Area>();
-	structures::HeapSort<std::string, Obec*, double, Area> *sortDouble = new structures::HeapSort<std::string, Obec *, double, Area>();
-	auto Ktest = new KriteriumNazov();
-	auto Ktest1 = new KriteriumVolici(1);
-	auto Ktest2 = new KriteriumUcast(1);
-	//auto test1 = new structures::UnsortedSequenceTable<std::string, Obec*>();
-	auto test = loader->getObceUnsorted();
-	//sortString->sortByKriterium(*test, *Ktest);
+	//structures::HeapSort<std::string, Obec*, std::string, Area> *sortString = new structures::HeapSort<std::string, Obec *, std::string, Area>();
+	//structures::HeapSort<std::string, Obec*, int, Area> *sortInt = new structures::HeapSort<std::string, Obec *, int, Area>();
+	//structures::HeapSort<std::string, Obec*, double, Area> *sortDouble = new structures::HeapSort<std::string, Obec *, double, Area>();
+	//structures::HeapSort<std::string, Obec*, bool, Obec> *sortBool = new structures::HeapSort<std::string, Obec *, bool, Obec>();
+
+	//auto Ktest1 = new KriteriumVolici(1);
+	//auto Ktest11 = new KriteriumVolici(2);
+	//auto Ktest2 = new KriteriumUcast(1);
+	//auto Ktest22 = new KriteriumUcast(2);
+	//auto Ktest3 = new KriteriumPrislusnostObce();
+	//auto test = new Kraj("Žilinský kraj");
+	//Ktest3->setArea(test);
+
+	//auto testssss = loader->getObceUnsorted();
+	//sortBool->sortByKriterium(*testssss, *Ktest3);
+	//for each (auto *var in *testssss)
+	//{
+	//	if (Ktest3->evaluate(*var->accessData()))
+	//	{
+	//		cout << var->accessData()->getName() << " " << var->accessData()->getNazovKraja() << endl;
+	//	}
+	//}
 	//sortInt->sortByKriterium(*test, *Ktest1);
 	//sortDouble->sortByKriterium(*test, *Ktest2);
 }

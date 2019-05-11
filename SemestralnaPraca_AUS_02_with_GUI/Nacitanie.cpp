@@ -215,8 +215,8 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
 
-	while (file.good() && this->obceSorted->size() < 50) {
-		//while (file.good()) {
+	//while (file.good() && this->obceSorted->size() < 50) {
+	while (file.good()) {
 		getline(file, tmp, ';');		// Kod kraja
 		getline(file, nazovKraja, ';');	// Nazov kraja
 		getline(file, tmp, ';');		// Kód územného obvodu
@@ -280,7 +280,7 @@ void Nacitanie::pridajObec(Obec* area)
 	area->calculateSumValuesForBothRounds();
 
 	obceSorted->insert(area->getName(), area);
-	obceUnsorted->insert(area->getName(), area);
+	obceUnsorted->insertHard(area->getName(), area);
 
 	//obceUnsortedVolici1->insertHard(new SortingKey<int>(area, area->getPocetVolicov(1)), area);
 	//obceUnsortedVolici2->insertHard(new SortingKey<int>(area, area->getPocetVolicov(2)), area);
