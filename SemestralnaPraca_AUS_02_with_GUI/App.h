@@ -29,6 +29,7 @@ public:
 template<typename K>
 inline void App::sortTable(structures::UnsortedSequenceTable<SortingKey<K>*, Obec*>* table)
 {
-	structures::HeapSort<SortingKey<K>*, Obec *> *sort = new structures::HeapSort<SortingKey<K>*, Obec *>();
-	sort->sortByCustomKey(*table);
+	//structures::HeapSort<SortingKey<K>*, Obec *> *sort = new structures::HeapSort<SortingKey<K>*, Obec *>();
+	//sort->sortByKriterium(new KriteriumNazov());
+	//sort->sortByCustomKey(*table);
 }

@@ -7,6 +7,18 @@ App::App(Nacitanie* loader) : loader(loader)
 	krajeSorted = loader->getKraje();
 	okresySorted = loader->getOkresy();
 	obceSorted = loader->getObce();
+
+	structures::HeapSort<std::string, Obec*, std::string, Area> *sortString = new structures::HeapSort<std::string, Obec *, std::string, Area>();
+	structures::HeapSort<std::string, Obec*, int, Area> *sortInt = new structures::HeapSort<std::string, Obec *, int, Area>();
+	structures::HeapSort<std::string, Obec*, double, Area> *sortDouble = new structures::HeapSort<std::string, Obec *, double, Area>();
+	auto Ktest = new KriteriumNazov();
+	auto Ktest1 = new KriteriumVolici(1);
+	auto Ktest2 = new KriteriumUcast(1);
+	//auto test1 = new structures::UnsortedSequenceTable<std::string, Obec*>();
+	auto test = loader->getObceUnsorted();
+	//sortString->sortByKriterium(*test, *Ktest);
+	//sortInt->sortByKriterium(*test, *Ktest1);
+	//sortDouble->sortByKriterium(*test, *Ktest2);
 }
 App::~App()
 {

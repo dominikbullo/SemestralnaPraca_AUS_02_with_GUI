@@ -715,116 +715,116 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		auto test = comboBox1->SelectedItem->ToString();
-		if (PríslušnosťObceCheck->Checked)
-		{
-			throw std::exception("Not implemented yet!");
-		}
+		//if (PríslušnosťObceCheck->Checked)
+		//{
+		//	throw std::exception("Not implemented yet!");
+		//}
 
-		if (this->getSelectedKolo() == 1 || this->getSelectedKolo() == 2)
-		{
-			this->dataGridView1->Rows->Clear();
+		//if (this->getSelectedKolo() == 1 || this->getSelectedKolo() == 2)
+		//{
+		//	this->dataGridView1->Rows->Clear();
 
-			if (test == "zostupne")
-			{
-				if (sortNazovRadio->Checked)
-				{
-					// vypíše SST tabuľku v opačnom poradí 
-					int i = loader->getObce()->size() - 1;
-					this->dataGridView1->Rows->Add(loader->getObce()->size());
+		//	if (test == "zostupne")
+		//	{
+		//		if (sortNazovRadio->Checked)
+		//		{
+		//			// vypíše SST tabuľku v opačnom poradí 
+		//			int i = loader->getObce()->size() - 1;
+		//			this->dataGridView1->Rows->Add(loader->getObce()->size());
 
-					for each (auto obec in *loader->getObce())
-					{
-						this->dataGridView1->Rows[i]->Cells[0]->Value =
-							gcnew String(obec->accessData()->getName().c_str());
-						i--;
-					}
-				}
-				if (sortVoliciRadio->Checked)
-				{
-					structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>*  obce;
-					if (this->getSelectedKolo() == 1)
-					{
-						obce = loader->getObceUnsortedVolici1();
-					}
-					else
-					{
-						obce = loader->getObceUnsortedVolici2();
-					}
+		//			for each (auto obec in *loader->getObce())
+		//			{
+		//				this->dataGridView1->Rows[i]->Cells[0]->Value =
+		//					gcnew String(obec->accessData()->getName().c_str());
+		//				i--;
+		//			}
+		//		}
+		//		if (sortVoliciRadio->Checked)
+		//		{
+		//			structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>*  obce;
+		//			if (this->getSelectedKolo() == 1)
+		//			{
+		//				obce = loader->getObceUnsortedVolici1();
+		//			}
+		//			else
+		//			{
+		//				obce = loader->getObceUnsortedVolici2();
+		//			}
 
-					app->sortTable(obce);
-					for (int i = obce->size() - 1; i >= 0; --i) {
-						mojatest<structures::TableItem<SortingKey<int> *, Obec *>>(obce->getItemAtIndex(i));
-					}
-				}
-				if (sortUcastRadio->Checked)
-				{
-					structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>*  obce;
-					if (this->getSelectedKolo() == 1)
-					{
-						obce = loader->getObceUnsortedUcast1();
-					}
-					else
-					{
-						obce = loader->getObceUnsortedUcast2();
-					}
+		//			app->sortTable(obce);
+		//			for (int i = obce->size() - 1; i >= 0; --i) {
+		//				mojatest<structures::TableItem<SortingKey<int> *, Obec *>>(obce->getItemAtIndex(i));
+		//			}
+		//		}
+		//		if (sortUcastRadio->Checked)
+		//		{
+		//			structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>*  obce;
+		//			if (this->getSelectedKolo() == 1)
+		//			{
+		//				obce = loader->getObceUnsortedUcast1();
+		//			}
+		//			else
+		//			{
+		//				obce = loader->getObceUnsortedUcast2();
+		//			}
 
-					app->sortTable(obce);
-					for (int i = obce->size() - 1; i >= 0; --i) {
-						mojatest<structures::TableItem<SortingKey<double> *, Obec *>>(obce->getItemAtIndex(i));
-					}
-				}
-			}
-			else
-			{
-				if (sortNazovRadio->Checked)
-				{
-					// vypíše SST tabuľku v opačnom poradí 
-					for each (auto obec in *loader->getObce())
-					{
-						this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
-							gcnew String(obec->accessData()->getName().c_str());
-					}
-				}
-				if (sortVoliciRadio->Checked)
-				{
-					structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>*  obce;
-					if (this->getSelectedKolo() == 1)
-					{
-						obce = loader->getObceUnsortedVolici1();
-					}
-					else
-					{
-						obce = loader->getObceUnsortedVolici2();
-					}
+		//			app->sortTable(obce);
+		//			for (int i = obce->size() - 1; i >= 0; --i) {
+		//				mojatest<structures::TableItem<SortingKey<double> *, Obec *>>(obce->getItemAtIndex(i));
+		//			}
+		//		}
+		//	}
+		//	else
+		//	{
+		//		if (sortNazovRadio->Checked)
+		//		{
+		//			// vypíše SST tabuľku v opačnom poradí 
+		//			for each (auto obec in *loader->getObce())
+		//			{
+		//				this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
+		//					gcnew String(obec->accessData()->getName().c_str());
+		//			}
+		//		}
+		//		if (sortVoliciRadio->Checked)
+		//		{
+		//			structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>*  obce;
+		//			if (this->getSelectedKolo() == 1)
+		//			{
+		//				obce = loader->getObceUnsortedVolici1();
+		//			}
+		//			else
+		//			{
+		//				obce = loader->getObceUnsortedVolici2();
+		//			}
 
-					app->sortTable(obce);
-					for (auto i = 0; i < obce->size(); i++) {
-						mojatest<structures::TableItem<SortingKey<int> *, Obec *>>(obce->getItemAtIndex(i));
-					}
-				}
-				if (sortUcastRadio->Checked)
-				{
-					structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>*  obce;
-					if (this->getSelectedKolo() == 1)
-					{
-						obce = loader->getObceUnsortedUcast1();
-					}
-					else
-					{
-						obce = loader->getObceUnsortedUcast2();
-					}
+		//			app->sortTable(obce);
+		//			for (auto i = 0; i < obce->size(); i++) {
+		//				mojatest<structures::TableItem<SortingKey<int> *, Obec *>>(obce->getItemAtIndex(i));
+		//			}
+		//		}
+		//		if (sortUcastRadio->Checked)
+		//		{
+		//			structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>*  obce;
+		//			if (this->getSelectedKolo() == 1)
+		//			{
+		//				obce = loader->getObceUnsortedUcast1();
+		//			}
+		//			else
+		//			{
+		//				obce = loader->getObceUnsortedUcast2();
+		//			}
 
-					app->sortTable(obce);
-					for (auto i = 0; i < obce->size(); i++) {
-						mojatest<structures::TableItem<SortingKey<double> *, Obec *>>(obce->getItemAtIndex(i));
-					}
-				}
-			}
-		}
-		else
-		{
-			MessageBox::Show("Pre toto kolo, alebo ich súčet, nie je možné zoradiť výsledky");
-		}
+		//			app->sortTable(obce);
+		//			for (auto i = 0; i < obce->size(); i++) {
+		//				mojatest<structures::TableItem<SortingKey<double> *, Obec *>>(obce->getItemAtIndex(i));
+		//			}
+		//		}
+		//	}
+		//}
+		//else
+		//{
+		//	MessageBox::Show("Pre toto kolo, alebo ich súčet, nie je možné zoradiť výsledky");
+		//}
 	}
 			 template <typename T>
 			 void mojatest(T &test)

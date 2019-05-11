@@ -9,11 +9,14 @@ Nacitanie::Nacitanie()
 	krajeSorted = new structures::SortedSequenceTable<string, Kraj*>();
 	okresySorted = new structures::SortedSequenceTable<string, Okres*>();
 	obceSorted = new structures::SortedSequenceTable<string, Obec*>();
-	obceUnsortedVolici1 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
-	obceUnsortedVolici2 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
 
-	obceUnsortedUcast1 = new structures::UnsortedSequenceTable<SortingKey<double>*, Obec *>();
-	obceUnsortedUcast2 = new structures::UnsortedSequenceTable<SortingKey<double>*, Obec *>();
+	obceUnsorted = new structures::UnsortedSequenceTable<string, Obec*>();
+
+	//obceUnsortedVolici1 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
+	//obceUnsortedVolici2 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
+
+	//obceUnsortedUcast1 = new structures::UnsortedSequenceTable<SortingKey<double>*, Obec *>();
+	//obceUnsortedUcast2 = new structures::UnsortedSequenceTable<SortingKey<double>*, Obec *>();
 
 	this->loadData();
 }
@@ -21,30 +24,37 @@ Nacitanie::Nacitanie()
 
 Nacitanie::~Nacitanie()
 {
-	for (auto * item : *obceUnsortedVolici1)
-	{
-		delete item->getKey();
-	}
-	delete obceUnsortedVolici1;
+	//for (auto * item : *obceUnsortedVolici1)
+	//{
+	//	delete item->getKey();
+	//}
+	//delete obceUnsortedVolici1;
 
-	for (auto * item : *obceUnsortedVolici2)
-	{
-		delete item->getKey();
-	}
-	delete obceUnsortedVolici2;
+	//for (auto * item : *obceUnsortedVolici2)
+	//{
+	//	delete item->getKey();
+	//}
+	//delete obceUnsortedVolici2;
 
-	for (auto * item : *obceUnsortedUcast1)
-	{
-		delete item->getKey();
-	}
-	delete obceUnsortedVolici1;
+	//for (auto * item : *obceUnsortedUcast1)
+	//{
+	//	delete item->getKey();
+	//}
+	//delete obceUnsortedUcast1;
 
-	for (auto * item : *obceUnsortedUcast2)
-	{
-		delete item->getKey();
-	}
-	delete obceUnsortedVolici2;
+	//for (auto * item : *obceUnsortedUcast2)
+	//{
+	//	delete item->getKey();
+	//}
+	//delete obceUnsortedUcast2;
 
+	// TODO asi len takto
+	//for (auto * item : *obceUnsorted)
+	//{
+	//	delete item->accessData();
+	//}
+	obceUnsorted->clear();
+	delete obceUnsorted;
 
 	for (auto * item : *obceSorted)
 	{
@@ -270,12 +280,13 @@ void Nacitanie::pridajObec(Obec* area)
 	area->calculateSumValuesForBothRounds();
 
 	obceSorted->insert(area->getName(), area);
+	obceUnsorted->insert(area->getName(), area);
 
-	obceUnsortedVolici1->insertHard(new SortingKey<int>(area, area->getPocetVolicov(1)), area);
-	obceUnsortedVolici2->insertHard(new SortingKey<int>(area, area->getPocetVolicov(2)), area);
+	//obceUnsortedVolici1->insertHard(new SortingKey<int>(area, area->getPocetVolicov(1)), area);
+	//obceUnsortedVolici2->insertHard(new SortingKey<int>(area, area->getPocetVolicov(2)), area);
 
-	obceUnsortedUcast1->insertHard(new SortingKey<double>(area, area->getUcastVolicov(1)), area);
-	obceUnsortedUcast2->insertHard(new SortingKey<double>(area, area->getUcastVolicov(2)), area);
+	//obceUnsortedUcast1->insertHard(new SortingKey<double>(area, area->getUcastVolicov(1)), area);
+	//obceUnsortedUcast2->insertHard(new SortingKey<double>(area, area->getUcastVolicov(2)), area);
 }
 void  Nacitanie::pridajOkres(Okres* area)
 {
