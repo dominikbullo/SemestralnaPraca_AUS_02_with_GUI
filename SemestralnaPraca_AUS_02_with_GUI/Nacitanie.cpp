@@ -33,6 +33,18 @@ Nacitanie::~Nacitanie()
 	}
 	delete obceUnsortedVolici2;
 
+	for (auto * item : *obceUnsortedUcast1)
+	{
+		delete item->getKey();
+	}
+	delete obceUnsortedVolici1;
+
+	for (auto * item : *obceUnsortedUcast2)
+	{
+		delete item->getKey();
+	}
+	delete obceUnsortedVolici2;
+
 
 	for (auto * item : *obceSorted)
 	{
@@ -193,7 +205,8 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 	getline(file, tmp); // vynechaj hlavièku
 	getline(file, tmp); // vynechaj hlavièku
 
-	while (file.good()) {
+	while (file.good() && this->obceSorted->size() < 50) {
+		//while (file.good()) {
 		getline(file, tmp, ';');		// Kod kraja
 		getline(file, nazovKraja, ';');	// Nazov kraja
 		getline(file, tmp, ';');		// Kód územného obvodu
@@ -204,7 +217,10 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 
 		getline(file, tmp, ';');		// Kód obce
 		getline(file, nazovObce, ';');	// Názov obce
-
+		//if (nazovObce == "Èab")
+		//{
+		//	cout << "Našiel som";
+		//}
 		Obec* tempArea = new Obec(nazovObce, nazovKraja, nazovOkresu);
 
 		// 1. kolo 
@@ -245,12 +261,14 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 }
 void Nacitanie::pridajObec(Obec* area)
 {
-	// NOTE možnos upravy metódy insert 
+	// NOTE možnos upravy metódy insert -> metóda nevie poriadne porovnáva UNICODE znaky
 	if (obceSorted->containsKey(area->getName())) {
 		area->makeUniqueNazov();
 		cout << "Find duplicates -> renamed to: " << area->getName() << endl;
 	}
+
 	area->calculateSumValuesForBothRounds();
+
 	obceSorted->insert(area->getName(), area);
 
 	obceUnsortedVolici1->insertHard(new SortingKey<int>(area, area->getPocetVolicov(1)), area);
@@ -261,14 +279,12 @@ void Nacitanie::pridajObec(Obec* area)
 }
 void  Nacitanie::pridajOkres(Okres* area)
 {
-	// Ziadne duplikáty sa nemôžu vyskytova 
 	area->calculateSumValuesForBothRounds();
 	okresySorted->insert(area->getName(), area);
 }
 
 void  Nacitanie::pridajKraj(Kraj* area)
 {
-	// Ziadne duplikáty sa nemôžu vyskytova
 	area->calculateSumValuesForBothRounds();
 	krajeSorted->insert(area->getName(), area);
 }
