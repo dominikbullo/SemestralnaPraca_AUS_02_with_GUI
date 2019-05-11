@@ -28,32 +28,14 @@ namespace SemestralnaPracaAUS02withGUI {
 
 			loader = new Nacitanie();
 			app = new App(loader);
-
-			updateTable();
-
-			//fillComboBoxes();
-
-			//app = new App(new Nacitanie()->getData());
-
+			this->dataGridView1->Columns->Add("Area", "Area");
+			this->dataGridView1->Columns->Add("Area1", "Area1");
+			this->dataGridView1->Columns->Add("Area2", "Area2");
+			this->dataGridView1->Columns->Add("Area3", "Area3");
+			this->dataGridView1->Columns->Add("Area4", "Area4");
+			this->dataGridView1->Columns->Add("Area5", "Area5");
+			this->dataGridView1->Columns->Add("Area6", "Area6");
 		}
-
-		/*void fillComboBoxes()
-		{
-			VolebneKolo* data = app->getVolebneKolo(1);
-			for (auto * item : *data->getKraje())
-			{
-				this->comboBox1->Items->Add(gcnew String(item->accessData()->getName().c_str()));
-			}
-			for (auto * item : *data->getOkresy())
-			{
-				this->comboBox2->Items->Add(gcnew String(item->accessData()->getName().c_str()));
-			}
-			for (auto * item : *data->getObce())
-			{
-				item->accessData()->toString();
-				this->comboBox3->Items->Add(gcnew String(item->accessData()->getName().c_str()));
-			}
-		}*/
 
 	protected:
 		/// <summary>
@@ -248,7 +230,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->PríslušnosťObceCheck->TabIndex = 47;
 			this->PríslušnosťObceCheck->Text = L"Upresniť";
 			this->PríslušnosťObceCheck->UseVisualStyleBackColor = true;
-			this->PríslušnosťObceCheck->CheckedChanged += gcnew System::EventHandler(this, &MyForm::PríslušnosťObceCheck_CheckedChanged);
 			// 
 			// textBox2
 			// 
@@ -545,7 +526,21 @@ namespace SemestralnaPracaAUS02withGUI {
 			if (obidveKola->Checked) { return 0; };
 			return -1;
 		}
-
+		void areaToDataGridView(Area &area)
+		{
+			// TODO 
+			int index = this->dataGridView1->Rows->Add();
+			this->dataGridView1->Rows[index]->Cells[0]->Value =
+				gcnew String(area.getName().c_str());
+			this->dataGridView1->Rows[index]->Cells[1]->Value =
+				System::Convert::ToString(area.getPocetVolicov(1));
+			this->dataGridView1->Rows[index]->Cells[2]->Value =
+				System::Convert::ToString(area.getPocetVolicov(2));
+			this->dataGridView1->Rows[index]->Cells[3]->Value =
+				System::Convert::ToString(area.getUcastVolicov(1));
+			this->dataGridView1->Rows[index]->Cells[4]->Value =
+				System::Convert::ToString(area.getUcastVolicov(2));
+		}
 		void updateTable()
 		{
 			updateTableHeaders();
@@ -660,21 +655,18 @@ namespace SemestralnaPracaAUS02withGUI {
 		updateTable();
 	}
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-		updateTableHeaders();
-		if (filterNazovRadio->Checked)
-		{
-			// TODO tabuľka - skryť odkryť ? zobraziť nezobraziť ?
-			//throw std::exception("Not finished yet!");
+		this->Cursor->Current = System::Windows::Forms::Cursors::WaitCursor;
 
+		updateTableHeaders();
+		if (filterNazovRadio->Checked) {
 			structures::ArrayList<Area*>* areas = app->getAreasNazov(toStandardString(textBox1->Text->ToString()));
 			arrayListToDataGridTable(areas);
-
 			delete areas;
 		}
 
-		if (filterVoliciRadio->Checked)
-		{
+		if (filterVoliciRadio->Checked) {
 			if (numericUpDown1->Value > numericUpDown2->Value) {
+				this->ResetCursor();
 				MessageBox::Show("Hodnota od musí byť menšia ako hodnota do");
 				return;
 			}
@@ -689,7 +681,9 @@ namespace SemestralnaPracaAUS02withGUI {
 			}
 			else
 			{
+				this->ResetCursor();
 				MessageBox::Show("Pre toto kolo, alebo ich súčet, nie je možné nájsť výsledky");
+				return;
 			}
 		}
 		if (filterUcastRadio->Checked)
@@ -708,142 +702,108 @@ namespace SemestralnaPracaAUS02withGUI {
 			}
 			else
 			{
+				this->ResetCursor();
 				MessageBox::Show("Pre toto kolo, alebo ich súčet, nie je možné nájsť výsledky");
+				return;
 			}
 		}
+		this->ResetCursor();
 	}
 
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		auto test = comboBox1->SelectedItem->ToString();
-		//if (PríslušnosťObceCheck->Checked)
-		//{
-		//	throw std::exception("Not implemented yet!");
-		//}
+		this->Cursor->Current = System::Windows::Forms::Cursors::WaitCursor;
+		this->dataGridView1->Rows->Clear();
+		auto *obce = loader->getObceUnsorted();
+		//auto obce1 = loader->getObceUnsorted();
+		//auto obce2 = *loader->getObceUnsorted();
 
-		//if (this->getSelectedKolo() == 1 || this->getSelectedKolo() == 2)
-		//{
-		//	this->dataGridView1->Rows->Clear();
+		if (sortNazovRadio->Checked) {
+			if (comboBox1->SelectedItem->ToString() == "zostupne") {
+				int i = loader->getObce()->size() - 1;
 
-		//	if (test == "zostupne")
-		//	{
-		//		if (sortNazovRadio->Checked)
-		//		{
-		//			// vypíše SST tabuľku v opačnom poradí 
-		//			int i = loader->getObce()->size() - 1;
-		//			this->dataGridView1->Rows->Add(loader->getObce()->size());
+				// add number of rows of structure size
+				this->dataGridView1->Rows->Add(loader->getObce()->size());
+				for each (auto *obec in *loader->getObce()) {
 
-		//			for each (auto obec in *loader->getObce())
-		//			{
-		//				this->dataGridView1->Rows[i]->Cells[0]->Value =
-		//					gcnew String(obec->accessData()->getName().c_str());
-		//				i--;
-		//			}
-		//		}
-		//		if (sortVoliciRadio->Checked)
-		//		{
-		//			structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>*  obce;
-		//			if (this->getSelectedKolo() == 1)
-		//			{
-		//				obce = loader->getObceUnsortedVolici1();
-		//			}
-		//			else
-		//			{
-		//				obce = loader->getObceUnsortedVolici2();
-		//			}
+					// idem po usporiadanej štruktúre vzostupne a kedže chcem zostupne
+					// vypisujem od posledneho riadku -> prehodenie poradia
+					this->dataGridView1->Rows[i]->Cells[0]->Value =
+						gcnew String(obec->accessData()->getName().c_str());
+					i--;
+				}
+			}
+			else {
+				for each (auto *obec in *loader->getObce()) {
+					this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
+						gcnew String(obec->accessData()->getName().c_str());
+				}
+			}
+		}
 
-		//			app->sortTable(obce);
-		//			for (int i = obce->size() - 1; i >= 0; --i) {
-		//				mojatest<structures::TableItem<SortingKey<int> *, Obec *>>(obce->getItemAtIndex(i));
-		//			}
-		//		}
-		//		if (sortUcastRadio->Checked)
-		//		{
-		//			structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>*  obce;
-		//			if (this->getSelectedKolo() == 1)
-		//			{
-		//				obce = loader->getObceUnsortedUcast1();
-		//			}
-		//			else
-		//			{
-		//				obce = loader->getObceUnsortedUcast2();
-		//			}
+		if (sortVoliciRadio->Checked) {
+			auto kriterium = new KriteriumVolici(this->getSelectedKolo());
+			structures::HeapSort<std::string, Obec*, int, Area> *sort =
+				new structures::HeapSort<std::string, Obec *, int, Area>();
 
-		//			app->sortTable(obce);
-		//			for (int i = obce->size() - 1; i >= 0; --i) {
-		//				mojatest<structures::TableItem<SortingKey<double> *, Obec *>>(obce->getItemAtIndex(i));
-		//			}
-		//		}
-		//	}
-		//	else
-		//	{
-		//		if (sortNazovRadio->Checked)
-		//		{
-		//			// vypíše SST tabuľku v opačnom poradí 
-		//			for each (auto obec in *loader->getObce())
-		//			{
-		//				this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
-		//					gcnew String(obec->accessData()->getName().c_str());
-		//			}
-		//		}
-		//		if (sortVoliciRadio->Checked)
-		//		{
-		//			structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>*  obce;
-		//			if (this->getSelectedKolo() == 1)
-		//			{
-		//				obce = loader->getObceUnsortedVolici1();
-		//			}
-		//			else
-		//			{
-		//				obce = loader->getObceUnsortedVolici2();
-		//			}
+			sort->sortByKriterium(*obce, *kriterium);
 
-		//			app->sortTable(obce);
-		//			for (auto i = 0; i < obce->size(); i++) {
-		//				mojatest<structures::TableItem<SortingKey<int> *, Obec *>>(obce->getItemAtIndex(i));
-		//			}
-		//		}
-		//		if (sortUcastRadio->Checked)
-		//		{
-		//			structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>*  obce;
-		//			if (this->getSelectedKolo() == 1)
-		//			{
-		//				obce = loader->getObceUnsortedUcast1();
-		//			}
-		//			else
-		//			{
-		//				obce = loader->getObceUnsortedUcast2();
-		//			}
+			if (comboBox1->SelectedItem->ToString() == "zostupne") {
+				for (int i = obce->size() - 1; i >= 0; --i) {
+					Obec* obec = obce->getItemAtIndex(i).accessData();
 
-		//			app->sortTable(obce);
-		//			for (auto i = 0; i < obce->size(); i++) {
-		//				mojatest<structures::TableItem<SortingKey<double> *, Obec *>>(obce->getItemAtIndex(i));
-		//			}
-		//		}
-		//	}
-		//}
-		//else
-		//{
-		//	MessageBox::Show("Pre toto kolo, alebo ich súčet, nie je možné zoradiť výsledky");
-		//}
+					if (kriterium->evaluate(*obec)) {
+						areaToDataGridView(*obec);
+					}
+				}
+			}
+			else {
+				for (int i = 0; i < obce->size(); ++i) {
+					Obec* obec = obce->getItemAtIndex(i).accessData();
+
+					if (kriterium->evaluate(*obec)) {
+						areaToDataGridView(*obec);
+					}
+				}
+			}
+			delete kriterium;
+			delete sort;
+		}
+
+		if (sortUcastRadio->Checked)
+		{
+			auto kriterium = new KriteriumUcast(this->getSelectedKolo());
+			structures::HeapSort<std::string, Obec*, double, Area> *sort =
+				new structures::HeapSort<std::string, Obec *, double, Area>();
+
+			sort->sortByKriterium(*obce, *kriterium);
+
+			if (comboBox1->SelectedItem->ToString() == "zostupne") {
+				for (int i = obce->size() - 1; i >= 0; --i) {
+					Obec* obec = obce->getItemAtIndex(i).accessData();
+
+					if (kriterium->evaluate(*obec)) {
+						areaToDataGridView(*obec);
+					}
+				}
+			}
+			else {
+				for (int i = 0; i < obce->size(); ++i) {
+					Obec* obec = obce->getItemAtIndex(i).accessData();
+
+					if (kriterium->evaluate(*obec)) {
+						areaToDataGridView(*obec);
+					}
+				}
+			}
+			delete kriterium;
+			delete sort;
+		}
+
+		if (PríslušnosťObceCheck->Checked) {
+			throw std::exception("Not implemented yet!");
+		}
+		this->ResetCursor();
 	}
-			 template <typename T>
-			 void mojatest(T &test)
-			 {
-				 int index = this->dataGridView1->Rows->Add();
-				 this->dataGridView1->Rows[index]->Cells[0]->Value =
-					 System::Convert::ToString(test.accessData()->getName().c_str());
-				 this->dataGridView1->Rows[index]->Cells[1]->Value =
-					 System::Convert::ToString(test.accessData()->getPocetVolicov(1));
-				 this->dataGridView1->Rows[index]->Cells[2]->Value =
-					 System::Convert::ToString(test.accessData()->getPocetVolicov(2));
-				 this->dataGridView1->Rows[index]->Cells[3]->Value =
-					 System::Convert::ToString(test.accessData()->getUcastVolicov(1));
-				 this->dataGridView1->Rows[index]->Cells[4]->Value =
-					 System::Convert::ToString(test.accessData()->getUcastVolicov(2));
-			 }
 
-
-	private: System::Void PríslušnosťObceCheck_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
 	};
 }

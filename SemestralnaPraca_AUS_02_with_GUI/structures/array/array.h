@@ -150,13 +150,13 @@ namespace structures
 	template<typename T>
 	T& Array<T>::operator[](const int index)
 	{
-		int indexInVector = mapFunction(index); //zo 4 ky 16 ku
-		byte * vectorPointer = vector_->getBytePointer(indexInVector);
-		T* typeVectorPointer = reinterpret_cast<T *>(vectorPointer);
-		return *typeVectorPointer;
+		//int indexInVector = mapFunction(index); //zo 4 ky 16 ku
+		//byte * vectorPointer = vector_->getBytePointer(indexInVector);
+		//T* typeVectorPointer = reinterpret_cast<T *>(vectorPointer);
+		//return *typeVectorPointer;
 
 		// NOTE: dá sa aj takto, v jednom riadku
-		// return *(reinterpret_cast<T *>(vector_->getBytePointer(mapFunction(index))));
+		return *(reinterpret_cast<T *>(vector_->getBytePointer(mapFunction(index))));
 	}
 
 	template<typename T>

@@ -115,14 +115,16 @@ namespace structures {
 		// Keď je menšie rovné ako koniec -> poriešim size + 1
 		DSRoutines::rangeCheckExcept(index + count, size_ + 1, "Invalid index in Vector");
 
-		if (&dest >= getBytePointer(index) && &dest < getBytePointer(index + count))
-		{
-			memmove(&dest, getBytePointer(index), count);
-		}
-		else
-		{
-			memcpy(&dest, getBytePointer(index), count);
-		}
+		// DOHODA
+		memcpy(&dest, getBytePointer(index), count);
+		//if (&dest >= getBytePointer(index) && &dest < getBytePointer(index + count))
+		//{
+		//	memmove(&dest, getBytePointer(index), count);
+		//}
+		//else
+		//{
+		//	memcpy(&dest, getBytePointer(index), count);
+		//}
 		return dest;
 	}
 
