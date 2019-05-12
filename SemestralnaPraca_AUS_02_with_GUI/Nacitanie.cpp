@@ -23,31 +23,21 @@ Nacitanie::~Nacitanie()
 
 	for (auto * item : *obceSorted)
 	{
-		//delete item->accessData();
 		delete obceSorted->remove(item->getKey());
 	}
 	obceSorted->clear();
 	delete obceSorted;
 
-	//for (auto * item : *obceTest)
-	//{
-	//	delete obceTest->remove(item->getKey());
-	//}
-	//obceTest->clear();
-	//delete obceTest;
-
 	for (auto * item : *okresySorted)
 	{
-		delete item->accessData();
-		//delete okresySorted->remove(item->getKey());
+		delete okresySorted->remove(item->getKey());
 	}
 	okresySorted->clear();
 	delete okresySorted;
 
 	for (auto * item : *krajeSorted)
 	{
-		delete item->accessData();
-		//delete krajeSorted->remove(item->getKey());
+		delete krajeSorted->remove(item->getKey());
 	}
 	krajeSorted->clear();
 	delete krajeSorted;
@@ -85,7 +75,7 @@ void Nacitanie::loadDataKraje(string nazovSuboru)
 		kolo = 1;
 		getline(file, tmp, ';');	// Poèet okrskov
 		getline(file, tmp, ';');	// Poèet zapísaných volièov
-		//REMOVE_SPACES(tmp);
+
 		tempArea->setPocetVolicov(std::stoi(tmp), kolo);
 		getline(file, tmp, ';');	// Poèet vydaných obálok
 		tempArea->setPocetVydanychObalok(std::stoi(tmp), kolo);
@@ -252,18 +242,18 @@ void Nacitanie::pridajObec(Obec* area)
 		cout << "Find duplicates -> renamed to: " << area->getName() << endl;
 	}
 
-	//area->calculateSumValuesForBothRounds();
+	area->calculateSumValuesForBothRounds();
 	obceSorted->insert(area->getName(), area);
 	obceUnsorted->insertHard(area->getName(), area);
 }
 void  Nacitanie::pridajOkres(Okres* area)
 {
-	//area->calculateSumValuesForBothRounds();
+	area->calculateSumValuesForBothRounds();
 	okresySorted->insert(area->getName(), area);
 }
 
 void  Nacitanie::pridajKraj(Kraj* area)
 {
-	//area->calculateSumValuesForBothRounds();
+	area->calculateSumValuesForBothRounds();
 	krajeSorted->insert(area->getName(), area);
 }

@@ -28,13 +28,31 @@ namespace SemestralnaPracaAUS02withGUI {
 
 			loader = new Nacitanie();
 			app = new App(loader);
-			this->dataGridView1->Columns->Add("Area", "Area");
-			this->dataGridView1->Columns->Add("Area1", "Area1");
-			this->dataGridView1->Columns->Add("Area2", "Area2");
-			this->dataGridView1->Columns->Add("Area3", "Area3");
-			this->dataGridView1->Columns->Add("Area4", "Area4");
-			this->dataGridView1->Columns->Add("Area5", "Area5");
-			this->dataGridView1->Columns->Add("Area6", "Area6");
+
+			string headerTableItems[15] = {
+					"Typ",						// 0
+					"Kraj",						// 1
+					"Okres",					// 2
+					"Nazov",					// 3
+					"Voliči 1.kolo",			// 4
+					"Voliči 2.kolo",			// 5
+					"Účasť 1.kolo",				// 6
+					"Účasť 2.kolo",				// 7
+					"Vydané obálky 1.kolo",		// 8
+					"Vydané obálky 2.kolo",		// 9
+					"Vydané obálky spolu",		// 10
+					"Prijaté obálky 1.kolo",	// 11
+					"Prijaté obálky 2.kolo",	// 12
+					"Prijaté obálky spolu",		// 13
+					"Platné hlasy"				// 14
+			};
+
+			for (int i = 0; i < _countof(headerTableItems); i++)
+			{
+				this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
+			}
+
+			updateHeaders();
 		}
 
 	protected:
@@ -61,6 +79,8 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: Nacitanie* loader;
 	private: App* app;
+			 //private: structures::Array<std::string>* headersArray;
+			 //private: structures::Array<int>* excludedColumnsIndex;
 
 
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
@@ -534,6 +554,53 @@ namespace SemestralnaPracaAUS02withGUI {
 		}
 #pragma endregion
 	private:
+
+		void updateHeaders()
+		{
+			updateHeaders(15);
+		}
+
+		void updateHeaders(int size)
+		{
+			if (getSelectedKolo() == 1)
+			{
+				int excluded[] = { 5,7,9,10,12,13 };
+				for (int i = 0; i < size; i++)
+				{
+					if (std::find(std::begin(excluded), std::end(excluded), i) != std::end(excluded))
+					{
+						this->dataGridView1->Columns[i]->Visible = false;
+					}
+					else {
+						this->dataGridView1->Columns[i]->Visible = true;
+					}
+				}
+			}
+
+			if (getSelectedKolo() == 2)
+			{
+				int excluded[] = { 5,7,9,10,12,13 };
+				for (int i = 0; i < size; i++)
+				{
+					if (std::find(std::begin(excluded), std::end(excluded), i) != std::end(excluded))
+					{
+						this->dataGridView1->Columns[i]->Visible = false;
+					}
+					else {
+						this->dataGridView1->Columns[i]->Visible = true;
+					}
+				}
+
+			}
+			if (getSelectedKolo() == 0)
+			{
+				for (int i = 0; i < size; i++)
+				{
+					this->dataGridView1->Columns[i]->Visible = true;
+				}
+			}
+		}
+
 		int getSelectedKolo()
 		{
 			if (prveKolo->Checked) { return 1; };
@@ -541,67 +608,46 @@ namespace SemestralnaPracaAUS02withGUI {
 			if (obidveKola->Checked) { return 0; };
 			return -1;
 		}
-		void areaToDataGridView(Area &area)
+		void areaToDataGridView(Area *area)
 		{
-			// TODO 
 			int index = this->dataGridView1->Rows->Add();
-			this->dataGridView1->Rows[index]->Cells[0]->Value =
-				gcnew String(area.getName().c_str());
-			this->dataGridView1->Rows[index]->Cells[1]->Value =
-				System::Convert::ToString(area.getPocetVolicov(1));
-			this->dataGridView1->Rows[index]->Cells[2]->Value =
-				System::Convert::ToString(area.getPocetVolicov(2));
-			this->dataGridView1->Rows[index]->Cells[3]->Value =
-				System::Convert::ToString(area.getUcastVolicov(1));
-			this->dataGridView1->Rows[index]->Cells[4]->Value =
-				System::Convert::ToString(area.getUcastVolicov(2));
-		}
-		void updateTable()
-		{
-			updateTableHeaders();
 
-			this->dataGridView1->Rows->Clear();
-			/* if (zobrazKraje->Checked)
-			 {
-				 zobrazTabulkuDoDataGridView(*loader->getKraje());
-			 }
-			 else if (zobrazOkresy->Checked)
-			 {
-				 zobrazTabulkuDoDataGridView(*loader->getOkresy());
-			 }
-			 else
-			 {
-				 zobrazTabulkuDoDataGridView(*loader->getObce());
-			 }*/
-		}
-		template <typename T>
-		void zobrazTabulkuDoDataGridView(T *tabulka)
-		{
-			int i;
-			for (auto item : *tabulka)
-			{
-				i = this->dataGridView1->Rows->Add();
-				this->dataGridView1->Rows[i]->Cells[0]->Value = System::Convert::ToString(item->accessData()->getClassName().c_str());
-				this->dataGridView1->Rows[i]->Cells[1]->Value = System::Convert::ToString(item->accessData()->getName().c_str());
+			this->dataGridView1->Rows[index]->Cells[0]->Value = gcnew String(area->getName().c_str());
+			this->dataGridView1->Rows[index]->Cells[1]->Value = gcnew String(area->getClassName().c_str());
+			this->dataGridView1->Rows[index]->Cells[2]->Value = "";
+			this->dataGridView1->Rows[index]->Cells[3]->Value = "";
+
+			if (area->getClassName() == "Okres") {
+				auto newArea = reinterpret_cast<Okres*>(area);
+				this->dataGridView1->Rows[index]->Cells[2]->Value = System::Convert::ToString(newArea->getNazovKraja().c_str());
 			}
+			if (area->getClassName() == "Obec") {
+				auto newArea = reinterpret_cast<Obec*>(area);
+				this->dataGridView1->Rows[index]->Cells[2]->Value = gcnew String(newArea->getNazovKraja().c_str());
+				this->dataGridView1->Rows[index]->Cells[3]->Value = gcnew String(newArea->getNazovOkresu().c_str());
+			}
+			this->dataGridView1->Rows[index]->Cells[4]->Value = System::Convert::ToString(area->getPocetVolicov(1));
+			this->dataGridView1->Rows[index]->Cells[5]->Value = System::Convert::ToString(area->getPocetVolicov(2));
+
+			this->dataGridView1->Rows[index]->Cells[6]->Value = roundAndFormat(area->getPocetVolicov(1));
+			this->dataGridView1->Rows[index]->Cells[7]->Value = roundAndFormat(area->getPocetVolicov(2));
+
+			this->dataGridView1->Rows[index]->Cells[8]->Value = System::Convert::ToString(area->getPocetVydanychObalok(1));
+			this->dataGridView1->Rows[index]->Cells[9]->Value = System::Convert::ToString(area->getPocetVydanychObalok(2));
+			this->dataGridView1->Rows[index]->Cells[10]->Value = System::Convert::ToString(area->getPocetVydanychObalok(0));
+
+			this->dataGridView1->Rows[index]->Cells[11]->Value = System::Convert::ToString(area->getPocetOdovzdanychObalok(1));
+			this->dataGridView1->Rows[index]->Cells[12]->Value = System::Convert::ToString(area->getPocetOdovzdanychObalok(2));
+			this->dataGridView1->Rows[index]->Cells[13]->Value = System::Convert::ToString(area->getPocetOdovzdanychObalok(0));
+			this->dataGridView1->Rows[index]->Cells[14]->Value = System::Convert::ToString(area->getPocetPlatnychHlasov(0));
 		}
 
 		void arrayListToDataGridTable(structures::ArrayList<Area*> *arrayList)
 		{
-			//throw std::exception("Not finished yet!");
-
 			this->dataGridView1->Rows->Clear();
 			for each (Area* area in *arrayList)
 			{
-				//cout << typeid(area).name() << endl;
-				cout << "Found  wit filter Area type " << area->getClassName() << endl;
-				auto row = this->dataGridView1->Rows->Add();
-				this->dataGridView1->Rows[row]->Cells[0]->Value = gcnew String(area->getClassName().c_str());
-				this->dataGridView1->Rows[row]->Cells[1]->Value = gcnew String(area->getName().c_str());
-				this->dataGridView1->Rows[row]->Cells[2]->Value = roundAndFormat(area->getPocetVolicov(1));
-				this->dataGridView1->Rows[row]->Cells[3]->Value = roundAndFormat(area->getPocetVolicov(2));
-				this->dataGridView1->Rows[row]->Cells[4]->Value = roundAndFormat(area->getUcastVolicov(1), 2);
-				this->dataGridView1->Rows[row]->Cells[5]->Value = roundAndFormat(area->getUcastVolicov(2), 2);
+				areaToDataGridView(area);
 			}
 		}
 
@@ -612,44 +658,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			ss.precision(decDigits); // set # places after decimal
 			ss << x;
 			return gcnew String(ss.str().c_str());
-		}
-
-		void updateTableHeaders()
-		{
-			// TODO parsing string as oznacenie/kluc toho stlpca
-			string headerTableItems[14] = {
-				"Kraj","Okres",
-				"Voliči 1.kolo", "Voliči 2.kolo","Voliči spolu",
-				"Účasť 1.kolo","Účasť 2.kolo","Účasť spolu",
-				"Vydané obálky 1.kolo","Vydané obálky 2.kolo","Vydané obálky spolu",
-				"Prijaté obálky 1.kolo","Prijaté obálky 2.kolo","Prijaté obálky spolu"
-			};
-
-			this->dataGridView1->Columns->Add("Typ", "Typ");
-			this->dataGridView1->Columns->Add("Nazov", "Názov");
-			//this->dataGridView1->Columns["Voliči 1.kolo"]->Visible = false;
-
-			// TODO vytvor tabuľku a následne len skry odkry stĺpce
-			for (int i = 0; i < _countof(headerTableItems); i++)
-			{
-				if (this->obidveKola->Checked)
-				{
-					this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
-				}
-				else
-				{
-					if (this->prveKolo->Checked && i % 3 == 0)
-					{
-						this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
-
-					}
-					if (this->druheKolo->Checked && i % 3 == 1)
-					{
-						this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
-					}
-				}
-
-			}
 		}
 
 	public: static std::string toStandardString(System::String^ string)
@@ -663,16 +671,9 @@ namespace SemestralnaPracaAUS02withGUI {
 		return returnString;
 	}
 
-	private: System::Void checkedListBox1_ItemCheck(System::Object^  sender, System::Windows::Forms::ItemCheckEventArgs^  e) {
-		updateTable();
-	}
-	private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		updateTable();
-	}
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
 		this->Cursor->Current = System::Windows::Forms::Cursors::WaitCursor;
 
-		updateTableHeaders();
 		if (filterNazovRadio->Checked) {
 			structures::ArrayList<Area*>* areas = app->getAreasNazov(toStandardString(textBox1->Text->ToString()));
 			arrayListToDataGridTable(areas);
@@ -776,9 +777,6 @@ namespace SemestralnaPracaAUS02withGUI {
 					for (auto obecTable : *loader->getObce()) {
 						auto *obec = obecTable->accessData();
 
-						auto test = filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost);
-						auto test1 = filterUcast->evaluate(*obec, *kriteriumUcast);
-
 						if (filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost)
 							&& filterUcast->evaluate(*obec, *kriteriumUcast))
 						{
@@ -798,8 +796,7 @@ namespace SemestralnaPracaAUS02withGUI {
 						if (filterPrislusnost->evaluate(*obec->accessData(), *kriteriumPrislusnost)
 							&& filterUcast->evaluate(*obec->accessData(), *kriteriumUcast))
 						{
-							this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
-								gcnew String(obec->accessData()->getName().c_str());
+							//areaToDataGridView(obec);
 						}
 					}
 				}
@@ -820,7 +817,7 @@ namespace SemestralnaPracaAUS02withGUI {
 							&& filterUcast->evaluate(*obec, *kriteriumUcast))
 						{
 							// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
-							areaToDataGridView(*obec);
+							areaToDataGridView(obec);
 						}
 					}
 				}
@@ -832,7 +829,7 @@ namespace SemestralnaPracaAUS02withGUI {
 							&& filterUcast->evaluate(*obec, *kriteriumUcast))
 						{
 							// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
-							areaToDataGridView(*obec);
+							areaToDataGridView(obec);
 						}
 					}
 				}
@@ -856,7 +853,7 @@ namespace SemestralnaPracaAUS02withGUI {
 							&& filterUcast->evaluate(*obec, *kriteriumUcast))
 						{
 							// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
-							areaToDataGridView(*obec);
+							areaToDataGridView(obec);
 						}
 					}
 				}
@@ -868,7 +865,7 @@ namespace SemestralnaPracaAUS02withGUI {
 							&& filterUcast->evaluate(*obec, *kriteriumUcast))
 						{
 							// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
-							areaToDataGridView(*obec);
+							areaToDataGridView(obec);
 						}
 					}
 				}
@@ -899,8 +896,7 @@ namespace SemestralnaPracaAUS02withGUI {
 				}
 				else {
 					for each (auto *obec in *loader->getObce()) {
-						this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
-							gcnew String(obec->accessData()->getName().c_str());
+						areaToDataGridView(obec->accessData());
 					}
 				}
 			}
@@ -917,7 +913,7 @@ namespace SemestralnaPracaAUS02withGUI {
 						Obec* obec = obce->getItemAtIndex(i).accessData();
 
 						if (kriterium->evaluate(*obec)) {
-							areaToDataGridView(*obec);
+							areaToDataGridView(obec);
 						}
 					}
 				}
@@ -926,7 +922,7 @@ namespace SemestralnaPracaAUS02withGUI {
 						Obec* obec = obce->getItemAtIndex(i).accessData();
 
 						if (kriterium->evaluate(*obec)) {
-							areaToDataGridView(*obec);
+							areaToDataGridView(obec);
 						}
 					}
 				}
@@ -947,7 +943,7 @@ namespace SemestralnaPracaAUS02withGUI {
 						Obec* obec = obce->getItemAtIndex(i).accessData();
 
 						if (kriterium->evaluate(*obec)) {
-							areaToDataGridView(*obec);
+							areaToDataGridView(obec);
 						}
 					}
 				}
@@ -956,7 +952,7 @@ namespace SemestralnaPracaAUS02withGUI {
 						Obec* obec = obce->getItemAtIndex(i).accessData();
 
 						if (kriterium->evaluate(*obec)) {
-							areaToDataGridView(*obec);
+							areaToDataGridView(obec);
 						}
 					}
 				}

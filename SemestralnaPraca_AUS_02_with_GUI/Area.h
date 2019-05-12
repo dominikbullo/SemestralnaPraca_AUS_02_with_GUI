@@ -56,6 +56,7 @@ public:
 		cout << "Created Okres " << nazov << endl;
 	}
 	std::string getClassName() override { return "Okres"; };
+	std::string getNazovKraja() const { return this->nazovKraja; };
 private:
 	std::string nazovKraja;
 };

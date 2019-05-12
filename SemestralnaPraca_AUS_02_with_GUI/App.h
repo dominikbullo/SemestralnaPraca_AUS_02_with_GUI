@@ -1,6 +1,4 @@
 ﻿#pragma once
-#include "structures/table/sorting/heap_sort.h"
-
 #include "Area.h"
 #include "Kriterium.h"
 #include "Filter.h"
