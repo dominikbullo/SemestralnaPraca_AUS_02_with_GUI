@@ -11,9 +11,9 @@ class App
 {
 private:
 	Nacitanie* loader;
-	structures::BinarySearchTree<std::string, Kraj*> *krajeSorted;
-	structures::BinarySearchTree<std::string, Okres*> *okresySorted;
-	structures::BinarySearchTree<std::string, Obec*> *obceSorted;
+	structures::SortedSequenceTable<std::string, Kraj*> *krajeSorted;
+	structures::SortedSequenceTable<std::string, Okres*> *okresySorted;
+	structures::SortedSequenceTable<std::string, Obec*> *obceSorted;
 
 public:
 	App(Nacitanie* loader);

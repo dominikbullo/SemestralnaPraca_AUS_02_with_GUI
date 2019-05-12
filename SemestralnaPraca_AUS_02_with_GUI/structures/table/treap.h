@@ -226,14 +226,62 @@ namespace structures
 	template<typename K, typename T>
 	inline void Treap<K, T>::rotateLeftOverParent(BinarySearchTree<K, T>::BSTTreeNode * node)
 	{
-		// TODO 10: Treap
-		throw std::exception("Treap<K, T>::rotateLeftOverParent: Not implemented yet.");
+		if (node->isRightSon())
+		{
+			typename BinarySearchTree<K, T>::BSTTreeNode* leftSon = node->changeLeftSon(nullptr);
+			typename BinarySearchTree<K, T>::BSTTreeNode* parent = node->getParent();
+			typename BinarySearchTree<K, T>::BSTTreeNode* grandParent = parent->getParent();
+
+			parent->setRightSon(nullptr); // zrusi vazbu medzi vrcholom node a otcom
+
+			if (grandParent != nullptr)
+			{
+				// node a stary otec budu spravne spojeny, otcov parent bude null
+				if (parent->isLeftSon())
+				{
+					grandParent->setLeftSon(node);
+				}
+				else
+				{
+					grandParent->setRightSon(node);
+				}
+			}
+
+			// otec ide dolava 
+			node->setLeftSon(parent);
+			// lavy podstrom vrcholu node bude pravym podstromom otca
+			parent->setRightSon(leftSon);
+		}
 	}
 
 	template<typename K, typename T>
 	inline void Treap<K, T>::rotateRightOverParent(BinarySearchTree<K, T>::BSTTreeNode * node)
 	{
-		// TODO 10: Treap
-		throw std::exception("Treap<K, T>::rotateRightOverParent: Not implemented yet.");
+		if (node->isLeftSon())
+		{
+			typename BinarySearchTree<K, T>::BSTTreeNode* rightSon = node->changeRightSon(nullptr);
+			typename BinarySearchTree<K, T>::BSTTreeNode* parent = node->getParent();
+			typename BinarySearchTree<K, T>::BSTTreeNode* grandParent = parent->getParent();
+
+			parent->setLeftSon(nullptr); // zrusi vazbu medzi vrcholom node a otcom
+
+			if (grandParent != nullptr)
+			{
+				// node a stary otec budu spravne spojeny, otcov parent bude null
+				if (parent->isLeftSon())
+				{
+					grandParent->setLeftSon(node);
+				}
+				else
+				{
+					grandParent->setRightSon(node);
+				}
+			}
+
+			// otec ide doprava
+			node->setRightSon(parent);
+			// pravy podstrom vrcholu node bude lavym podstromom otca
+			parent->setLeftSon(rightSon);
+		}
 	}
 }

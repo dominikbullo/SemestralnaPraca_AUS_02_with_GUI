@@ -9,16 +9,17 @@
 #include "structures/table/unsorted_sequence_table.h"
 #include "structures/table/sorted_sequence_table.h"
 #include "structures/table/binary_search_tree.h"
+#include "structures/table/treap.h"
 #include "structures/array/array.h"
 #include "Area.h"
 
 class Nacitanie
 {
 private:
-	structures::BinarySearchTree<string, Obec*> *obceSorted;
 	structures::UnsortedSequenceTable<string, Obec*> *obceUnsorted;
-	structures::BinarySearchTree<string, Okres*> *okresySorted;
-	structures::BinarySearchTree<string, Kraj*> *krajeSorted;
+	structures::SortedSequenceTable<string, Obec*> *obceSorted;
+	structures::SortedSequenceTable<string, Okres*> *okresySorted;
+	structures::SortedSequenceTable<string, Kraj*> *krajeSorted;
 
 protected:
 	void loadData();
@@ -34,9 +35,9 @@ public:
 	Nacitanie();
 	~Nacitanie();
 
-	structures::BinarySearchTree<std::string, Kraj*>* getKraje() { return this->krajeSorted; }
-	structures::BinarySearchTree<std::string, Okres*>* getOkresy() { return this->okresySorted; }
-	structures::BinarySearchTree<std::string, Obec*>* getObce() { return this->obceSorted; }
+	structures::SortedSequenceTable<std::string, Kraj*>* getKraje() { return this->krajeSorted; }
+	structures::SortedSequenceTable<std::string, Okres*>* getOkresy() { return this->okresySorted; }
+	structures::SortedSequenceTable<std::string, Obec*>* getObce() { return this->obceSorted; }
 	structures::UnsortedSequenceTable<std::string, Obec*>* getObceUnsorted() { return this->obceUnsorted; }
 };
 

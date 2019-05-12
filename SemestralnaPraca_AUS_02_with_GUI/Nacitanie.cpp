@@ -6,17 +6,11 @@ using namespace std;
 
 Nacitanie::Nacitanie()
 {
-	krajeSorted = new structures::BinarySearchTree<string, Kraj*>();
-	okresySorted = new structures::BinarySearchTree<string, Okres*>();
-	obceSorted = new structures::BinarySearchTree<string, Obec*>();
+	krajeSorted = new structures::SortedSequenceTable<string, Kraj*>();
+	okresySorted = new structures::SortedSequenceTable<string, Okres*>();
+	obceSorted = new structures::SortedSequenceTable<string, Obec*>();
 
 	obceUnsorted = new structures::UnsortedSequenceTable<string, Obec*>();
-
-	//obceUnsortedVolici1 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
-	//obceUnsortedVolici2 = new structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>();
-
-	//obceUnsortedUcast1 = new structures::UnsortedSequenceTable<SortingKey<double>*, Obec *>();
-	//obceUnsortedUcast2 = new structures::UnsortedSequenceTable<SortingKey<double>*, Obec *>();
 
 	this->loadData();
 }
@@ -24,60 +18,29 @@ Nacitanie::Nacitanie()
 
 Nacitanie::~Nacitanie()
 {
-	//for (auto * item : *obceUnsortedVolici1)
-	//{
-	//	delete item->getKey();
-	//}
-	//delete obceUnsortedVolici1;
-
-	//for (auto * item : *obceUnsortedVolici2)
-	//{
-	//	delete item->getKey();
-	//}
-	//delete obceUnsortedVolici2;
-
-	//for (auto * item : *obceUnsortedUcast1)
-	//{
-	//	delete item->getKey();
-	//}
-	//delete obceUnsortedUcast1;
-
-	//for (auto * item : *obceUnsortedUcast2)
-	//{
-	//	delete item->getKey();
-	//}
-	//delete obceUnsortedUcast2;
-
-	// TODO asi len takto
-	//for (auto * item : *obceUnsorted)
-	//{
-	//	delete item->accessData();
-	//}
 	obceUnsorted->clear();
 	delete obceUnsorted;
 
 	for (auto * item : *obceSorted)
 	{
-
-		//delete item->accessData();
-		obceSorted->remove(item->getKey());
+		delete item->accessData();
+		//delete obceSorted->remove(item->getKey());
 	}
 	obceSorted->clear();
 	delete obceSorted;
 
 	for (auto * item : *okresySorted)
 	{
-		//delete item->accessData();
-		okresySorted->remove(item->getKey());
+		delete item->accessData();
+		//delete okresySorted->remove(item->getKey());
 	}
 	okresySorted->clear();
 	delete okresySorted;
 
 	for (auto * item : *krajeSorted)
 	{
-		krajeSorted->remove(item->getKey());
-
-		//delete item->accessData();
+		delete item->accessData();
+		//delete krajeSorted->remove(item->getKey());
 	}
 	krajeSorted->clear();
 	delete krajeSorted;

@@ -301,15 +301,19 @@ namespace structures
 	template<typename K, typename T>
 	inline typename BinarySearchTree<K, T>::BSTTreeNode* BinarySearchTree<K, T>::findBSTNode(const K & key, bool & found) const
 	{
-		BSTTreeNode* node = dynamic_cast<BSTTreeNode *>(binaryTree_->getRoot());
+		BSTTreeNode* node = dynamic_cast<BSTTreeNode*>(binaryTree_->getRoot());
 		BSTTreeNode* result = node;
+
+
 		while (node != nullptr && node->accessData()->getKey() != key)
 		{
 			node = key < node->accessData()->getKey() ? node->getLeftSon() : node->getRightSon();
-			if (node != nullptr) {
+			if (node != nullptr)
+			{
 				result = node;
 			}
 		}
+
 		found = node != nullptr && node->accessData()->getKey() == key;
 		return result;
 	}
@@ -349,8 +353,46 @@ namespace structures
 	template<typename K, typename T>
 	inline void BinarySearchTree<K, T>::extractNode(BSTTreeNode* node)
 	{
-		// TODO 10: BinarySearchTree
-		throw std::exception("BinarySearchTree<K, T>::extractNode: Not implemented yet.");
-	}
+		BSTTreeNode* parent = node->getParent();
+		BSTTreeNode* replaceNode = nullptr;
 
+		switch (node->numberOfSons())
+		{
+		case 1:
+			replaceNode = node->hasLeftSon() ? node->changeLeftSon(nullptr) : node->changeRightSon(nullptr);
+			break;
+
+		case 2:
+			replaceNode = node->getRightSon();
+			while (replaceNode->hasLeftSon())
+			{
+				replaceNode = replaceNode->getLeftSon();
+			}
+
+			extractNode(replaceNode);
+
+			replaceNode->setLeftSon(node->changeLeftSon(nullptr));
+			replaceNode->setRightSon(node->changeRightSon(nullptr));
+		}
+
+		if (parent == nullptr)
+		{
+			binaryTree_->replaceRoot(replaceNode);
+		}
+		else
+		{
+			if (node->isLeftSon())
+			{
+				parent->setLeftSon(replaceNode);
+			}
+			else
+			{
+				parent->setRightSon(replaceNode);
+			}
+		}
+		if (replaceNode != nullptr)
+		{
+			replaceNode->setParent(parent);
+		}
+	}
 }
