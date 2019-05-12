@@ -7,7 +7,7 @@ Area::Area(std::string nazov) : nazov(nazov)
 	arrayKol = new structures::Array<VolebneKolo*>(3);
 
 	// Aby sa index zhodoval s kolom, pre neskoršie h¾adanie, na 0 pozicií budú sumárne hodnoty za obidve kolá
-	arrayKol->operator[](0) = new VolebneKolo(0);  // tu budu sumárne hodnoty za obidve kola 
+	//arrayKol->operator[](0) = new VolebneKolo(0);  // tu budu sumárne hodnoty za obidve kola 
 	arrayKol->operator[](1) = new VolebneKolo(1);
 	arrayKol->operator[](2) = new VolebneKolo(2);
 }

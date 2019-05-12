@@ -8,22 +8,17 @@
 
 #include "structures/table/unsorted_sequence_table.h"
 #include "structures/table/sorted_sequence_table.h"
+#include "structures/table/binary_search_tree.h"
 #include "structures/array/array.h"
 #include "Area.h"
 
 class Nacitanie
 {
 private:
-	//structures::UnsortedSequenceTable<SortingKey<int>*, Obec*> *obceUnsortedVolici1;
-	//structures::UnsortedSequenceTable<SortingKey<int>*, Obec*> *obceUnsortedVolici2;
-
-	//structures::UnsortedSequenceTable<SortingKey<double>*, Obec*> *obceUnsortedUcast1;
-	//structures::UnsortedSequenceTable<SortingKey<double>*, Obec*> *obceUnsortedUcast2;
-
-	structures::SortedSequenceTable<string, Obec*> *obceSorted;
+	structures::BinarySearchTree<string, Obec*> *obceSorted;
 	structures::UnsortedSequenceTable<string, Obec*> *obceUnsorted;
-	structures::SortedSequenceTable<string, Okres*> *okresySorted;
-	structures::SortedSequenceTable<string, Kraj*> *krajeSorted;
+	structures::BinarySearchTree<string, Okres*> *okresySorted;
+	structures::BinarySearchTree<string, Kraj*> *krajeSorted;
 
 protected:
 	void loadData();
@@ -39,15 +34,9 @@ public:
 	Nacitanie();
 	~Nacitanie();
 
-	structures::SortedSequenceTable<std::string, Kraj*>* getKraje() { return this->krajeSorted; }
-	structures::SortedSequenceTable<std::string, Okres*>* getOkresy() { return this->okresySorted; }
-	structures::SortedSequenceTable<std::string, Obec*>* getObce() { return this->obceSorted; }
+	structures::BinarySearchTree<std::string, Kraj*>* getKraje() { return this->krajeSorted; }
+	structures::BinarySearchTree<std::string, Okres*>* getOkresy() { return this->okresySorted; }
+	structures::BinarySearchTree<std::string, Obec*>* getObce() { return this->obceSorted; }
 	structures::UnsortedSequenceTable<std::string, Obec*>* getObceUnsorted() { return this->obceUnsorted; }
-
-	//structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* getObceUnsortedVolici1() { return this->obceUnsortedVolici1; }
-	//structures::UnsortedSequenceTable<SortingKey<int>*, Obec*>* getObceUnsortedVolici2() { return this->obceUnsortedVolici2; }
-
-	//structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>* getObceUnsortedUcast1() { return this->obceUnsortedUcast1; }
-	//structures::UnsortedSequenceTable<SortingKey<double>*, Obec*>* getObceUnsortedUcast2() { return this->obceUnsortedUcast2; }
 };
 

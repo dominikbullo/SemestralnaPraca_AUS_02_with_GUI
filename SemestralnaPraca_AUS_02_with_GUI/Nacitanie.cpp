@@ -6,9 +6,9 @@ using namespace std;
 
 Nacitanie::Nacitanie()
 {
-	krajeSorted = new structures::SortedSequenceTable<string, Kraj*>();
-	okresySorted = new structures::SortedSequenceTable<string, Okres*>();
-	obceSorted = new structures::SortedSequenceTable<string, Obec*>();
+	krajeSorted = new structures::BinarySearchTree<string, Kraj*>();
+	okresySorted = new structures::BinarySearchTree<string, Okres*>();
+	obceSorted = new structures::BinarySearchTree<string, Obec*>();
 
 	obceUnsorted = new structures::UnsortedSequenceTable<string, Obec*>();
 
@@ -58,20 +58,28 @@ Nacitanie::~Nacitanie()
 
 	for (auto * item : *obceSorted)
 	{
-		delete item->accessData();
+
+		//delete item->accessData();
+		obceSorted->remove(item->getKey());
 	}
+	obceSorted->clear();
 	delete obceSorted;
 
 	for (auto * item : *okresySorted)
 	{
-		delete item->accessData();
+		//delete item->accessData();
+		okresySorted->remove(item->getKey());
 	}
+	okresySorted->clear();
 	delete okresySorted;
 
 	for (auto * item : *krajeSorted)
 	{
-		delete item->accessData();
+		krajeSorted->remove(item->getKey());
+
+		//delete item->accessData();
 	}
+	krajeSorted->clear();
 	delete krajeSorted;
 }
 
@@ -277,25 +285,18 @@ void Nacitanie::pridajObec(Obec* area)
 		cout << "Find duplicates -> renamed to: " << area->getName() << endl;
 	}
 
-	area->calculateSumValuesForBothRounds();
-
+	//area->calculateSumValuesForBothRounds();
 	obceSorted->insert(area->getName(), area);
 	obceUnsorted->insertHard(area->getName(), area);
-
-	//obceUnsortedVolici1->insertHard(new SortingKey<int>(area, area->getPocetVolicov(1)), area);
-	//obceUnsortedVolici2->insertHard(new SortingKey<int>(area, area->getPocetVolicov(2)), area);
-
-	//obceUnsortedUcast1->insertHard(new SortingKey<double>(area, area->getUcastVolicov(1)), area);
-	//obceUnsortedUcast2->insertHard(new SortingKey<double>(area, area->getUcastVolicov(2)), area);
 }
 void  Nacitanie::pridajOkres(Okres* area)
 {
-	area->calculateSumValuesForBothRounds();
+	//area->calculateSumValuesForBothRounds();
 	okresySorted->insert(area->getName(), area);
 }
 
 void  Nacitanie::pridajKraj(Kraj* area)
 {
-	area->calculateSumValuesForBothRounds();
+	//area->calculateSumValuesForBothRounds();
 	krajeSorted->insert(area->getName(), area);
 }

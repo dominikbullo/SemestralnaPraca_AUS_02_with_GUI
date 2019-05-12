@@ -11,9 +11,9 @@ class App
 {
 private:
 	Nacitanie* loader;
-	structures::SortedSequenceTable<std::string, Kraj*> *krajeSorted;
-	structures::SortedSequenceTable<std::string, Okres*> *okresySorted;
-	structures::SortedSequenceTable<std::string, Obec*> *obceSorted;
+	structures::BinarySearchTree<std::string, Kraj*> *krajeSorted;
+	structures::BinarySearchTree<std::string, Okres*> *okresySorted;
+	structures::BinarySearchTree<std::string, Obec*> *obceSorted;
 
 public:
 	App(Nacitanie* loader);
@@ -22,6 +22,4 @@ public:
 	structures::ArrayList<Area*>* getAreasNazov(std::string nazov);
 	structures::ArrayList<Area*>* getAreasVolici(int pocetOd, int pocetDo, int kolo);
 	structures::ArrayList<Area*>* getAreasUcast(double ucastOd, double ucastDo, int kolo);
-
-	//template<typename T> void sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table);
 };
