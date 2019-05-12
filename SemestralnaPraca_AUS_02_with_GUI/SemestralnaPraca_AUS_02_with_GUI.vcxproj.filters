@@ -192,9 +192,6 @@
     <ClInclude Include="VolebneKolo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SortingKey.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="structures\ds_routines.cpp">

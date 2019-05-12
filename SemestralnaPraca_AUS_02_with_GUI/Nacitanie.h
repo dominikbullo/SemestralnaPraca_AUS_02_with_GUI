@@ -10,7 +10,6 @@
 #include "structures/table/sorted_sequence_table.h"
 #include "structures/array/array.h"
 #include "Area.h"
-#include "SortingKey.h"
 
 class Nacitanie
 {

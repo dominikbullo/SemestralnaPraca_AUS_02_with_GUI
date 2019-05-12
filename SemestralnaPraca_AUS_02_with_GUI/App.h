@@ -23,13 +23,5 @@ public:
 	structures::ArrayList<Area*>* getAreasVolici(int pocetOd, int pocetDo, int kolo);
 	structures::ArrayList<Area*>* getAreasUcast(double ucastOd, double ucastDo, int kolo);
 
-	template<typename T> void sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table);
+	//template<typename T> void sortTable(structures::UnsortedSequenceTable<SortingKey<T>*, Obec*>* table);
 };
-
-template<typename K>
-inline void App::sortTable(structures::UnsortedSequenceTable<SortingKey<K>*, Obec*>* table)
-{
-	//structures::HeapSort<SortingKey<K>*, Obec *> *sort = new structures::HeapSort<SortingKey<K>*, Obec *>();
-	//sort->sortByKriterium(new KriteriumNazov());
-	//sort->sortByCustomKey(*table);
-}
