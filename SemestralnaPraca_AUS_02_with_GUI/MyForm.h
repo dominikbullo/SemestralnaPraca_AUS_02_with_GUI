@@ -127,6 +127,7 @@ namespace SemestralnaPracaAUS02withGUI {
 	private: System::Windows::Forms::TextBox^  prislusnostObceText;
 
 	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Button^  button3;
 
 
 
@@ -158,6 +159,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->filterUcastRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->filterVoliciRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->filterNazovRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->numericUpDown4 = (gcnew System::Windows::Forms::NumericUpDown());
@@ -172,7 +174,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->zobrazKraje = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->sortUcastRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->sortVoliciRadio = (gcnew System::Windows::Forms::RadioButton());
@@ -181,6 +182,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->obidveKola = (gcnew System::Windows::Forms::RadioButton());
 			this->druheKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->prveKolo = (gcnew System::Windows::Forms::RadioButton());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->BeginInit();
@@ -240,7 +242,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(245, 44);
 			this->button1->TabIndex = 42;
-			this->button1->Text = L"ZOBRAZ";
+			this->button1->Text = L"FILTRUJ";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
 			// 
@@ -253,6 +255,16 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->filterVoliciRadio->TabIndex = 43;
 			this->filterVoliciRadio->Text = L"Zapísaný voliči";
 			this->filterVoliciRadio->UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(5, 215);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(246, 47);
+			this->button2->TabIndex = 44;
+			this->button2->Text = L"ZORAĎ";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// filterNazovRadio
 			// 
@@ -316,6 +328,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->upresnitPríslušnosťObceCheck->TabIndex = 47;
 			this->upresnitPríslušnosťObceCheck->Text = L"Upresniť";
 			this->upresnitPríslušnosťObceCheck->UseVisualStyleBackColor = true;
+			this->upresnitPríslušnosťObceCheck->CheckedChanged += gcnew System::EventHandler(this, &MyForm::upresnitPríslušnosťObceCheck_CheckedChanged);
 			// 
 			// prislusnostObceText
 			// 
@@ -393,16 +406,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->label1->Size = System::Drawing::Size(55, 13);
 			this->label1->TabIndex = 48;
 			this->label1->Text = L"Zoradenie";
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(5, 215);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(246, 47);
-			this->button2->TabIndex = 44;
-			this->button2->Text = L"ZORAĎ a ZOBRAZ";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// comboBox1
 			// 
@@ -492,11 +495,21 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->prveKolo->Text = L"1. KOLO";
 			this->prveKolo->UseVisualStyleBackColor = true;
 			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(803, 23);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(60, 118);
+			this->button3->TabIndex = 42;
+			this->button3->Text = L"button3";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(878, 617);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox3);
 			this->Controls->Add(this->groupBox2);
@@ -950,5 +963,16 @@ namespace SemestralnaPracaAUS02withGUI {
 		this->ResetCursor();
 	}
 
+	private: System::Void upresnitPríslušnosťObceCheck_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		if (upresnitPríslušnosťObceCheck->Checked)
+		{
+			this->filterUcastRadio->Checked = true;
+		}
+		else
+		{
+			this->filterUcastRadio->Checked = false;
+
+		}
+	}
 	};
 }
