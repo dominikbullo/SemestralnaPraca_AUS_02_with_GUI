@@ -114,7 +114,7 @@ namespace structures
 				}
 			} while (swapping);
 		}
-		for (int i = table.size() - 1; i > 0; i--) {
+		for (int i = (int)table.size() - 1; i > 0; i--) {
 			table.swap(0, i);
 			int current = 0;
 			do {
