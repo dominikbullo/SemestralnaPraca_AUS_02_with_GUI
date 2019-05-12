@@ -322,9 +322,10 @@ namespace structures
 	inline bool BinarySearchTree<K, T>::tryToInsertNode(BSTTreeNode* node)
 	{
 		// NOTE: tu ošetrím aj size ak sa to podarí
-		bool found(0); // found = false
+		bool found = false;
 		K key = node->accessData()->getKey();
 		BSTTreeNode* parent = findBSTNode(key, found);
+
 		if (!found)
 		{
 			if (isEmpty())
@@ -342,11 +343,9 @@ namespace structures
 					parent->setRightSon(node);
 				}
 			}
-		}
-		else
-		{
 			size_++;
 		}
+
 		return !found;
 	}
 

@@ -6,9 +6,9 @@ using namespace std;
 
 Nacitanie::Nacitanie()
 {
-	krajeSorted = new structures::SortedSequenceTable<string, Kraj*>();
-	okresySorted = new structures::SortedSequenceTable<string, Okres*>();
-	obceSorted = new structures::SortedSequenceTable<string, Obec*>();
+	krajeSorted = new structures::BinarySearchTree<string, Kraj*>();
+	okresySorted = new structures::BinarySearchTree<string, Okres*>();
+	obceSorted = new structures::BinarySearchTree<string, Obec*>();
 
 	obceUnsorted = new structures::UnsortedSequenceTable<string, Obec*>();
 
@@ -23,11 +23,18 @@ Nacitanie::~Nacitanie()
 
 	for (auto * item : *obceSorted)
 	{
-		delete item->accessData();
-		//delete obceSorted->remove(item->getKey());
+		//delete item->accessData();
+		delete obceSorted->remove(item->getKey());
 	}
 	obceSorted->clear();
 	delete obceSorted;
+
+	//for (auto * item : *obceTest)
+	//{
+	//	delete obceTest->remove(item->getKey());
+	//}
+	//obceTest->clear();
+	//delete obceTest;
 
 	for (auto * item : *okresySorted)
 	{
@@ -198,10 +205,7 @@ void Nacitanie::loadDataObce(string nazovSuboru)
 
 		getline(file, tmp, ';');		// Kód obce
 		getline(file, nazovObce, ';');	// Názov obce
-		//if (nazovObce == "Èab")
-		//{
-		//	cout << "Našiel som";
-		//}
+
 		Obec* tempArea = new Obec(nazovObce, nazovKraja, nazovOkresu);
 
 		// 1. kolo 

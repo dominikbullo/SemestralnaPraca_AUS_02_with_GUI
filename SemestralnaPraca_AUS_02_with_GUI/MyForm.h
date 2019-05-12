@@ -976,7 +976,6 @@ namespace SemestralnaPracaAUS02withGUI {
 		else
 		{
 			this->filterUcastRadio->Checked = false;
-
 		}
 	}
 	};
