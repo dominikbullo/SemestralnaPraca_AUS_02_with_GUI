@@ -122,8 +122,10 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::CheckBox^  PríslušnosťObceCheck;
-	private: System::Windows::Forms::TextBox^  textBox2;
+	private: System::Windows::Forms::CheckBox^  upresnitPríslušnosťObceCheck;
+
+	private: System::Windows::Forms::TextBox^  prislusnostObceText;
+
 	private: System::Windows::Forms::Label^  label1;
 
 
@@ -153,8 +155,6 @@ namespace SemestralnaPracaAUS02withGUI {
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->PríslušnosťObceCheck = (gcnew System::Windows::Forms::CheckBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->filterUcastRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->filterVoliciRadio = (gcnew System::Windows::Forms::RadioButton());
@@ -164,11 +164,14 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->numericUpDown3 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown2 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->upresnitPríslušnosťObceCheck = (gcnew System::Windows::Forms::CheckBox());
+			this->prislusnostObceText = (gcnew System::Windows::Forms::TextBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->zobrazObce = (gcnew System::Windows::Forms::RadioButton());
 			this->zobrazOkresy = (gcnew System::Windows::Forms::RadioButton());
 			this->zobrazKraje = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->sortUcastRadio = (gcnew System::Windows::Forms::RadioButton());
@@ -178,7 +181,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->obidveKola = (gcnew System::Windows::Forms::RadioButton());
 			this->druheKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->prveKolo = (gcnew System::Windows::Forms::RadioButton());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->BeginInit();
@@ -208,36 +210,19 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->groupBox1->Controls->Add(this->filterUcastRadio);
 			this->groupBox1->Controls->Add(this->button1);
 			this->groupBox1->Controls->Add(this->filterVoliciRadio);
+			this->groupBox1->Controls->Add(this->button2);
 			this->groupBox1->Controls->Add(this->filterNazovRadio);
 			this->groupBox1->Controls->Add(this->textBox1);
 			this->groupBox1->Controls->Add(this->numericUpDown4);
 			this->groupBox1->Controls->Add(this->numericUpDown3);
 			this->groupBox1->Controls->Add(this->numericUpDown2);
 			this->groupBox1->Controls->Add(this->numericUpDown1);
-			this->groupBox1->Location = System::Drawing::Point(581, 339);
+			this->groupBox1->Location = System::Drawing::Point(581, 269);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(282, 266);
+			this->groupBox1->Size = System::Drawing::Size(282, 336);
 			this->groupBox1->TabIndex = 28;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Filtre";
-			// 
-			// PríslušnosťObceCheck
-			// 
-			this->PríslušnosťObceCheck->AutoSize = true;
-			this->PríslušnosťObceCheck->Location = System::Drawing::Point(101, 58);
-			this->PríslušnosťObceCheck->Name = L"PríslušnosťObceCheck";
-			this->PríslušnosťObceCheck->Size = System::Drawing::Size(66, 17);
-			this->PríslušnosťObceCheck->TabIndex = 47;
-			this->PríslušnosťObceCheck->Text = L"Upresniť";
-			this->PríslušnosťObceCheck->UseVisualStyleBackColor = true;
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(101, 81);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(152, 20);
-			this->textBox2->TabIndex = 45;
-			this->textBox2->Text = L"Žilina";
 			// 
 			// filterUcastRadio
 			// 
@@ -251,9 +236,9 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(10, 215);
+			this->button1->Location = System::Drawing::Point(6, 279);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(241, 44);
+			this->button1->Size = System::Drawing::Size(245, 44);
 			this->button1->TabIndex = 42;
 			this->button1->Text = L"ZOBRAZ";
 			this->button1->UseVisualStyleBackColor = true;
@@ -322,6 +307,24 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->numericUpDown1->Size = System::Drawing::Size(112, 20);
 			this->numericUpDown1->TabIndex = 36;
 			// 
+			// upresnitPríslušnosťObceCheck
+			// 
+			this->upresnitPríslušnosťObceCheck->AutoSize = true;
+			this->upresnitPríslušnosťObceCheck->Location = System::Drawing::Point(101, 58);
+			this->upresnitPríslušnosťObceCheck->Name = L"upresnitPríslušnosťObceCheck";
+			this->upresnitPríslušnosťObceCheck->Size = System::Drawing::Size(66, 17);
+			this->upresnitPríslušnosťObceCheck->TabIndex = 47;
+			this->upresnitPríslušnosťObceCheck->Text = L"Upresniť";
+			this->upresnitPríslušnosťObceCheck->UseVisualStyleBackColor = true;
+			// 
+			// prislusnostObceText
+			// 
+			this->prislusnostObceText->Location = System::Drawing::Point(101, 81);
+			this->prislusnostObceText->Name = L"prislusnostObceText";
+			this->prislusnostObceText->Size = System::Drawing::Size(152, 20);
+			this->prislusnostObceText->TabIndex = 45;
+			this->prislusnostObceText->Text = L"Žilina";
+			// 
 			// groupBox2
 			// 
 			this->groupBox2->Controls->Add(this->zobrazObce);
@@ -369,27 +372,35 @@ namespace SemestralnaPracaAUS02withGUI {
 			// groupBox3
 			// 
 			this->groupBox3->Controls->Add(this->label1);
-			this->groupBox3->Controls->Add(this->PríslušnosťObceCheck);
-			this->groupBox3->Controls->Add(this->textBox2);
-			this->groupBox3->Controls->Add(this->button2);
+			this->groupBox3->Controls->Add(this->upresnitPríslušnosťObceCheck);
+			this->groupBox3->Controls->Add(this->prislusnostObceText);
 			this->groupBox3->Controls->Add(this->comboBox1);
 			this->groupBox3->Controls->Add(this->sortUcastRadio);
 			this->groupBox3->Controls->Add(this->sortVoliciRadio);
 			this->groupBox3->Controls->Add(this->sortNazovRadio);
 			this->groupBox3->Location = System::Drawing::Point(579, 147);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(281, 186);
+			this->groupBox3->Size = System::Drawing::Size(281, 115);
 			this->groupBox3->TabIndex = 41;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Zoraď";
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(98, 15);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(55, 13);
+			this->label1->TabIndex = 48;
+			this->label1->Text = L"Zoradenie";
+			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(12, 119);
+			this->button2->Location = System::Drawing::Point(5, 215);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(241, 47);
+			this->button2->Size = System::Drawing::Size(246, 47);
 			this->button2->TabIndex = 44;
-			this->button2->Text = L"ZORAĎ";
+			this->button2->Text = L"ZORAĎ a ZOBRAZ";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
@@ -480,15 +491,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->prveKolo->TabStop = true;
 			this->prveKolo->Text = L"1. KOLO";
 			this->prveKolo->UseVisualStyleBackColor = true;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(98, 15);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(55, 13);
-			this->label1->TabIndex = 48;
-			this->label1->Text = L"Zoradenie";
 			// 
 			// MyForm
 			// 
@@ -714,94 +716,237 @@ namespace SemestralnaPracaAUS02withGUI {
 		this->Cursor->Current = System::Windows::Forms::Cursors::WaitCursor;
 		this->dataGridView1->Rows->Clear();
 		auto *obce = loader->getObceUnsorted();
-		//auto obce1 = loader->getObceUnsorted();
-		//auto obce2 = *loader->getObceUnsorted();
 
-		if (sortNazovRadio->Checked) {
-			if (comboBox1->SelectedItem->ToString() == "zostupne") {
-				int i = loader->getObce()->size() - 1;
+		if (upresnitPríslušnosťObceCheck->Checked && filterUcastRadio->Checked) {
+			KriteriumPrislusnostObce* kriteriumPrislusnost = new KriteriumPrislusnostObce();
+			Kraj* tempKraj;
+			Okres* tempOkres;
+			auto nazov = this->toStandardString(prislusnostObceText->Text);
 
-				// add number of rows of structure size
-				this->dataGridView1->Rows->Add(loader->getObce()->size());
-				for each (auto *obec in *loader->getObce()) {
-
-					// idem po usporiadanej štruktúre vzostupne a kedže chcem zostupne
-					// vypisujem od posledneho riadku -> prehodenie poradia
-					this->dataGridView1->Rows[i]->Cells[0]->Value =
-						gcnew String(obec->accessData()->getName().c_str());
-					i--;
+			if (loader->getOkresy()->tryFind(nazov, tempOkres))
+			{
+				if (tempOkres != nullptr) {
+					kriteriumPrislusnost->setArea(tempOkres);
 				}
 			}
-			else {
-				for each (auto *obec in *loader->getObce()) {
-					this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
-						gcnew String(obec->accessData()->getName().c_str());
+			else if (loader->getKraje()->tryFind(nazov, tempKraj))
+			{
+				if (tempKraj != nullptr) {
+					kriteriumPrislusnost->setArea(tempKraj);
+				}
+				if (!tempOkres && !tempOkres) {
+					MessageBox::Show("Vyšší územný celok s týmto názvom sa nenašiel");
+					return;
 				}
 			}
-		}
+			else
+			{
+				MessageBox::Show("Area s týmto názvom sa nenašla");
+				return;
+			}
 
-		if (sortVoliciRadio->Checked) {
-			auto kriterium = new KriteriumVolici(this->getSelectedKolo());
-			structures::HeapSort<std::string, Obec*, int, Area> *sort =
-				new structures::HeapSort<std::string, Obec *, int, Area>();
+			FilterPrislusnostObce* filterPrislusnost = new FilterPrislusnostObce();
+			// chcem tie, ktoré sa tam nachádzajú
+			filterPrislusnost->setAlpha(true);
 
-			sort->sortByKriterium(*obce, *kriterium);
+			KriteriumUcast* kriteriumUcast = new KriteriumUcast(this->getSelectedKolo());
+			FilterUcast* filterUcast = new FilterUcast();
+			filterUcast->setAlpha((double)numericUpDown3->Value);
+			filterUcast->setBeta((double)numericUpDown4->Value);
 
-			if (comboBox1->SelectedItem->ToString() == "zostupne") {
-				for (int i = obce->size() - 1; i >= 0; --i) {
-					Obec* obec = obce->getItemAtIndex(i).accessData();
+			if (sortNazovRadio->Checked) {
+				if (comboBox1->SelectedItem->ToString() == "zostupne") {
+					int i = loader->getObce()->size() - 1;
 
-					if (kriterium->evaluate(*obec)) {
-						areaToDataGridView(*obec);
+					// add number of rows of structure size
+					this->dataGridView1->Rows->Add(loader->getObce()->size());
+					for each (auto *obec in *loader->getObce()) {
+						//if (filterPrislusnost->evaluate(*obec->accessData(), *kriteriumPrislusnost)
+						//	&& filterUcast->evaluate(*obec->accessData(), *kriteriumUcast))
+						//{
+						//	// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
+						//}
+
+						this->dataGridView1->Rows[i]->Cells[0]->Value =
+							gcnew String(obec->accessData()->getName().c_str());
+						i--;
+					}
+				}
+				else {
+					for each (auto *obec in *loader->getObce()) {
+						this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
+							gcnew String(obec->accessData()->getName().c_str());
 					}
 				}
 			}
-			else {
-				for (int i = 0; i < obce->size(); ++i) {
-					Obec* obec = obce->getItemAtIndex(i).accessData();
 
-					if (kriterium->evaluate(*obec)) {
-						areaToDataGridView(*obec);
+			if (sortVoliciRadio->Checked) {
+				auto *kriterium = new KriteriumVolici(this->getSelectedKolo());
+				structures::HeapSort<std::string, Obec*, int, Area> *sort =
+					new structures::HeapSort<std::string, Obec *, int, Area>();
+
+				sort->sortByKriterium(*obce, *kriterium);
+
+				if (comboBox1->SelectedItem->ToString() == "zostupne") {
+					for (int i = obce->size() - 1; i >= 0; --i) {
+						Obec* obec = obce->getItemAtIndex(i).accessData();
+
+						if (filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost)
+							&& filterUcast->evaluate(*obec, *kriteriumUcast))
+						{
+							// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
+							areaToDataGridView(*obec);
+						}
 					}
 				}
-			}
-			delete kriterium;
-			delete sort;
-		}
+				else {
+					for (int i = 0; i < obce->size(); ++i) {
+						Obec* obec = obce->getItemAtIndex(i).accessData();
 
-		if (sortUcastRadio->Checked)
+						if (filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost)
+							&& filterUcast->evaluate(*obec, *kriteriumUcast))
+						{
+							// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
+							areaToDataGridView(*obec);
+						}
+					}
+				}
+
+				delete filterPrislusnost;
+				delete filterUcast;
+				delete kriteriumPrislusnost;
+				delete kriteriumUcast;
+				delete kriterium;
+				delete sort;
+			}
+
+			if (sortUcastRadio->Checked)
+			{
+				auto *kriterium = new KriteriumUcast(this->getSelectedKolo());
+				structures::HeapSort<std::string, Obec*, double, Area> *sort =
+					new structures::HeapSort<std::string, Obec *, double, Area>();
+
+				sort->sortByKriterium(*obce, *kriterium);
+
+				if (comboBox1->SelectedItem->ToString() == "zostupne") {
+					for (int i = obce->size() - 1; i >= 0; --i) {
+						Obec* obec = obce->getItemAtIndex(i).accessData();
+
+						if (filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost)
+							&& filterUcast->evaluate(*obec, *kriteriumUcast))
+						{
+							// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
+							areaToDataGridView(*obec);
+						}
+					}
+				}
+				else {
+					for (int i = 0; i < obce->size(); ++i) {
+						Obec* obec = obce->getItemAtIndex(i).accessData();
+
+						auto test = kriterium->evaluate(*obec);
+						auto test1 = filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost);
+						auto test2 = filterUcast->evaluate(*obec, *kriteriumUcast);
+
+						if (filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost)
+							&& filterUcast->evaluate(*obec, *kriteriumUcast))
+						{
+							// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
+							areaToDataGridView(*obec);
+						}
+					}
+				}
+				delete kriterium;
+				delete sort;
+			}
+
+			delete tempKraj;
+			delete tempOkres;
+		}
+		else
 		{
-			auto kriterium = new KriteriumUcast(this->getSelectedKolo());
-			structures::HeapSort<std::string, Obec*, double, Area> *sort =
-				new structures::HeapSort<std::string, Obec *, double, Area>();
+			if (sortNazovRadio->Checked) {
+				if (comboBox1->SelectedItem->ToString() == "zostupne") {
+					int i = loader->getObce()->size() - 1;
 
-			sort->sortByKriterium(*obce, *kriterium);
-
-			if (comboBox1->SelectedItem->ToString() == "zostupne") {
-				for (int i = obce->size() - 1; i >= 0; --i) {
-					Obec* obec = obce->getItemAtIndex(i).accessData();
-
-					if (kriterium->evaluate(*obec)) {
-						areaToDataGridView(*obec);
+					// add number of rows of structure size
+					this->dataGridView1->Rows->Add(loader->getObce()->size());
+					for each (auto *obec in *loader->getObce()) {
+						// idem po usporiadanej štruktúre vzostupne a kedže chcem zostupne
+						// vypisujem od posledneho riadku -> prehodenie poradia
+						this->dataGridView1->Rows[i]->Cells[0]->Value =
+							gcnew String(obec->accessData()->getName().c_str());
+						i--;
+					}
+				}
+				else {
+					for each (auto *obec in *loader->getObce()) {
+						this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
+							gcnew String(obec->accessData()->getName().c_str());
 					}
 				}
 			}
-			else {
-				for (int i = 0; i < obce->size(); ++i) {
-					Obec* obec = obce->getItemAtIndex(i).accessData();
 
-					if (kriterium->evaluate(*obec)) {
-						areaToDataGridView(*obec);
+			if (sortVoliciRadio->Checked) {
+				auto *kriterium = new KriteriumVolici(this->getSelectedKolo());
+				structures::HeapSort<std::string, Obec*, int, Area> *sort =
+					new structures::HeapSort<std::string, Obec *, int, Area>();
+
+				sort->sortByKriterium(*obce, *kriterium);
+
+				if (comboBox1->SelectedItem->ToString() == "zostupne") {
+					for (int i = obce->size() - 1; i >= 0; --i) {
+						Obec* obec = obce->getItemAtIndex(i).accessData();
+
+						if (kriterium->evaluate(*obec)) {
+							areaToDataGridView(*obec);
+						}
 					}
 				}
+				else {
+					for (int i = 0; i < obce->size(); ++i) {
+						Obec* obec = obce->getItemAtIndex(i).accessData();
+
+						if (kriterium->evaluate(*obec)) {
+							areaToDataGridView(*obec);
+						}
+					}
+				}
+				delete kriterium;
+				delete sort;
 			}
-			delete kriterium;
-			delete sort;
+
+			if (sortUcastRadio->Checked)
+			{
+				auto *kriterium = new KriteriumUcast(this->getSelectedKolo());
+				structures::HeapSort<std::string, Obec*, double, Area> *sort =
+					new structures::HeapSort<std::string, Obec *, double, Area>();
+
+				sort->sortByKriterium(*obce, *kriterium);
+
+				if (comboBox1->SelectedItem->ToString() == "zostupne") {
+					for (int i = obce->size() - 1; i >= 0; --i) {
+						Obec* obec = obce->getItemAtIndex(i).accessData();
+
+						if (kriterium->evaluate(*obec)) {
+							areaToDataGridView(*obec);
+						}
+					}
+				}
+				else {
+					for (int i = 0; i < obce->size(); ++i) {
+						Obec* obec = obce->getItemAtIndex(i).accessData();
+
+						if (kriterium->evaluate(*obec)) {
+							areaToDataGridView(*obec);
+						}
+					}
+				}
+				delete kriterium;
+				delete sort;
+			}
 		}
 
-		if (PríslušnosťObceCheck->Checked) {
-			throw std::exception("Not implemented yet!");
-		}
 		this->ResetCursor();
 	}
 

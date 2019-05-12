@@ -36,3 +36,4 @@ private:
 class FilterHasName : public Filter_fi<std::string, Area> {};
 class FilterVolici : public Filter_FI<int, Area> {};
 class FilterUcast : public Filter_FI<double, Area> {};
+class FilterPrislusnostObce : public Filter_fi<bool, Obec> {};
