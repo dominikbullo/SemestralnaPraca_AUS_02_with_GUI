@@ -202,8 +202,63 @@ namespace structures
 	template<typename K, typename T>
 	inline T Treap<K, T>::remove(const K & key)
 	{
-		// TODO 10: Treap
-		throw std::exception("Treap<K, T>::remove: Not implemented yet.");
+		bool found = false;
+
+		typename BinarySearchTree<K, T>::BSTTreeNode* nodeToRemove = findBSTNode(key, found);
+
+		if (found)
+		{
+			TreapItem<K, T>* treapItem = dynamic_cast<TreapItem<K, T>*>(nodeToRemove->accessData());
+			treapItem->minimizePriority();
+
+			int leftSonPriority = extractPriority(nodeToRemove->getLeftSon());
+			int rightSonPriority = extractPriority(nodeToRemove->getRightSon());
+
+			while (leftSonPriority != INT_MIN || rightSonPriority != INT_MIN)
+			{
+				BinarySearchTree<K, T>::BSTTreeNode* rotateSon = nullptr;
+
+				if (leftSonPriority != INT_MIN && rightSonPriority != INT_MIN)
+				{
+					rotateSon = leftSonPriority < rightSonPriority ? nodeToRemove->getLeftSon() : nodeToRemove->getRightSon();
+				}
+				else
+				{
+					rotateSon = leftSonPriority != INT_MIN ? nodeToRemove->getLeftSon() : nodeToRemove->getRightSon();
+				}
+
+				bool resetRoot = nodeToRemove->isRoot();
+
+				if (rotateSon->isLeftSon())
+				{
+					rotateRightOverParent(rotateSon);
+				}
+				else
+				{
+					rotateLeftOverParent(rotateSon);
+				}
+
+				if (resetRoot)
+				{
+					binaryTree_->replaceRoot(rotateSon);
+				}
+
+				leftSonPriority = extractPriority(nodeToRemove->getLeftSon());
+				rightSonPriority = extractPriority(nodeToRemove->getRightSon());
+			}
+
+			extractNode(nodeToRemove);
+
+			T result = nodeToRemove->accessData()->accessData();
+			delete nodeToRemove->accessData();
+			delete nodeToRemove;
+			size_--;
+			return result;
+		}
+		else
+		{
+			throw std::logic_error("Key not found!");
+		}
 	}
 
 	template<typename K, typename T>

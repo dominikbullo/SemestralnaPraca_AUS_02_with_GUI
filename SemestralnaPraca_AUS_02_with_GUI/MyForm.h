@@ -732,9 +732,9 @@ namespace SemestralnaPracaAUS02withGUI {
 
 		if (upresnitPríslušnosťObceCheck->Checked && filterUcastRadio->Checked) {
 			KriteriumPrislusnostObce* kriteriumPrislusnost = new KriteriumPrislusnostObce();
-			Kraj* tempKraj;
-			Okres* tempOkres;
-			auto nazov = this->toStandardString(prislusnostObceText->Text);
+			Kraj* tempKraj = nullptr;
+			Okres* tempOkres = nullptr;
+			std::string nazov = this->toStandardString(prislusnostObceText->Text->ToString());
 
 			if (loader->getOkresy()->tryFind(nazov, tempOkres))
 			{
@@ -773,22 +773,34 @@ namespace SemestralnaPracaAUS02withGUI {
 
 					// add number of rows of structure size
 					this->dataGridView1->Rows->Add(loader->getObce()->size());
-					for each (auto *obec in *loader->getObce()) {
-						//if (filterPrislusnost->evaluate(*obec->accessData(), *kriteriumPrislusnost)
-						//	&& filterUcast->evaluate(*obec->accessData(), *kriteriumUcast))
-						//{
-						//	// spĺňajú 𝐹Úč𝑎𝑠ť ∩ 𝐹𝑃𝑟í𝑠𝑙𝑢š𝑛𝑜𝑠ť𝑂𝑏𝑐𝑒,
-						//}
+					for (auto obecTable : *loader->getObce()) {
+						auto *obec = obecTable->accessData();
 
-						this->dataGridView1->Rows[i]->Cells[0]->Value =
-							gcnew String(obec->accessData()->getName().c_str());
+						auto test = filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost);
+						auto test1 = filterUcast->evaluate(*obec, *kriteriumUcast);
+
+						if (filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost)
+							&& filterUcast->evaluate(*obec, *kriteriumUcast))
+						{
+							this->dataGridView1->Rows[i]->Cells[0]->Value =
+								gcnew String(obec->getName().c_str());
+						}
+						else
+						{
+							this->dataGridView1->Rows->RemoveAt(i);
+						}
 						i--;
 					}
+
 				}
 				else {
 					for each (auto *obec in *loader->getObce()) {
-						this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
-							gcnew String(obec->accessData()->getName().c_str());
+						if (filterPrislusnost->evaluate(*obec->accessData(), *kriteriumPrislusnost)
+							&& filterUcast->evaluate(*obec->accessData(), *kriteriumUcast))
+						{
+							this->dataGridView1->Rows[this->dataGridView1->Rows->Add()]->Cells[0]->Value =
+								gcnew String(obec->accessData()->getName().c_str());
+						}
 					}
 				}
 			}
@@ -824,11 +836,6 @@ namespace SemestralnaPracaAUS02withGUI {
 						}
 					}
 				}
-
-				delete filterPrislusnost;
-				delete filterUcast;
-				delete kriteriumPrislusnost;
-				delete kriteriumUcast;
 				delete kriterium;
 				delete sort;
 			}
@@ -857,10 +864,6 @@ namespace SemestralnaPracaAUS02withGUI {
 					for (int i = 0; i < obce->size(); ++i) {
 						Obec* obec = obce->getItemAtIndex(i).accessData();
 
-						auto test = kriterium->evaluate(*obec);
-						auto test1 = filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost);
-						auto test2 = filterUcast->evaluate(*obec, *kriteriumUcast);
-
 						if (filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost)
 							&& filterUcast->evaluate(*obec, *kriteriumUcast))
 						{
@@ -873,8 +876,10 @@ namespace SemestralnaPracaAUS02withGUI {
 				delete sort;
 			}
 
-			delete tempKraj;
-			delete tempOkres;
+			delete filterPrislusnost;
+			delete filterUcast;
+			delete kriteriumPrislusnost;
+			delete kriteriumUcast;
 		}
 		else
 		{

@@ -196,7 +196,10 @@ namespace structures
 			data = item->accessData();
 			return true;
 		}
-		return false;
+		else
+		{
+			return false;
+		}
 	}
 
 	template<typename K, typename T>

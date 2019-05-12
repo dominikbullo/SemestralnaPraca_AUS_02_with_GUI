@@ -51,7 +51,7 @@ class Okres : public Area
 {
 public:
 	Okres(std::string nazov, std::string nazovKraja) :
-		nazovKraja(this->nazovKraja), Area(nazov)
+		nazovKraja(nazovKraja), Area(nazov)
 	{
 		cout << "Created Okres " << nazov << endl;
 	}

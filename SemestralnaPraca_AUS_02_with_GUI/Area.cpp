@@ -14,7 +14,7 @@ Area::Area(std::string nazov) : nazov(nazov)
 
 Area::~Area()
 {
-	for (size_t i = 0; i < arrayKol->size(); i++)
+	for (size_t i = 1; i < arrayKol->size(); i++)
 	{
 		delete arrayKol->operator[](i);
 	}
@@ -31,6 +31,7 @@ void Obec::makeUniqueNazov()
 	std::string uniqueNazov = this->getName() + " - " + this->nazovOkresu;
 	this->setName(uniqueNazov);
 }
+
 void Area::calculateSumValuesForBothRounds()
 {
 	setPocetVydanychObalok(getPocetVydanychObalok(1) + getPocetVydanychObalok(2), 0);
