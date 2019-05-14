@@ -249,7 +249,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// filterUcastRadio
 			// 
 			this->filterUcastRadio->AutoSize = true;
-			this->filterUcastRadio->Location = System::Drawing::Point(6, 145);
+			this->filterUcastRadio->Location = System::Drawing::Point(17, 145);
 			this->filterUcastRadio->Name = L"filterUcastRadio";
 			this->filterUcastRadio->Size = System::Drawing::Size(111, 17);
 			this->filterUcastRadio->TabIndex = 44;
@@ -258,7 +258,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(6, 279);
+			this->button1->Location = System::Drawing::Point(17, 279);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(245, 44);
 			this->button1->TabIndex = 42;
@@ -269,7 +269,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// filterVoliciRadio
 			// 
 			this->filterVoliciRadio->AutoSize = true;
-			this->filterVoliciRadio->Location = System::Drawing::Point(6, 82);
+			this->filterVoliciRadio->Location = System::Drawing::Point(17, 82);
 			this->filterVoliciRadio->Name = L"filterVoliciRadio";
 			this->filterVoliciRadio->Size = System::Drawing::Size(97, 17);
 			this->filterVoliciRadio->TabIndex = 43;
@@ -278,7 +278,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(5, 215);
+			this->button2->Location = System::Drawing::Point(16, 215);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(246, 47);
 			this->button2->TabIndex = 44;
@@ -290,7 +290,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			this->filterNazovRadio->AutoSize = true;
 			this->filterNazovRadio->Checked = true;
-			this->filterNazovRadio->Location = System::Drawing::Point(6, 29);
+			this->filterNazovRadio->Location = System::Drawing::Point(17, 29);
 			this->filterNazovRadio->Name = L"filterNazovRadio";
 			this->filterNazovRadio->Size = System::Drawing::Size(98, 17);
 			this->filterNazovRadio->TabIndex = 42;
@@ -300,7 +300,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(6, 52);
+			this->textBox1->Location = System::Drawing::Point(17, 52);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(245, 20);
 			this->textBox1->TabIndex = 41;
@@ -309,7 +309,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// numericUpDown4
 			// 
 			this->numericUpDown4->DecimalPlaces = 2;
-			this->numericUpDown4->Location = System::Drawing::Point(139, 177);
+			this->numericUpDown4->Location = System::Drawing::Point(150, 177);
 			this->numericUpDown4->Name = L"numericUpDown4";
 			this->numericUpDown4->Size = System::Drawing::Size(112, 20);
 			this->numericUpDown4->TabIndex = 39;
@@ -318,14 +318,14 @@ namespace SemestralnaPracaAUS02withGUI {
 			// numericUpDown3
 			// 
 			this->numericUpDown3->DecimalPlaces = 2;
-			this->numericUpDown3->Location = System::Drawing::Point(6, 177);
+			this->numericUpDown3->Location = System::Drawing::Point(17, 177);
 			this->numericUpDown3->Name = L"numericUpDown3";
 			this->numericUpDown3->Size = System::Drawing::Size(112, 20);
 			this->numericUpDown3->TabIndex = 38;
 			// 
 			// numericUpDown2
 			// 
-			this->numericUpDown2->Location = System::Drawing::Point(139, 114);
+			this->numericUpDown2->Location = System::Drawing::Point(150, 114);
 			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 70000, 0, 0, 0 });
 			this->numericUpDown2->Name = L"numericUpDown2";
 			this->numericUpDown2->Size = System::Drawing::Size(112, 20);
@@ -334,7 +334,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// numericUpDown1
 			// 
-			this->numericUpDown1->Location = System::Drawing::Point(6, 114);
+			this->numericUpDown1->Location = System::Drawing::Point(17, 114);
 			this->numericUpDown1->Name = L"numericUpDown1";
 			this->numericUpDown1->Size = System::Drawing::Size(112, 20);
 			this->numericUpDown1->TabIndex = 36;
@@ -342,7 +342,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// upresnitPríslušnosťObceCheck
 			// 
 			this->upresnitPríslušnosťObceCheck->AutoSize = true;
-			this->upresnitPríslušnosťObceCheck->Location = System::Drawing::Point(101, 58);
+			this->upresnitPríslušnosťObceCheck->Location = System::Drawing::Point(119, 58);
 			this->upresnitPríslušnosťObceCheck->Name = L"upresnitPríslušnosťObceCheck";
 			this->upresnitPríslušnosťObceCheck->Size = System::Drawing::Size(66, 17);
 			this->upresnitPríslušnosťObceCheck->TabIndex = 47;
@@ -352,7 +352,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			// prislusnostObceText
 			// 
-			this->prislusnostObceText->Location = System::Drawing::Point(101, 81);
+			this->prislusnostObceText->Location = System::Drawing::Point(119, 81);
 			this->prislusnostObceText->Name = L"prislusnostObceText";
 			this->prislusnostObceText->Size = System::Drawing::Size(152, 20);
 			this->prislusnostObceText->TabIndex = 45;
@@ -421,7 +421,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(98, 15);
+			this->label1->Location = System::Drawing::Point(116, 15);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(55, 13);
 			this->label1->TabIndex = 48;
@@ -431,7 +431,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			// 
 			this->comboBox1->FormattingEnabled = true;
 			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"vzostupne", L"zostupne" });
-			this->comboBox1->Location = System::Drawing::Point(106, 31);
+			this->comboBox1->Location = System::Drawing::Point(124, 31);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(97, 21);
 			this->comboBox1->Sorted = true;
@@ -521,7 +521,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(60, 118);
 			this->button3->TabIndex = 42;
-			this->button3->Text = L"button3";
+			this->button3->Text = L"ZOBRAZ";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
@@ -974,5 +974,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->filterUcastRadio->Checked = false;
 		}
 	}
-	};
+
+};
 }

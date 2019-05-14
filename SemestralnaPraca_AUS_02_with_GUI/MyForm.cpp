@@ -9,12 +9,8 @@ using namespace System::Windows::Forms;
 int main()
 {
 	// TODO's
-	// TODO -> vypiš arrayList do GUI
-	// TODO -> dorobiť 4ku -> kriteria evaulate
-
-	// NEDEĽA
-	// TODO Dokumentácia 
-	// TODO Final testing
+	// TODO GUI -> refactor & correct working 
+	// TODO Dokumenácia -> zložitosti
 
 	initHeapMonitor();
 	std::locale::global(std::locale("")); // kvôli diakritike 
