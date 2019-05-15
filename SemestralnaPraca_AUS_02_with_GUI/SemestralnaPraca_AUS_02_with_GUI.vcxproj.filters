@@ -249,6 +249,9 @@
     <None Include="spolu_kraje.csv" />
     <None Include="spolu_obce.csv" />
     <None Include="spolu_okresy.csv" />
+    <None Include="spolu_kraje_without_accents.csv" />
+    <None Include="spolu_obce_without_accents.csv" />
+    <None Include="spolu_okresy_without_accents.csv" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="aus.natvis" />

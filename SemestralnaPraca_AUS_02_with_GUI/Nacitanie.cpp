@@ -45,9 +45,18 @@ Nacitanie::~Nacitanie()
 
 void Nacitanie::loadData()
 {
+	// NOTE: toto nefunguje správne pri poronávaní obyèajných stringov,
+	//lebo by som musel robi iné naèítavanie, do wstringov, 
+	// tým pádom zmeni komplet naèívatanie & štruktúry & GUI...
+	// neskoro som si to všimol, nebol èas to prerobi.
+
 	this->loadDataKraje("spolu_kraje.csv");
 	this->loadDataOkresy("spolu_okresy.csv");
 	this->loadDataObce("spolu_obce.csv");
+
+	//this->loadDataKraje("spolu_kraje_without_accents.csv");
+	//this->loadDataOkresy("spolu_okresy_without_accents.csv");
+	//this->loadDataObce("spolu_obce_without_accents.csv");
 }
 
 
