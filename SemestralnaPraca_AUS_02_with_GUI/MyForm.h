@@ -29,11 +29,12 @@ namespace SemestralnaPracaAUS02withGUI {
 			loader = new Nacitanie();
 			app = new App(loader);
 
-			string headerTableItems[15] = {
-					"Typ",						// 0
-					"Kraj",						// 1
+			string headerTableItems[15] =
+			{
+					"Nazov",					// 0
+					"Typ",						// 1					
 					"Okres",					// 2
-					"Nazov",					// 3
+					"Kraj",						// 3
 					"Voliči 1.kolo",			// 4
 					"Voliči 2.kolo",			// 5
 					"Účasť 1.kolo",				// 6
@@ -52,7 +53,8 @@ namespace SemestralnaPracaAUS02withGUI {
 				this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
 			}
 
-			updateHeaders();
+			this->showButton_Click(nullptr, nullptr);
+			this->prveKolo_Click(nullptr, nullptr);
 		}
 
 	protected:
@@ -128,7 +130,8 @@ namespace SemestralnaPracaAUS02withGUI {
 
 
 	private: System::Windows::Forms::RadioButton^  druheKolo;
-	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  filterButton;
+
 
 
 	private: System::Windows::Forms::RadioButton^  filterNazovRadio;
@@ -141,13 +144,16 @@ namespace SemestralnaPracaAUS02withGUI {
 
 
 	private: System::Windows::Forms::ComboBox^  comboBox1;
-	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  sortButton;
+
 	private: System::Windows::Forms::CheckBox^  upresnitPríslušnosťObceCheck;
 
 	private: System::Windows::Forms::TextBox^  prislusnostObceText;
 
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::Button^  showButton;
+
+
 
 
 
@@ -177,9 +183,9 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->filterUcastRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->filterButton = (gcnew System::Windows::Forms::Button());
 			this->filterVoliciRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->sortButton = (gcnew System::Windows::Forms::Button());
 			this->filterNazovRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->numericUpDown4 = (gcnew System::Windows::Forms::NumericUpDown());
@@ -202,7 +208,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->obidveKola = (gcnew System::Windows::Forms::RadioButton());
 			this->druheKolo = (gcnew System::Windows::Forms::RadioButton());
 			this->prveKolo = (gcnew System::Windows::Forms::RadioButton());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->showButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown4))->BeginInit();
@@ -230,9 +236,9 @@ namespace SemestralnaPracaAUS02withGUI {
 			// groupBox1
 			// 
 			this->groupBox1->Controls->Add(this->filterUcastRadio);
-			this->groupBox1->Controls->Add(this->button1);
+			this->groupBox1->Controls->Add(this->filterButton);
 			this->groupBox1->Controls->Add(this->filterVoliciRadio);
-			this->groupBox1->Controls->Add(this->button2);
+			this->groupBox1->Controls->Add(this->sortButton);
 			this->groupBox1->Controls->Add(this->filterNazovRadio);
 			this->groupBox1->Controls->Add(this->textBox1);
 			this->groupBox1->Controls->Add(this->numericUpDown4);
@@ -256,15 +262,15 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->filterUcastRadio->Text = L"Volebná účasť (%)";
 			this->filterUcastRadio->UseVisualStyleBackColor = true;
 			// 
-			// button1
+			// filterButton
 			// 
-			this->button1->Location = System::Drawing::Point(17, 279);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(245, 44);
-			this->button1->TabIndex = 42;
-			this->button1->Text = L"FILTRUJ";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
+			this->filterButton->Location = System::Drawing::Point(17, 279);
+			this->filterButton->Name = L"filterButton";
+			this->filterButton->Size = System::Drawing::Size(245, 44);
+			this->filterButton->TabIndex = 42;
+			this->filterButton->Text = L"FILTRUJ";
+			this->filterButton->UseVisualStyleBackColor = true;
+			this->filterButton->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_1);
 			// 
 			// filterVoliciRadio
 			// 
@@ -276,15 +282,15 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->filterVoliciRadio->Text = L"Zapísaný voliči";
 			this->filterVoliciRadio->UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// sortButton
 			// 
-			this->button2->Location = System::Drawing::Point(16, 215);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(246, 47);
-			this->button2->TabIndex = 44;
-			this->button2->Text = L"ZORAĎ";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			this->sortButton->Location = System::Drawing::Point(16, 215);
+			this->sortButton->Name = L"sortButton";
+			this->sortButton->Size = System::Drawing::Size(246, 47);
+			this->sortButton->TabIndex = 44;
+			this->sortButton->Text = L"ZORAĎ";
+			this->sortButton->UseVisualStyleBackColor = true;
+			this->sortButton->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// filterNazovRadio
 			// 
@@ -492,6 +498,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->obidveKola->TabIndex = 29;
 			this->obidveKola->Text = L"SPOLU";
 			this->obidveKola->UseVisualStyleBackColor = true;
+			this->obidveKola->Click += gcnew System::EventHandler(this, &MyForm::obidveKola_Click);
 			// 
 			// druheKolo
 			// 
@@ -502,6 +509,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->druheKolo->TabIndex = 28;
 			this->druheKolo->Text = L"2. KOLO";
 			this->druheKolo->UseVisualStyleBackColor = true;
+			this->druheKolo->Click += gcnew System::EventHandler(this, &MyForm::druheKolo_Click);
 			// 
 			// prveKolo
 			// 
@@ -514,28 +522,31 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->prveKolo->TabStop = true;
 			this->prveKolo->Text = L"1. KOLO";
 			this->prveKolo->UseVisualStyleBackColor = true;
+			this->prveKolo->Click += gcnew System::EventHandler(this, &MyForm::prveKolo_Click);
 			// 
-			// button3
+			// showButton
 			// 
-			this->button3->Location = System::Drawing::Point(803, 23);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(60, 118);
-			this->button3->TabIndex = 42;
-			this->button3->Text = L"ZOBRAZ";
-			this->button3->UseVisualStyleBackColor = true;
+			this->showButton->Location = System::Drawing::Point(803, 23);
+			this->showButton->Name = L"showButton";
+			this->showButton->Size = System::Drawing::Size(60, 118);
+			this->showButton->TabIndex = 42;
+			this->showButton->Text = L"ZOBRAZ";
+			this->showButton->UseVisualStyleBackColor = true;
+			this->showButton->Click += gcnew System::EventHandler(this, &MyForm::showButton_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(878, 617);
-			this->Controls->Add(this->button3);
+			this->Controls->Add(this->showButton);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox3);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->dataGridView1);
 			this->Name = L"MyForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Semestralna praca 2 - Výsledky volieb";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->groupBox1->ResumeLayout(false);
@@ -614,23 +625,28 @@ namespace SemestralnaPracaAUS02withGUI {
 
 			this->dataGridView1->Rows[index]->Cells[0]->Value = gcnew String(area->getName().c_str());
 			this->dataGridView1->Rows[index]->Cells[1]->Value = gcnew String(area->getClassName().c_str());
-			this->dataGridView1->Rows[index]->Cells[2]->Value = "";
-			this->dataGridView1->Rows[index]->Cells[3]->Value = "";
 
-			if (area->getClassName() == "Okres") {
-				auto newArea = reinterpret_cast<Okres*>(area);
-				this->dataGridView1->Rows[index]->Cells[2]->Value = System::Convert::ToString(newArea->getNazovKraja().c_str());
-			}
 			if (area->getClassName() == "Obec") {
 				auto newArea = reinterpret_cast<Obec*>(area);
-				this->dataGridView1->Rows[index]->Cells[2]->Value = gcnew String(newArea->getNazovKraja().c_str());
-				this->dataGridView1->Rows[index]->Cells[3]->Value = gcnew String(newArea->getNazovOkresu().c_str());
+				this->dataGridView1->Rows[index]->Cells[2]->Value = gcnew String(newArea->getNazovOkresu().c_str());
+				this->dataGridView1->Rows[index]->Cells[3]->Value = gcnew String(newArea->getNazovKraja().c_str());
 			}
+			else if (area->getClassName() == "Okres") {
+				auto newArea = reinterpret_cast<Okres*>(area);
+				this->dataGridView1->Rows[index]->Cells[2]->Value = "";
+				this->dataGridView1->Rows[index]->Cells[3]->Value = gcnew String(newArea->getNazovKraja().c_str());
+			}
+			else {
+				this->dataGridView1->Rows[index]->Cells[2]->Value = "";
+				this->dataGridView1->Rows[index]->Cells[3]->Value = "";
+			}
+
+
 			this->dataGridView1->Rows[index]->Cells[4]->Value = System::Convert::ToString(area->getPocetVolicov(1));
 			this->dataGridView1->Rows[index]->Cells[5]->Value = System::Convert::ToString(area->getPocetVolicov(2));
 
-			this->dataGridView1->Rows[index]->Cells[6]->Value = roundAndFormat(area->getPocetVolicov(1));
-			this->dataGridView1->Rows[index]->Cells[7]->Value = roundAndFormat(area->getPocetVolicov(2));
+			this->dataGridView1->Rows[index]->Cells[6]->Value = roundAndFormat(area->getUcastVolicov(1));
+			this->dataGridView1->Rows[index]->Cells[7]->Value = roundAndFormat(area->getUcastVolicov(2));
 
 			this->dataGridView1->Rows[index]->Cells[8]->Value = System::Convert::ToString(area->getPocetVydanychObalok(1));
 			this->dataGridView1->Rows[index]->Cells[9]->Value = System::Convert::ToString(area->getPocetVydanychObalok(2));
@@ -975,5 +991,63 @@ namespace SemestralnaPracaAUS02withGUI {
 		}
 	}
 
-};
+	private: System::Void showButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		this->Cursor->Current = System::Windows::Forms::Cursors::WaitCursor;
+		this->dataGridView1->Rows->Clear();
+		if (zobrazObce->Checked)
+		{
+			for each (auto area in *loader->getObce())
+			{
+				areaToDataGridView(area->accessData());
+			}
+		}
+		else if (zobrazOkresy->Checked)
+		{
+			for each (auto area in *loader->getOkresy())
+			{
+				areaToDataGridView(area->accessData());
+			}
+		}
+		else
+		{
+			for each (auto area in *loader->getKraje())
+			{
+				areaToDataGridView(area->accessData());
+			}
+		}
+		this->ResetCursor();
+	}
+	private: System::Void prveKolo_Click(System::Object^  sender, System::EventArgs^  e) {
+		int excluded[] = { 5,7,9,10,12,13 };
+		for (int i = 0; i < 15; i++)
+		{
+			if (std::find(std::begin(excluded), std::end(excluded), i) != std::end(excluded))
+			{
+				this->dataGridView1->Columns[i]->Visible = false;
+			}
+			else {
+				this->dataGridView1->Columns[i]->Visible = true;
+			}
+		}
+	}
+	private: System::Void druheKolo_Click(System::Object^  sender, System::EventArgs^  e) {
+		int excluded[] = { 4,6,8,10,11,13,14 };
+		for (int i = 0; i < 15; i++)
+		{
+			if (std::find(std::begin(excluded), std::end(excluded), i) != std::end(excluded))
+			{
+				this->dataGridView1->Columns[i]->Visible = false;
+			}
+			else {
+				this->dataGridView1->Columns[i]->Visible = true;
+			}
+		}
+	}
+	private: System::Void obidveKola_Click(System::Object^  sender, System::EventArgs^  e) {
+		for (int i = 0; i < 15; i++)
+		{
+			this->dataGridView1->Columns[i]->Visible = true;
+		}
+	}
+	};
 }
