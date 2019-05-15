@@ -53,8 +53,8 @@ namespace SemestralnaPracaAUS02withGUI {
 				this->dataGridView1->Columns->Add(gcnew String(headerTableItems[i].c_str()), gcnew String(headerTableItems[i].c_str()));
 			}
 
-			this->showButton_Click(nullptr, nullptr);
 			this->prveKolo_Click(nullptr, nullptr);
+			this->showButton_Click(nullptr, nullptr);
 		}
 
 	protected:
@@ -81,8 +81,7 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: Nacitanie* loader;
 	private: App* app;
-			 //private: structures::Array<std::string>* headersArray;
-			 //private: structures::Array<int>* excludedColumnsIndex;
+
 
 
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
@@ -641,7 +640,6 @@ namespace SemestralnaPracaAUS02withGUI {
 				this->dataGridView1->Rows[index]->Cells[3]->Value = "";
 			}
 
-
 			this->dataGridView1->Rows[index]->Cells[4]->Value = System::Convert::ToString(area->getPocetVolicov(1));
 			this->dataGridView1->Rows[index]->Cells[5]->Value = System::Convert::ToString(area->getPocetVolicov(2));
 
@@ -993,9 +991,12 @@ namespace SemestralnaPracaAUS02withGUI {
 
 	private: System::Void showButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->Cursor->Current = System::Windows::Forms::Cursors::WaitCursor;
+		//this->ResetCursor();
 		this->dataGridView1->Rows->Clear();
 		if (zobrazObce->Checked)
 		{
+			this->dataGridView1->Columns[2]->Visible = true;
+			this->dataGridView1->Columns[3]->Visible = true;
 			for each (auto area in *loader->getObce())
 			{
 				areaToDataGridView(area->accessData());
@@ -1003,6 +1004,8 @@ namespace SemestralnaPracaAUS02withGUI {
 		}
 		else if (zobrazOkresy->Checked)
 		{
+			this->dataGridView1->Columns[2]->Visible = false;
+			this->dataGridView1->Columns[3]->Visible = true;
 			for each (auto area in *loader->getOkresy())
 			{
 				areaToDataGridView(area->accessData());
@@ -1010,6 +1013,8 @@ namespace SemestralnaPracaAUS02withGUI {
 		}
 		else
 		{
+			this->dataGridView1->Columns[2]->Visible = false;
+			this->dataGridView1->Columns[3]->Visible = false;
 			for each (auto area in *loader->getKraje())
 			{
 				areaToDataGridView(area->accessData());
@@ -1049,5 +1054,6 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->dataGridView1->Columns[i]->Visible = true;
 		}
 	}
+
 	};
 }

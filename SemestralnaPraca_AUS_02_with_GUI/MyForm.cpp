@@ -9,8 +9,7 @@ using namespace System::Windows::Forms;
 int main()
 {
 	// TODO's
-	// TODO GUI -> refactor & correct working 
-	// TODO Dokumenácia -> zložitosti
+	// TODO zoradenie podľa názvu
 
 	initHeapMonitor();
 	std::locale::global(std::locale("")); // kvôli diakritike 

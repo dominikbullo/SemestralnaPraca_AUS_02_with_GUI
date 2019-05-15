@@ -117,11 +117,6 @@ namespace structures
 	{
 	}
 
-	//template<typename K, typename T>
-	//inline TableItem<K, T>::TableItem(const TableItem<T>& other)
-	//{
-	//}
-
 	template<typename K, typename T>
 	inline K TableItem<K, T>::getKey()
 	{
