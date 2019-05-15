@@ -621,7 +621,11 @@ namespace SemestralnaPracaAUS02withGUI {
 		void areaToDataGridView(Area *area)
 		{
 			int index = this->dataGridView1->Rows->Add();
+			areaToDataGridView(area, index);
+		}
 
+		void areaToDataGridView(Area *area, int index)
+		{
 			this->dataGridView1->Rows[index]->Cells[0]->Value = gcnew String(area->getName().c_str());
 			this->dataGridView1->Rows[index]->Cells[1]->Value = gcnew String(area->getClassName().c_str());
 
@@ -794,8 +798,7 @@ namespace SemestralnaPracaAUS02withGUI {
 						if (filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost)
 							&& filterUcast->evaluate(*obec, *kriteriumUcast))
 						{
-							this->dataGridView1->Rows[i]->Cells[0]->Value =
-								gcnew String(obec->getName().c_str());
+							areaToDataGridView(obec, i);
 						}
 						else
 						{
@@ -806,11 +809,13 @@ namespace SemestralnaPracaAUS02withGUI {
 
 				}
 				else {
-					for each (auto *obec in *loader->getObce()) {
-						if (filterPrislusnost->evaluate(*obec->accessData(), *kriteriumPrislusnost)
-							&& filterUcast->evaluate(*obec->accessData(), *kriteriumUcast))
+					for each (auto *obecTable in *loader->getObce()) {
+						auto *obec = obecTable->accessData();
+
+						if (filterPrislusnost->evaluate(*obec, *kriteriumPrislusnost)
+							&& filterUcast->evaluate(*obec, *kriteriumUcast))
 						{
-							//areaToDataGridView(obec);
+							areaToDataGridView(obec);
 						}
 					}
 				}
@@ -903,8 +908,7 @@ namespace SemestralnaPracaAUS02withGUI {
 					for each (auto *obec in *loader->getObce()) {
 						// idem po usporiadanej štruktúre vzostupne a kedže chcem zostupne
 						// vypisujem od posledneho riadku -> prehodenie poradia
-						this->dataGridView1->Rows[i]->Cells[0]->Value =
-							gcnew String(obec->accessData()->getName().c_str());
+						areaToDataGridView(obec->accessData(), i);
 						i--;
 					}
 				}
