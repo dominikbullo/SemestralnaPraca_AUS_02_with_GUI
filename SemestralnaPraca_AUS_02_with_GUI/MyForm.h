@@ -669,7 +669,7 @@ namespace SemestralnaPracaAUS02withGUI {
 			}
 		}
 
-		System::String^  roundAndFormat(const double x) { return roundAndFormat(x, 0); }
+		System::String^  roundAndFormat(const double x) { return roundAndFormat(x, 2); }
 		System::String^  roundAndFormat(const double x, const int decDigits) {
 			stringstream ss;
 			ss << fixed;
@@ -999,8 +999,8 @@ namespace SemestralnaPracaAUS02withGUI {
 		this->dataGridView1->Rows->Clear();
 		if (zobrazObce->Checked)
 		{
-			this->dataGridView1->Columns[2]->Visible = true;
-			this->dataGridView1->Columns[3]->Visible = true;
+			//this->dataGridView1->Columns[2]->Visible = true;
+			//this->dataGridView1->Columns[3]->Visible = true;
 			for each (auto area in *loader->getObce())
 			{
 				areaToDataGridView(area->accessData());
@@ -1008,8 +1008,8 @@ namespace SemestralnaPracaAUS02withGUI {
 		}
 		else if (zobrazOkresy->Checked)
 		{
-			this->dataGridView1->Columns[2]->Visible = false;
-			this->dataGridView1->Columns[3]->Visible = true;
+			//this->dataGridView1->Columns[2]->Visible = false;
+			//this->dataGridView1->Columns[3]->Visible = true;
 			for each (auto area in *loader->getOkresy())
 			{
 				areaToDataGridView(area->accessData());
@@ -1017,8 +1017,8 @@ namespace SemestralnaPracaAUS02withGUI {
 		}
 		else
 		{
-			this->dataGridView1->Columns[2]->Visible = false;
-			this->dataGridView1->Columns[3]->Visible = false;
+			//this->dataGridView1->Columns[2]->Visible = false;
+			//this->dataGridView1->Columns[3]->Visible = false;
 			for each (auto area in *loader->getKraje())
 			{
 				areaToDataGridView(area->accessData());
@@ -1058,6 +1058,5 @@ namespace SemestralnaPracaAUS02withGUI {
 			this->dataGridView1->Columns[i]->Visible = true;
 		}
 	}
-
 	};
 }
